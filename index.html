@@ -1,0 +1,1082 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Rivayat India | Artisanal Luxury</title>
+    
+    <!-- Bootstrap 5 CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <!-- Tenor Sans for that high-fashion editorial look -->
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;0,600;1,400&family=Tenor+Sans&display=swap" rel="stylesheet">
+    
+    <!-- Lucide Icons -->
+    <script src="https://unpkg.com/lucide@latest"></script>
+
+    <style>
+        :root {
+            /* Premium Palette */
+            --bg-body: #fdfbf7; /* Champagne White */
+            --bg-pure: #ffffff;
+            --bg-overlay: rgba(255, 255, 255, 0.9);
+            
+            /* Typography Colors */
+            --text-main: #1c1c1c; /* Soft Black */
+            --text-muted: #585858;
+            
+            /* Accents */
+            --gold-accent: #c5a059; /* Muted Antique Gold */
+            --gold-hover: #b08d4b;
+            
+            /* Brand Colors */
+            --whatsapp-green: #25d366;
+            
+            --font-serif: 'Playfair Display', serif;
+            --font-sans: 'Tenor Sans', sans-serif;
+        }
+
+        body {
+            font-family: var(--font-sans);
+            color: var(--text-main);
+            background-color: var(--bg-body);
+            padding-top: 0; /* Reset for absolute navbar */
+            overflow-x: hidden; 
+            letter-spacing: 0.02em;
+        }
+
+        h1, h2, h3, h4, h5, h6, .font-serif {
+            font-family: var(--font-serif);
+        }
+
+        /* --- Typography & Utilities --- */
+        .text-gold { color: var(--gold-accent) !important; }
+        .bg-stone-light { background-color: #f4f1ea; }
+        .tracking-widest { letter-spacing: 0.2em !important; }
+        .tracking-wide { letter-spacing: 0.1em; }
+        
+        /* --- Marquee --- */
+        .marquee-container {
+            background-color: var(--text-main);
+            color: white;
+            padding: 10px 0;
+            position: relative; 
+            z-index: 1040;
+            font-size: 0.7rem;
+            text-transform: uppercase;
+            letter-spacing: 0.2em;
+            overflow: hidden;
+            white-space: nowrap;
+            border-bottom: 1px solid rgba(255,255,255,0.1);
+        }
+        .marquee-content {
+            display: inline-block;
+            padding-left: 100%;
+            animation: marquee 30s linear infinite;
+        }
+        @keyframes marquee {
+            0% { transform: translate(0, 0); }
+            100% { transform: translate(-100%, 0); }
+        }
+
+        /* --- Animations --- */
+        .reveal {
+            opacity: 0;
+            transform: translateY(40px);
+            transition: all 1s cubic-bezier(0.16, 1, 0.3, 1); /* Premium ease */
+        }
+        .reveal.active {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* --- Buttons --- */
+        .btn-custom-primary {
+            background-color: var(--text-main);
+            color: white;
+            text-transform: uppercase;
+            letter-spacing: 0.2em;
+            font-size: 0.75rem;
+            padding: 1rem 2.5rem;
+            border: 1px solid var(--text-main);
+            border-radius: 0;
+            transition: all 0.4s ease;
+        }
+        .btn-custom-primary:hover {
+            background-color: transparent;
+            color: var(--text-main);
+            transform: translateY(-2px);
+        }
+
+        .btn-custom-outline {
+            border: 1px solid var(--text-main);
+            color: var(--text-main);
+            text-transform: uppercase;
+            letter-spacing: 0.2em;
+            font-size: 0.75rem;
+            padding: 1rem 2.5rem;
+            background: transparent;
+            border-radius: 0;
+            transition: all 0.4s ease;
+        }
+        .btn-custom-outline:hover {
+            background-color: var(--text-main);
+            color: white;
+        }
+
+        /* --- Navbar (Glassmorphic) --- */
+        .navbar {
+            padding-top: 1.5rem;
+            padding-bottom: 1.5rem;
+            transition: all 0.5s ease;
+            background-color: transparent;
+            position: absolute; /* Transparent over Hero */
+            top: 40px; /* Below marquee */
+            width: 100%;
+            z-index: 1000;
+        }
+        .navbar.scrolled {
+            position: fixed;
+            top: 0;
+            background-color: rgba(253, 251, 247, 0.95); /* Matching body bg */
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            box-shadow: 0 1px 0 rgba(0,0,0,0.05);
+            padding-top: 1rem;
+            padding-bottom: 1rem;
+        }
+        .navbar-brand {
+            font-family: var(--font-serif);
+            font-weight: 600;
+            font-size: 2rem;
+            color: var(--text-main);
+            letter-spacing: -0.03em;
+        }
+        .nav-link {
+            font-size: 0.75rem;
+            text-transform: uppercase;
+            letter-spacing: 0.15em;
+            font-weight: 500;
+            color: var(--text-main) !important;
+            margin: 0 1rem;
+            position: relative;
+        }
+        .nav-link::after {
+            content: '';
+            position: absolute;
+            width: 0;
+            height: 1px;
+            bottom: -4px;
+            left: 0;
+            background-color: var(--gold-accent);
+            transition: width 0.3s ease;
+        }
+        .nav-link:hover::after { width: 100%; }
+
+        /* --- Mega Menu --- */
+        .dropdown-menu.mega-menu {
+            border: none;
+            border-top: 2px solid var(--gold-accent);
+            border-radius: 0;
+            box-shadow: 0 20px 40px rgba(0,0,0,0.05);
+            padding: 3rem 0;
+            margin-top: 0;
+            background: var(--bg-pure);
+            left: 0;
+            right: 0;
+            width: 100%;
+        }
+        /* Hover Logic for Desktop */
+        @media (min-width: 992px) {
+            .navbar .dropdown:hover > .dropdown-menu {
+                display: block;
+                animation: fadeInUp 0.3s ease forwards;
+            }
+            .navbar .nav-item.dropdown.has-mega-menu {
+                position: static; /* Allows menu to be full width relative to navbar */
+            }
+        }
+        @keyframes fadeInUp {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        
+        .mega-menu-header {
+            font-family: var(--font-serif);
+            font-weight: 500;
+            font-size: 1rem;
+            color: var(--text-main);
+            margin-bottom: 1.2rem;
+            position: relative;
+            display: inline-block;
+            border-bottom: 1px solid var(--gold-accent);
+            padding-bottom: 5px;
+        }
+        .mega-menu-link {
+            display: block;
+            color: var(--text-muted);
+            text-decoration: none;
+            font-size: 0.85rem;
+            margin-bottom: 0.8rem;
+            transition: all 0.3s;
+            letter-spacing: 0.05em;
+        }
+        .mega-menu-link:hover {
+            color: var(--gold-accent);
+            transform: translateX(5px);
+        }
+
+        /* --- Shop by Craft (Horizontal Scroll) --- */
+        .craft-scroll-container {
+            overflow-x: auto;
+            white-space: nowrap;
+            padding: 2rem 0;
+            -webkit-overflow-scrolling: touch;
+            scrollbar-width: none; 
+        }
+        .craft-scroll-container::-webkit-scrollbar { display: none; }
+        .craft-item {
+            display: inline-block;
+            text-align: center;
+            margin: 0 2rem;
+            cursor: pointer;
+            transition: transform 0.4s ease;
+        }
+        .craft-item:hover { transform: translateY(-8px); }
+        .craft-img-wrapper {
+            width: 140px;
+            height: 140px;
+            border-radius: 50%;
+            overflow: hidden;
+            margin-bottom: 1.5rem;
+            border: 1px solid rgba(197, 160, 89, 0.3); /* Subtle Gold border */
+            padding: 5px;
+            transition: border-color 0.3s;
+        }
+        .craft-item:hover .craft-img-wrapper { border-color: var(--gold-accent); }
+        .craft-img {
+            width: 100%; height: 100%;
+            object-fit: cover;
+            border-radius: 50%;
+            filter: grayscale(20%);
+            transition: filter 0.3s;
+        }
+        .craft-item:hover .craft-img { filter: grayscale(0%); }
+        .craft-name {
+            font-size: 0.75rem;
+            text-transform: uppercase;
+            letter-spacing: 0.2em;
+            font-weight: 600;
+            color: var(--text-main);
+        }
+
+        /* --- Product Card (Minimalist) --- */
+        .product-card { cursor: pointer; margin-bottom: 3rem; }
+        .product-image-wrapper {
+            position: relative;
+            overflow: hidden;
+            aspect-ratio: 3/4;
+            background-color: #f0f0f0;
+        }
+        .product-image {
+            width: 100%; height: 100%;
+            object-fit: cover;
+            transition: transform 1.2s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+        }
+        .product-card:hover .product-image { transform: scale(1.1); }
+        .badge-new {
+            position: absolute; top: 0; left: 0;
+            background: var(--text-main); color: white;
+            font-size: 0.6rem; text-transform: uppercase; letter-spacing: 0.2em;
+            padding: 8px 12px; z-index: 2;
+        }
+        .card-actions {
+            position: absolute; bottom: 0; left: 0; right: 0; padding: 0;
+            background: rgba(255,255,255,0.95); 
+            display: flex;
+            transform: translateY(100%); transition: transform 0.4s ease;
+        }
+        .btn-quick {
+            border: none; background: transparent;
+            width: 50%; padding: 1rem;
+            font-size: 0.7rem; text-transform: uppercase; letter-spacing: 0.1em;
+            transition: background 0.3s;
+            border-top: 1px solid #eee;
+        }
+        .btn-quick:hover { background: var(--gold-accent); color: white; }
+        .btn-quick:first-child { border-right: 1px solid #eee; }
+        .product-card:hover .card-actions { transform: translateY(0); }
+
+        /* --- WhatsApp Float --- */
+        .whatsapp-float {
+            position: fixed; bottom: 30px; right: 30px;
+            background-color: var(--whatsapp-green); color: white;
+            width: 55px; height: 55px; border-radius: 50%;
+            display: flex; align-items: center; justify-content: center;
+            box-shadow: 0 5px 20px rgba(37, 211, 102, 0.3);
+            z-index: 1050; transition: transform 0.3s;
+        }
+        .whatsapp-float:hover { transform: scale(1.1); }
+
+        /* --- Back to Top --- */
+        #back-to-top {
+            position: fixed; bottom: 100px; right: 38px;
+            background: var(--text-main); color: white;
+            width: 40px; height: 40px; border-radius: 50%;
+            display: flex; align-items: center; justify-content: center;
+            cursor: pointer; opacity: 0; transition: opacity 0.3s; z-index: 99;
+        }
+        #back-to-top.visible { opacity: 1; }
+
+        /* --- Hero --- */
+        .hero-section {
+            height: 95vh; /* Taller hero */
+            position: relative;
+            background-color: var(--stone-200);
+            overflow: hidden;
+            display: flex; align-items: center;
+        }
+        .hero-bg {
+            position: absolute; top: 0; left: 0; width: 100%; height: 100%;
+            object-fit: cover; object-position: top;
+            animation: breathe 15s infinite alternate ease-in-out;
+        }
+        @keyframes breathe { from { transform: scale(1); } to { transform: scale(1.1); } }
+        .hero-overlay {
+            position: absolute; top: 0; left: 0; width: 100%; height: 100%;
+            background: radial-gradient(circle at center, rgba(0,0,0,0.1), rgba(0,0,0,0.4));
+        }
+        .hero-content { position: relative; z-index: 2; color: white; text-shadow: 0 2px 15px rgba(0,0,0,0.3); }
+
+        /* --- Cat Tiles --- */
+        .cat-tile { height: 500px; position: relative; overflow: hidden; cursor: pointer; margin-bottom: 1rem;}
+        .cat-img { width: 100%; height: 100%; object-fit: cover; transition: transform 1s ease; }
+        .cat-tile:hover .cat-img { transform: scale(1.1); }
+        .cat-overlay { 
+            position: absolute; inset: 0; 
+            background: linear-gradient(to top, rgba(0,0,0,0.6), transparent); 
+            transition: background 0.3s; 
+        }
+        .cat-text { 
+            position: absolute; bottom: 2.5rem; left: 0; right: 0; text-align: center; color: white; 
+        }
+        .cat-btn {
+            display: inline-block;
+            margin-top: 10px;
+            padding-bottom: 2px;
+            border-bottom: 1px solid white;
+            font-size: 0.7rem;
+            text-transform: uppercase;
+            letter-spacing: 0.2em;
+            opacity: 0;
+            transform: translateY(10px);
+            transition: all 0.4s ease;
+        }
+        .cat-tile:hover .cat-btn { opacity: 1; transform: translateY(0); }
+
+        /* Video Section */
+        .video-section {
+            position: relative; height: 70vh; overflow: hidden;
+            display: flex; align-items: center; justify-content: center;
+            color: white; margin: 6rem 0;
+        }
+        .video-bg {
+            position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%);
+            min-width: 100%; min-height: 100%; z-index: -1; object-fit: cover;
+            filter: brightness(0.8) sepia(0.2); /* Cinematic tone */
+        }
+
+        /* View Control */
+        .view-section { display: none; animation: fadeIn 0.8s ease-out; }
+        .view-section.active { display: block; }
+        @keyframes fadeIn { from { opacity: 0; transform: translateY(20px); } to { opacity: 1; transform: translateY(0); } }
+        
+        /* Custom Scrollbar */
+        ::-webkit-scrollbar { width: 8px; }
+        ::-webkit-scrollbar-track { background: #f1f1f1; }
+        ::-webkit-scrollbar-thumb { background: #c1c1c1; border-radius: 4px; }
+        ::-webkit-scrollbar-thumb:hover { background: #a8a8a8; }
+
+        /* Remove dropdown icons */
+        .dropdown-toggle::after {
+            display: none;
+        }
+
+        /* Form Control Focus */
+        .form-control:focus {
+            border-color: #007bff;
+            box-shadow: none;
+        }
+
+    </style>
+</head>
+<body>
+
+    <!-- Scrolling Marquee -->
+    <div class="marquee-container">
+        <div class="marquee-content">
+            Free Shipping on Prepaid Orders &nbsp;&nbsp;&bull;&nbsp;&nbsp; Worldwide Shipping Available &nbsp;&nbsp;&bull;&nbsp;&nbsp; New Hand-Painted Collection Live &nbsp;&nbsp;&bull;&nbsp;&nbsp; Use Code: RIVAYAT15 for 15% Off &nbsp;&nbsp;&bull;&nbsp;&nbsp;
+            Free Shipping on Prepaid Orders &nbsp;&nbsp;&bull;&nbsp;&nbsp; Worldwide Shipping Available &nbsp;&nbsp;&bull;&nbsp;&nbsp; New Hand-Painted Collection Live &nbsp;&nbsp;&bull;&nbsp;&nbsp; Use Code: RIVAYAT15 for 15% Off
+        </div>
+    </div>
+
+    <!-- Back to Top -->
+    <div id="back-to-top" onclick="window.scrollTo({top: 0, behavior: 'smooth'})">
+        <i data-lucide="arrow-up"></i>
+    </div>
+
+    <!-- WhatsApp Float -->
+    <a href="https://wa.me/" target="_blank" class="whatsapp-float">
+        <i data-lucide="message-circle" style="width: 28px; height: 28px;"></i>
+    </a>
+
+    <!-- Navigation -->
+    <nav class="navbar navbar-expand-lg">
+        <div class="container">
+            <button class="navbar-toggler border-0 p-0" type="button" data-bs-toggle="collapse" data-bs-target="#navbarContent">
+                <i data-lucide="menu" class="text-dark"></i>
+            </button>
+
+            <!-- Center Brand on Mobile -->
+            <a class="navbar-brand mx-auto d-lg-none" href="#" onclick="navigateTo('home')">
+                Rivayat<span class="text-gold">.</span>
+            </a>
+
+            <!-- Desktop Nav Structure -->
+            <div class="collapse navbar-collapse" id="navbarContent">
+                
+                <!-- Left Side: Main Links -->
+                <ul class="navbar-nav me-auto mb-2 mb-lg-0 align-items-center">
+                    <li class="nav-item"><a class="nav-link" href="#" onclick="navigateTo('home')">Home</a></li>
+                    
+                    <!-- Mega Dropdown: 4 cols links + 1 col feature -->
+                    <li class="nav-item dropdown has-mega-menu">
+                        <a class="nav-link dropdown-toggle" href="#" data-bs-toggle="dropdown" onclick="navigateTo('listing', 'All')">Collection</a>
+                        <div class="dropdown-menu mega-menu">
+                            <div class="container">
+                                <div class="row">
+                                    <!-- Col 1 -->
+                                    <div class="col-lg-2 mb-4 border-end border-light">
+                                        <h6 class="mega-menu-header">Clothing</h6>
+                                        <a href="#" class="mega-menu-link" onclick="navigateTo('listing', 'Clothing')">All Clothing</a>
+                                        <a href="#" class="mega-menu-link" onclick="navigateTo('listing', 'Clothing')">Hand Painted Suits</a>
+                                        <a href="#" class="mega-menu-link" onclick="navigateTo('listing', 'Clothing')">Sharara Sets</a>
+                                        <a href="#" class="mega-menu-link" onclick="navigateTo('listing', 'Clothing')">Sarees</a>
+                                        <a href="#" class="mega-menu-link" onclick="navigateTo('listing', 'Clothing')">Lehengas</a>
+                                    </div>
+                                    <!-- Col 2 -->
+                                    <div class="col-lg-2 mb-4 border-end border-light">
+                                        <h6 class="mega-menu-header">Footwear</h6>
+                                        <a href="#" class="mega-menu-link" onclick="navigateTo('listing', 'Footwear')">All Footwear</a>
+                                        <a href="#" class="mega-menu-link" onclick="navigateTo('listing', 'Footwear')">Juttis</a>
+                                        <a href="#" class="mega-menu-link" onclick="navigateTo('listing', 'Footwear')">Mojaris</a>
+                                        <a href="#" class="mega-menu-link" onclick="navigateTo('listing', 'Footwear')">Wedges</a>
+                                        <a href="#" class="mega-menu-link" onclick="navigateTo('listing', 'Footwear')">Heels</a>
+                                    </div>
+                                    <!-- Col 3 -->
+                                    <div class="col-lg-2 mb-4 border-end border-light">
+                                        <h6 class="mega-menu-header">Jewelry</h6>
+                                        <a href="#" class="mega-menu-link" onclick="navigateTo('listing', 'Jewelry')">All Jewelry</a>
+                                        <a href="#" class="mega-menu-link" onclick="navigateTo('listing', 'Jewelry')">Necklaces</a>
+                                        <a href="#" class="mega-menu-link" onclick="navigateTo('listing', 'Jewelry')">Earrings</a>
+                                        <a href="#" class="mega-menu-link" onclick="navigateTo('listing', 'Jewelry')">Rings</a>
+                                        <a href="#" class="mega-menu-link" onclick="navigateTo('listing', 'Jewelry')">Bangles</a>
+                                    </div>
+                                    <!-- Col 4 -->
+                                    <div class="col-lg-2 mb-4 border-end border-light">
+                                        <h6 class="mega-menu-header">Crafts</h6>
+                                        <a href="#" class="mega-menu-link" onclick="navigateTo('listing', 'All')">Hand Block Print</a>
+                                        <a href="#" class="mega-menu-link" onclick="navigateTo('listing', 'All')">Zardosi Work</a>
+                                        <a href="#" class="mega-menu-link" onclick="navigateTo('listing', 'All')">Chikankari</a>
+                                        <a href="#" class="mega-menu-link" onclick="navigateTo('listing', 'All')">Gotapatti</a>
+                                        <a href="#" class="mega-menu-link" onclick="navigateTo('listing', 'All')">Hand Painted</a>
+                                    </div>
+                                    <!-- Col 5: Featured Image (Width 4) -->
+                                    <div class="col-lg-4 d-none d-lg-block">
+                                        <div class="position-relative h-100 w-100 overflow-hidden cursor-pointer" onclick="navigateTo('listing', 'Clothing')">
+                                            <img src="https://images.unsplash.com/photo-1610030469983-98e550d6193c?q=80&w=400&auto=format&fit=crop"
+                                                 class="w-100 h-100 object-fit-cover transition-transform duration-700 hover-scale"
+                                                 alt="Featured Collection"
+                                                 style="min-height: 150px;"
+                                                 onerror="this.src='https://via.placeholder.com/400x150?text=Featured+Collection'">
+                                            <div class="position-absolute bottom-0 start-0 w-100 p-3 text-white" style="background: linear-gradient(to top, rgba(0,0,0,0.7), transparent);">
+                                                <span class="small text-uppercase tracking-widest">Featured</span>
+                                                <h5 class="font-serif mb-0 text-white">The Wedding Edit</h5>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </li>
+                    <li class="nav-item"><a class="nav-link" href="#" onclick="navigateTo('listing', 'All')">New Arrivals</a></li>
+                    <li class="nav-item"><a class="nav-link text-gold" href="#" onclick="navigateTo('listing', 'All')">Sale</a></li>
+                </ul>
+                
+                <!-- Center Brand Desktop (Absolute Positioning) -->
+                <a class="navbar-brand mx-auto d-none d-lg-block position-absolute start-50 translate-middle-x" href="#" onclick="navigateTo('home')">
+                    Rivayat<span class="text-gold">.</span>
+                </a>
+
+                <!-- Right Side: Search & Icons -->
+                <ul class="navbar-nav ms-auto mb-2 mb-lg-0 align-items-center gap-4">
+                    <!-- Account Dropdown -->
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle text-dark" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                            <i data-lucide="user" style="width: 20px;"></i>
+                        </a>
+                        <ul class="dropdown-menu dropdown-menu-end border-0 shadow-sm">
+                            <li><a class="dropdown-item" href="login.html">Login</a></li>
+                            <li><a class="dropdown-item" href="signup.html">Sign Up</a></li>
+                        </ul>
+                    </li>
+
+                    <!-- Search Bar -->
+                    <li class="nav-item d-none d-md-block">
+                        <div class="position-relative">
+                            <input type="text"
+                                   class="form-control rounded-0 border-0 border-bottom border-dark bg-transparent ps-0 py-1 shadow-none"
+                                   placeholder="Search..."
+                                   style="font-size: 0.8rem; width: 140px; padding-right: 25px;">
+                            <i data-lucide="search" class="position-absolute text-dark" style="right: 0; top: 50%; transform: translateY(-50%); width: 16px; cursor: pointer;"></i>
+                        </div>
+                    </li>
+
+                    <li class="nav-item d-flex gap-3">
+                        <a href="#" class="text-dark position-relative" onclick="incrementWishlist(event)">
+                            <i data-lucide="heart" style="width: 20px;"></i>
+                            <span id="wishlist-badge" class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-gold text-white d-none" style="font-size: 0.5rem; background: var(--gold-accent);">0</span>
+                        </a>
+                        <a href="cart.html" class="text-dark position-relative" onclick="incrementCart(event)">
+                            <i data-lucide="shopping-bag" style="width: 20px;"></i>
+                            <span id="cart-badge" class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-dark text-white d-none" style="font-size: 0.5rem;">0</span>
+                        </a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Main Content Area -->
+    <main>
+        
+        <!-- ================= HOME VIEW ================= -->
+        <div id="home-view" class="view-section active">
+            <!-- Hero -->
+            <section class="hero-section">
+                <img src="https://images.unsplash.com/photo-1620799140408-edc6d5f93524?q=80&w=2572&auto=format&fit=crop" alt="Hero" class="hero-bg">
+                <div class="hero-overlay"></div>
+                <div class="container hero-content reveal active text-center">
+                    <div class="row justify-content-center">
+                        <div class="col-lg-8">
+                            <span class="text-white text-uppercase tracking-widest small mb-3 d-block">Spring Collection 2025</span>
+                            <h1 class="display-2 font-serif text-white mb-4">The Poetry of <br><span class="fst-italic">Handloom</span></h1>
+                            <p class="lead text-white-50 mb-5 font-sans">Discover the timeless elegance of India's finest weaves, crafted for the modern soul.</p>
+                            <div class="d-flex justify-content-center gap-4">
+                                <button class="btn btn-custom-primary border-transparent bg-white text-dark" onclick="navigateTo('listing', 'Clothing')">Shop Collection</button>
+                                <button class="btn btn-custom-outline border-transparent text-white" onclick="navigateTo('listing', 'Jewelry')">View Jewelry</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Shop by Craft (Circular Scroll) -->
+            <section class="container py-5 my-5 reveal">
+                <div class="text-center mb-5">
+                    <span class="text-gold text-uppercase tracking-widest small">Our Techniques</span>
+                    <h2 class="font-serif mt-2">Shop by Craft</h2>
+                </div>
+                <div class="craft-scroll-container text-center">
+                    <div class="craft-item" onclick="navigateTo('listing', 'Clothing')">
+                        <div class="craft-img-wrapper"><img src="https://images.unsplash.com/photo-1606293926075-69a00febf280?q=80&w=400" class="craft-img" alt="Hand Painted"></div>
+                        <div class="craft-name">Hand Painted</div>
+                    </div>
+                    <div class="craft-item" onclick="navigateTo('listing', 'Clothing')">
+                        <div class="craft-img-wrapper"><img src="https://images.unsplash.com/photo-1589810635657-232948472d98?q=80&w=400" class="craft-img" alt="Block Print"></div>
+                        <div class="craft-name">Block Print</div>
+                    </div>
+                    <div class="craft-item" onclick="navigateTo('listing', 'Clothing')">
+                        <div class="craft-img-wrapper"><img src="https://images.unsplash.com/photo-1610030469668-8d6423083241?q=80&w=400" class="craft-img" alt="Zardosi"></div>
+                        <div class="craft-name">Zardosi</div>
+                    </div>
+                    <div class="craft-item" onclick="navigateTo('listing', 'Clothing')">
+                        <div class="craft-img-wrapper"><img src="https://images.unsplash.com/photo-1596461404969-9ae70f2830c1?q=80&w=400" class="craft-img" alt="Gotapatti"></div>
+                        <div class="craft-name">Gotapatti</div>
+                    </div>
+                    <div class="craft-item" onclick="navigateTo('listing', 'Clothing')">
+                        <div class="craft-img-wrapper"><img src="https://images.unsplash.com/photo-1579296912320-872df2c5c23f?q=80&w=400" class="craft-img" alt="Chikankari"></div>
+                        <div class="craft-name">Chikankari</div>
+                    </div>
+                    <div class="craft-item" onclick="navigateTo('listing', 'Jewelry')">
+                        <div class="craft-img-wrapper"><img src="https://images.unsplash.com/photo-1535632066927-ab7c9ab60908?q=80&w=400" class="craft-img" alt="Kundan"></div>
+                        <div class="craft-name">Kundan</div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Curated Categories -->
+            <section class="container reveal mb-5">
+                <div class="row g-4">
+                    <div class="col-md-4">
+                        <div class="cat-tile" onclick="navigateTo('listing', 'Clothing')">
+                            <img src="https://images.unsplash.com/photo-1594736797933-d0401ba2fe65?q=80&w=800&auto=format&fit=crop" class="cat-img" alt="Clothing" onerror="this.src='https://via.placeholder.com/800x500?text=Festive+Wear'">
+                            <div class="cat-overlay"></div>
+                            <div class="cat-text">
+                                <h3 class="font-serif">Festive Wear</h3>
+                                <span class="cat-btn">Shop Now</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-4">
+                        <div class="cat-tile" onclick="navigateTo('listing', 'Footwear')">
+                            <img src="https://images.unsplash.com/photo-1560769629-975e1e927b27?q=80&w=800&fit=crop" class="cat-img" alt="Footwear">
+                            <div class="cat-overlay"></div>
+                            <div class="cat-text">
+                                <h3 class="font-serif">Royal Juttis</h3>
+                                <span class="cat-btn">Shop Now</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-4">
+                        <div class="cat-tile" onclick="navigateTo('listing', 'Jewelry')">
+                            <img src="https://images.unsplash.com/photo-1515372039744-b8f02a3ae446?q=80&w=800&fit=crop" class="cat-img" alt="Jewelry">
+                            <div class="cat-overlay"></div>
+                            <div class="cat-text">
+                                <h3 class="font-serif">Heirloom Silver</h3>
+                                <span class="cat-btn">Shop Now</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Latest Additions (2 Rows Grid) -->
+            <section class="py-5 container reveal">
+                <div class="text-center mb-5">
+                    <span class="text-gold text-uppercase tracking-widest small d-block mb-2">Fresh from the Loom</span>
+                    <h2 class="font-serif display-6">Latest Additions</h2>
+                </div>
+                <div class="row g-4" id="featured-products-grid">
+                    <!-- Injected via JS: 8 items -->
+                </div>
+            </section>
+
+            <!-- Artisan Story Section -->
+            <section class="py-5 reveal bg-stone-light">
+                <div class="container">
+                    <div class="row align-items-center">
+                        <div class="col-lg-6 mb-4 mb-lg-0">
+                            <img src="https://images.unsplash.com/photo-1620650627870-94712155e275?q=80&w=1000&auto=format&fit=crop" class="w-100 shadow-sm" alt="Artisan" style="height: 600px; object-fit: cover;">
+                        </div>
+                        <div class="col-lg-6 px-lg-5">
+                            <span class="text-gold text-uppercase small tracking-widest">Behind The Scenes</span>
+                            <h2 class="font-serif display-5 my-4">The Hands That Weave</h2>
+                            <p class="text-muted mb-4 leading-loose">
+                                In the narrow lanes of Jaipur and Banaras, our master artisans breathe life into fabric. 
+                                Rivayat is not just a brand; it's a preservation of history. Each thread is spun with patience, 
+                                each motif printed with precision, carrying the legacy of generations.
+                            </p>
+                            <div class="row g-4 mt-2">
+                                <div class="col-6">
+                                    <h4 class="font-serif">50+</h4>
+                                    <p class="small text-muted text-uppercase tracking-wide">Artisan Families</p>
+                                </div>
+                                <div class="col-6">
+                                    <h4 class="font-serif">100%</h4>
+                                    <p class="small text-muted text-uppercase tracking-wide">Handcrafted</p>
+                                </div>
+                            </div>
+                            <button class="btn btn-custom-outline mt-4">Read Our Story</button>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Video Section -->
+            <section class="video-section reveal">
+                <video class="video-bg" autoplay muted loop playsinline>
+                    <source src="https://videos.pexels.com/video-files/4624569/4624569-hd_1920_1080_25fps.mp4" type="video/mp4">
+                </video>
+                <div class="text-center z-1 px-3">
+                    <h2 class="display-4 font-serif mb-3">Sartorial Elegance</h2>
+                    <p class="lead mb-4 opacity-90 font-sans">Embrace the festivities with grace.</p>
+                    <button class="btn btn-custom-primary border-white bg-white text-dark" onclick="navigateTo('listing', 'Clothing')">Explore the Edit</button>
+                </div>
+            </section>
+
+            <!-- Journal -->
+            <section class="py-5 container reveal">
+                <div class="d-flex justify-content-between align-items-end mb-5">
+                    <div>
+                        <span class="text-gold text-uppercase tracking-widest small">The Journal</span>
+                        <h2 class="font-serif mt-2">Stories of Style</h2>
+                    </div>
+                    <a href="#" class="text-dark text-uppercase small tracking-wide text-decoration-none border-bottom border-dark pb-1">Read All</a>
+                </div>
+                <div class="row g-4">
+                    <div class="col-md-6">
+                        <div class="card border-0 bg-transparent group cursor-pointer">
+                            <div class="overflow-hidden mb-3">
+                                <img src="https://images.unsplash.com/photo-1558618666-fcd25c85cd64?q=80&w=800" class="card-img-top rounded-0 transition-transform duration-700 hover-scale" style="height: 350px; object-fit: cover;" alt="Blog">
+                            </div>
+                            <span class="text-uppercase text-muted small tracking-widest">Style Guide</span>
+                            <h4 class="font-serif mt-2 mb-2">The Art of Draping Silk</h4>
+                            <p class="text-muted small">Discover five unique ways to drape your Banarasi dupatta for a regal look.</p>
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="card border-0 bg-transparent group cursor-pointer">
+                            <div class="overflow-hidden mb-3">
+                                <img src="https://images.unsplash.com/photo-1607006412316-492c99c925c5?q=80&w=800" class="card-img-top rounded-0 transition-transform duration-700 hover-scale" style="height: 350px; object-fit: cover;" alt="Blog">
+                            </div>
+                            <span class="text-uppercase text-muted small tracking-widest">Craftsmanship</span>
+                            <h4 class="font-serif mt-2 mb-2">Why Hand-Painted Matters</h4>
+                            <p class="text-muted small">Understanding the intricate process behind our signature Kalamkari collection.</p>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Newsletter -->
+            <section class="py-5 my-5 container reveal">
+                <div class="bg-white border border-light p-5 text-center shadow-sm position-relative overflow-hidden">
+                     <div class="position-absolute top-0 start-0 w-100 h-1px bg-gradient-to-r from-transparent via-gold to-transparent"></div>
+                    <h2 class="font-serif display-6 mb-3">Join the Circle</h2>
+                    <p class="text-muted mx-auto mb-4 font-sans" style="max-width: 450px;">Subscribe to receive updates, access to exclusive deals, and more.</p>
+                    <div class="d-flex justify-content-center mx-auto" style="max-width: 400px;">
+                        <input type="email" class="form-control rounded-0 border-end-0" placeholder="Your email address">
+                        <button class="btn btn-custom-primary px-4">Sign Up</button>
+                    </div>
+                </div>
+            </section>
+        </div>
+
+        <!-- ================= LISTING VIEW ================= -->
+        <div id="listing-view" class="view-section container py-5 mt-5">
+            <div class="text-center mb-5">
+                <span class="text-muted text-uppercase tracking-widest small">Collection</span>
+                <h1 id="listing-title" class="font-serif display-4 mt-2">All Products</h1>
+            </div>
+
+            <div class="row">
+                <!-- Minimal Sidebar -->
+                <div class="col-lg-3 mb-4">
+                    <div class="pe-lg-4 sticky-top" style="top: 100px;">
+                        <div class="mb-5">
+                            <h6 class="font-serif text-uppercase small tracking-widest border-bottom pb-2 mb-3">Categories</h6>
+                            <div class="d-flex flex-column gap-2">
+                                <span class="filter-item" onclick="navigateTo('listing', 'All')">View All</span>
+                                <span class="filter-item" onclick="navigateTo('listing', 'Clothing')">Clothing</span>
+                                <span class="filter-item" onclick="navigateTo('listing', 'Footwear')">Footwear</span>
+                                <span class="filter-item" onclick="navigateTo('listing', 'Jewelry')">Jewelry</span>
+                            </div>
+                        </div>
+                        <div class="mb-5">
+                            <h6 class="font-serif text-uppercase small tracking-widest border-bottom pb-2 mb-3">Sort By</h6>
+                            <div class="d-flex flex-column gap-2">
+                                <span class="filter-item text-dark fw-bold">Popularity</span>
+                                <span class="filter-item">Price: Low to High</span>
+                                <span class="filter-item">Price: High to Low</span>
+                                <span class="filter-item">Newest First</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!-- Product Grid -->
+                <div class="col-lg-9">
+                    <div class="row g-4" id="listing-grid">
+                        <!-- Products Injected JS -->
+                    </div>
+                    <div class="text-center mt-5">
+                        <button class="btn btn-custom-outline px-5 py-2" id="load-more-btn" onclick="loadMoreProducts()">Load More</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- ================= DETAIL VIEW ================= -->
+        <div id="detail-view" class="view-section container py-5 mt-5">
+            <button class="btn btn-link text-decoration-none text-muted mb-4 ps-0 text-uppercase small tracking-wide" onclick="navigateTo('listing', 'All')">
+                &larr; Back to Collection
+            </button>
+            <div class="row gx-5">
+                <div class="col-lg-7 mb-5">
+                    <div class="row g-2">
+                         <div class="col-12 mb-2">
+                            <div class="bg-stone-light overflow-hidden">
+                                <img id="detail-img" src="" class="w-100 object-fit-cover" style="height: 600px;" alt="Product" onerror="this.src='https://via.placeholder.com/600x800?text=Rivayat+Item'">
+                            </div>
+                         </div>
+                         <div class="col-3"><img src="" class="w-100 detail-thumb cursor-pointer opacity-75 hover-opacity-100" alt=""></div>
+                         <div class="col-3"><img src="" class="w-100 detail-thumb cursor-pointer opacity-75 hover-opacity-100" alt=""></div>
+                    </div>
+                </div>
+                <div class="col-lg-5">
+                    <span id="detail-category" class="text-gold text-uppercase tracking-widest small">Clothing</span>
+                    <h1 id="detail-title" class="font-serif display-5 mt-2 mb-3">Silk Dress</h1>
+                    <div class="d-flex align-items-center gap-3 mb-4 border-bottom pb-4">
+                        <span id="detail-price" class="fs-3 font-serif">$129.00</span>
+                        <div class="vr"></div>
+                        <span class="small text-muted">Includes all taxes</span>
+                    </div>
+                    
+                    <p class="text-muted mb-5 font-sans leading-relaxed">
+                        Handcrafted with precision, this piece features authentic Banarasi weaving techniques passed down through generations. The pure silk fabric drapes elegantly, making it perfect for festive occasions.
+                    </p>
+                    
+                    <div class="mb-4">
+                        <label class="d-block small text-uppercase tracking-widest mb-2 text-muted">Color</label>
+                        <div class="d-flex gap-3" id="detail-colors"></div>
+                    </div>
+                    <div class="mb-5">
+                        <div class="d-flex justify-content-between mb-2">
+                            <label class="d-block small text-uppercase tracking-widest text-muted">Size</label>
+                            <span class="small text-decoration-underline cursor-pointer">Size Guide</span>
+                        </div>
+                        <div class="d-flex gap-2">
+                            <div class="size-btn border px-3 py-2 cursor-pointer hover-bg-dark hover-text-white transition">XS</div>
+                            <div class="size-btn border px-3 py-2 cursor-pointer hover-bg-dark hover-text-white transition">S</div>
+                            <div class="size-btn border px-3 py-2 cursor-pointer hover-bg-dark hover-text-white transition">M</div>
+                            <div class="size-btn border px-3 py-2 cursor-pointer hover-bg-dark hover-text-white transition">L</div>
+                        </div>
+                    </div>
+                    
+                    <button class="btn btn-custom-primary w-100 py-3 mb-3" onclick="incrementCart(event)">Add to Cart</button>
+                    <button class="btn btn-custom-outline w-100 py-3" onclick="incrementWishlist(event)">Add to Wishlist</button>
+                    
+                    <div class="mt-5 pt-4 border-top">
+                        <div class="d-flex align-items-center gap-3 mb-3">
+                            <i data-lucide="truck" class="text-gold"></i>
+                            <span class="small text-muted text-uppercase tracking-wide">Free Shipping on orders over $100</span>
+                        </div>
+                        <div class="d-flex align-items-center gap-3">
+                            <i data-lucide="shield-check" class="text-gold"></i>
+                            <span class="small text-muted text-uppercase tracking-wide">Authenticity Guaranteed</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </main>
+
+    <!-- Footer -->
+    <footer class="bg-stone-light py-5 border-top mt-auto">
+        <div class="container">
+            <div class="row g-5">
+                <div class="col-lg-4">
+                    <h4 class="font-serif fw-bold mb-4">Rivayat<span class="text-gold">.</span></h4>
+                    <p class="text-muted small mb-4 font-sans leading-relaxed">
+                        A celebration of Indian heritage. We bridge the gap between ancient artistry and modern luxury, delivering handcrafted perfection to your doorstep.
+                    </p>
+                    <div class="d-flex gap-4">
+                        <i data-lucide="instagram" class="text-dark cursor-pointer opacity-75 hover-opacity-100"></i>
+                        <i data-lucide="facebook" class="text-dark cursor-pointer opacity-75 hover-opacity-100"></i>
+                        <i data-lucide="twitter" class="text-dark cursor-pointer opacity-75 hover-opacity-100"></i>
+                    </div>
+                </div>
+                <div class="col-6 col-lg-2">
+                    <h6 class="font-serif text-uppercase small tracking-widest mb-3">Shop</h6>
+                    <ul class="list-unstyled small text-muted d-flex flex-column gap-2">
+                        <li><a href="#" class="text-decoration-none text-muted hover-text-dark">New Arrivals</a></li>
+                        <li><a href="#" class="text-decoration-none text-muted hover-text-dark">Clothing</a></li>
+                        <li><a href="#" class="text-decoration-none text-muted hover-text-dark">Jewelry</a></li>
+                        <li><a href="#" class="text-decoration-none text-muted hover-text-dark">Gifts</a></li>
+                    </ul>
+                </div>
+                <div class="col-6 col-lg-2">
+                    <h6 class="font-serif text-uppercase small tracking-widest mb-3">Service</h6>
+                    <ul class="list-unstyled small text-muted d-flex flex-column gap-2">
+                        <li><a href="#" class="text-decoration-none text-muted hover-text-dark">Contact Us</a></li>
+                        <li><a href="#" class="text-decoration-none text-muted hover-text-dark">Shipping</a></li>
+                        <li><a href="#" class="text-decoration-none text-muted hover-text-dark">Returns</a></li>
+                        <li><a href="#" class="text-decoration-none text-muted hover-text-dark">Track Order</a></li>
+                    </ul>
+                </div>
+                <div class="col-lg-4">
+                    <h6 class="font-serif text-uppercase small tracking-widest mb-3">Newsletter</h6>
+                    <p class="small text-muted mb-3">Subscribe to receive updates, access to exclusive deals, and more.</p>
+                    <div class="input-group mb-3">
+                        <input type="text" class="form-control rounded-0 border-secondary" placeholder="Email" aria-label="Email">
+                        <button class="btn btn-custom-primary" type="button">Join</button>
+                    </div>
+                </div>
+            </div>
+            <div class="border-top border-secondary border-opacity-10 pt-4 mt-5 d-flex justify-content-between align-items-center flex-wrap">
+                <p class="small text-muted mb-0">&copy; 2025 Rivayat India. All rights reserved.</p>
+                <div class="d-flex gap-2 opacity-50">
+                    <span class="small text-muted">VISA</span>
+                    <span class="small text-muted">MC</span>
+                    <span class="small text-muted">AMEX</span>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Scripts -->
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    
+    <script>
+        // --- Data ---
+        const products = [
+            { id: 1, name: "Banarasi Silk Lehenga", category: "Clothing", price: 499.00, rating: 5.0, reviews: 124, image: "https://images.unsplash.com/photo-1617639490635-44a5d6559b93?q=80&w=800&fit=crop", isNew: true, colors: ['#E63946', '#FFD700'] },
+            { id: 2, name: "Kundan Pearl Earrings", category: "Jewelry", price: 85.00, rating: 4.9, reviews: 89, image: "https://images.unsplash.com/photo-1611652032935-a6ce23542333?q=80&w=800&fit=crop", isNew: false, colors: ['#D4AF37'] },
+            { id: 3, name: "Embroidered Mojaris", category: "Footwear", price: 65.00, rating: 4.6, reviews: 56, image: "https://images.unsplash.com/photo-1623944333983-60b2d135823b?q=80&w=800&fit=crop", isNew: true, colors: ['#F4A261', '#000000'] },
+            { id: 4, name: "Handwoven Cotton Kurta", category: "Clothing", price: 120.00, rating: 4.7, reviews: 210, image: "https://images.unsplash.com/photo-1620012253295-c15cc3e65df4?q=80&w=800&fit=crop", isNew: false, colors: ['#E5E5E5', '#B7B7A4'] },
+            { id: 5, name: "Kanjivaram Silk Saree", category: "Clothing", price: 299.00, rating: 5.0, reviews: 42, image: "https://images.unsplash.com/photo-1621335829175-95f4373a4d4c?q=80&w=800&fit=crop", isNew: true, colors: ['#FFB7B2', '#FFFFFF'] },
+            { id: 6, name: "Antique Gold Necklace", category: "Jewelry", price: 250.00, rating: 4.5, reviews: 34, image: "https://images.unsplash.com/photo-1635762501973-a7972b2c928b?q=80&w=800&fit=crop", isNew: false, colors: ['#D4AF37'] },
+            { id: 7, name: "Silver Payal (Anklets)", category: "Jewelry", price: 55.00, rating: 4.8, reviews: 76, image: "https://images.unsplash.com/photo-1613590999134-a5272b66c0a7?q=80&w=800&fit=crop", isNew: false, colors: ['#C0C0C0'] },
+            { id: 8, name: "Raw Silk Trousers", category: "Clothing", price: 85.00, rating: 4.7, reviews: 112, image: "https://images.unsplash.com/photo-1541094649129-f8249bde7023?q=80&w=800&fit=crop", isNew: true, colors: ['#F5F5DC', '#6B705C'] },
+        ];
+
+        // --- State ---
+        let cartCount = 0;
+        let wishlistCount = 0;
+        let currentListing = [];
+
+        // --- Initialization ---
+        $(document).ready(function() {
+            lucide.createIcons();
+            renderProducts(products, '#featured-products-grid'); // 8 items grid
+            
+            // Scroll Effect Navbar
+            $(window).scroll(function() {
+                if ($(this).scrollTop() > 50) {
+                    $('.navbar').addClass('scrolled');
+                    $('#back-to-top').addClass('visible');
+                } else {
+                    $('.navbar').removeClass('scrolled');
+                    $('#back-to-top').removeClass('visible');
+                }
+            });
+
+            // Scroll Reveal Animation (Advanced Feature)
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add('active');
+                    }
+                });
+            }, { threshold: 0.1 });
+
+            document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+
+            // Size selection
+            $('.size-btn').click(function() {
+                $('.size-btn').removeClass('active');
+                $(this).addClass('active');
+                $(this).siblings().removeClass('bg-dark text-white');
+                $(this).addClass('bg-dark text-white');
+            });
+        });
+
+        // --- Navigation & Rendering ---
+        function navigateTo(viewId, filterCategory = 'All') {
+            $('.view-section').removeClass('active');
+            
+            if (viewId === 'home') {
+                $('#home-view').addClass('active');
+                // Re-trigger observer for home elements
+                 document.querySelectorAll('#home-view .reveal').forEach(el => {
+                    el.classList.remove('active');
+                    setTimeout(() => el.classList.add('active'), 100);
+                 });
+            } else if (viewId === 'listing') {
+                $('#listing-view').addClass('active');
+                filterListing(filterCategory);
+            }
+            
+            window.scrollTo(0, 0);
+        }
+
+        function filterListing(category) {
+            $('#listing-title').text(category === 'All' ? 'All Products' : category);
+            
+            const filtered = category === 'All' 
+                ? products 
+                : products.filter(p => p.category === category);
+            
+            currentListing = filtered; 
+            renderProducts(filtered, '#listing-grid', true); // Show all for now in listing
+            
+            if(filtered.length > 8) $('#load-more-btn').show();
+            else $('#load-more-btn').hide();
+        }
+
+        function loadMoreProducts() {
+            // Mock load more
+             $('#load-more-btn').text('No more products').prop('disabled', true);
+        }
+
+        function renderProducts(items, containerId, isListing = false, append = false) {
+            const container = $(containerId);
+            if (!append) container.empty();
+            
+            items.forEach(p => {
+                const colClass = isListing ? 'col-sm-6 col-lg-4' : 'col-sm-6 col-lg-3'; // 3 cols for listing, 4 cols for home grid
+                const badgeHTML = p.isNew ? '<div class="badge-new">New</div>' : '';
+                
+                const html = `
+                    <div class="${colClass} mb-5">
+                        <div class="product-card" onclick="openDetail(${p.id})">
+                            <div class="product-image-wrapper">
+                                ${badgeHTML}
+                                <img src="${p.image}" class="product-image" alt="${p.name}" onerror="this.src='https://via.placeholder.com/300x400?text=Product'">
+                                <div class="card-actions">
+                                    <button class="btn-quick" onclick="incrementCart(event)">Add to Bag</button>
+                                    <button class="btn-quick border-start" onclick="incrementWishlist(event)"><i data-lucide="heart" style="width:14px"></i></button>
+                                </div>
+                            </div>
+                            <div class="mt-3 text-center">
+                                <h6 class="mb-1 font-serif text-truncate">${p.name}</h6>
+                                <div class="text-muted small font-sans">$${p.price.toFixed(2)}</div>
+                            </div>
+                        </div>
+                    </div>
+                `;
+                container.append(html);
+            });
+            lucide.createIcons();
+        }
+
+        function openDetail(id) {
+            const p = products.find(x => x.id === id);
+            if(!p) return;
+
+            $('#detail-title').text(p.name);
+            $('#detail-category').text(p.category);
+            $('#detail-price').text('$' + p.price.toFixed(2));
+            $('#detail-img').attr('src', p.image);
+            $('.detail-thumb').attr('src', p.image); 
+
+            const colorContainer = $('#detail-colors');
+            colorContainer.empty();
+            p.colors.forEach(c => {
+                colorContainer.append(`<div class="rounded-circle border cursor-pointer" style="width: 24px; height: 24px; background-color: ${c}"></div>`);
+            });
+
+            $('.view-section').removeClass('active');
+            $('#detail-view').addClass('active');
+            window.scrollTo(0, 0);
+            lucide.createIcons();
+        }
+
+        function incrementCart(e) {
+            if(e) e.stopPropagation();
+            cartCount++;
+            $('#cart-badge').text(cartCount).removeClass('d-none');
+        }
+
+        function incrementWishlist(e) {
+            if(e) e.stopPropagation();
+            wishlistCount++;
+            $('#wishlist-badge').text(wishlistCount).removeClass('d-none');
+        }
+    </script>
+</body>
+</html>
