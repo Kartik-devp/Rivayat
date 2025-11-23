@@ -155,6 +155,42 @@
             color: var(--text-main);
             letter-spacing: -0.03em;
         }
+        .navbar-logo {
+            font-family: var(--font-serif);
+            font-size: 3rem;
+            font-weight: 600;
+            color: var(--text-main);
+            letter-spacing: -0.03em;
+            text-decoration: none;
+        }
+        .nav-link {
+            font-size: 0.75rem;
+            text-transform: uppercase;
+            letter-spacing: 0.15em;
+            font-weight: 500;
+            color: var(--text-main) !important;
+            margin: 0 1rem;
+            <a class="navbar-brand mx-auto d-lg-none" href="index.html">
+                <span class="navbar-logo">Rivayat</span>
+            </a>
+<<<<<<< SEARCH
+                <!-- Center Brand Desktop (Absolute Positioning) -->
+                <a class="navbar-brand mx-auto d-none d-lg-block position-absolute start-50 translate-middle-x" href="index.html">
+                    Rivayat<span class="text-gold">.</span>
+                </a>
+=======
+                <!-- Center Brand Desktop (Absolute Positioning) -->
+                <a class="navbar-brand mx-auto d-none d-lg-block position-absolute start-50 translate-middle-x" href="index.html">
+                    <span class="navbar-logo">Rivayat</span>
+                </a>
+<<<<<<< SEARCH
+                <div class="col-lg-4">
+                    <h4 class="font-serif fw-bold mb-4">Rivayat<span class="text-gold">.</span></h4>
+                    <p class="text-muted small mb-4 font-sans leading-relaxed">
+=======
+                <div class="col-lg-4">
+                    <span class="navbar-logo" style="margin-bottom: 1.5rem;">Rivayat</span>
+                    <p class="text-muted small mb-4 font-sans leading-relaxed">
         .nav-link {
             font-size: 0.75rem;
             text-transform: uppercase;
@@ -428,24 +464,10 @@
                     Rivayat<span class="text-gold">.</span>
                 </a>
 
-                <!-- Right Side: Search & Icons -->
+                <!-- Right Side: Icons -->
                 <ul class="navbar-nav ms-auto mb-2 mb-lg-0 align-items-center gap-4">
-                    <!-- Search Bar -->
-                    <li class="nav-item d-none d-md-block">
-                        <div class="position-relative">
-                            <input type="text" 
-                                   class="form-control rounded-0 border-0 border-bottom border-dark bg-transparent ps-0 py-1 shadow-none" 
-                                   placeholder="Search..." 
-                                   style="font-size: 0.8rem; width: 140px; padding-right: 25px;">
-                            <i data-lucide="search" class="position-absolute text-dark" style="right: 0; top: 50%; transform: translateY(-50%); width: 16px; cursor: pointer;"></i>
-                        </div>
-                    </li>
-                    
-                    <li class="nav-item d-flex gap-3">
-                        <a href="#" class="text-dark position-relative">
-                            <i data-lucide="heart" style="width: 20px;"></i>
-                            <span class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-gold text-white d-none" style="font-size: 0.5rem; background: var(--gold-accent);">0</span>
-                        </a>
+                    <li class="nav-item"><a class="nav-link" href="login.html"><i data-lucide="user" style="width: 20px;"></i></a></li>
+                    <li class="nav-item">
                         <a href="cart.html" class="text-dark position-relative">
                             <i data-lucide="shopping-bag" style="width: 20px;"></i>
                             <span class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-dark text-white d-none" style="font-size: 0.5rem;">0</span>

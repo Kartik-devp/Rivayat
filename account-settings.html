@@ -308,10 +308,6 @@
         <i data-lucide="arrow-up"></i>
     </div>
 
-    <!-- WhatsApp Float -->
-    <a href="https://wa.me/" target="_blank" class="whatsapp-float">
-        <i data-lucide="message-circle" style="width: 28px; height: 28px;"></i>
-    </a>
 
     <!-- Navigation -->
     <nav class="navbar navbar-expand-lg">
@@ -321,7 +317,7 @@
             </button>
 
             <!-- Center Brand on Mobile -->
-            <a class="navbar-brand mx-auto d-lg-none" href="index.html">
+            <a class="navbar-brand mx-auto d-lg-none" href="#" onclick="navigateTo('home')">
                 Rivayat<span class="text-gold">.</span>
             </a>
 
@@ -330,61 +326,103 @@
                 
                 <!-- Left Side: Main Links -->
                 <ul class="navbar-nav me-auto mb-2 mb-lg-0 align-items-center">
-                    <li class="nav-item"><a class="nav-link" href="index.html">Home</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#" onclick="navigateTo('home')">Home</a></li>
                     
                     <!-- Mega Dropdown: 4 cols links + 1 col feature -->
                     <li class="nav-item dropdown has-mega-menu">
-                        <a class="nav-link dropdown-toggle" href="#" data-bs-toggle="dropdown">Collection</a>
+                        <a class="nav-link dropdown-toggle" href="#" data-bs-toggle="dropdown" onclick="navigateTo('listing', 'All')">Collection</a>
                         <div class="dropdown-menu mega-menu">
-                            <div class="container">
-                                <div class="row">
+                            <div class="container-fluid">
+                                <div class="row g-0">
                                     <!-- Col 1 -->
-                                    <div class="col-lg-2 mb-4 border-end border-light">
-                                        <h6 class="mega-menu-header">Clothing</h6>
-                                        <a href="#" class="mega-menu-link">All Clothing</a>
-                                        <a href="#" class="mega-menu-link">Hand Painted Suits</a>
-                                        <a href="#" class="mega-menu-link">Sharara Sets</a>
-                                        <a href="#" class="mega-menu-link">Sarees</a>
-                                        <a href="#" class="mega-menu-link">Lehengas</a>
+                                    <div class="col-lg-2 mega-menu-column">
+                                        <div class="mega-menu-card">
+                                            <div class="mega-menu-image-wrapper">
+                                                <img src="https://res.cloudinary.com/dwv2wwdki/image/upload/v1763654574/Lucid_Origin_Banarasi_Silk_Lehenga_women_fashion_model_in_a_fu_1_n0yylp.jpg" alt="Banarasi Silk Lehenga" class="mega-menu-image">
+                                                <div class="mega-menu-overlay"></div>
+                                            </div>
+                                            <div class="mega-menu-content">
+                                                <h6 class="mega-menu-header">Clothing</h6>
+                                                <div class="mega-menu-links">
+                                                    <a href="#" class="mega-menu-link" onclick="navigateTo('listing', 'Clothing')">All Clothing</a>
+                                                    <a href="#" class="mega-menu-link" onclick="navigateTo('listing', 'Clothing')">Hand Painted Suits</a>
+                                                    <a href="#" class="mega-menu-link" onclick="navigateTo('listing', 'Clothing')">Sharara Sets</a>
+                                                    <a href="#" class="mega-menu-link" onclick="navigateTo('listing', 'Clothing')">Sarees</a>
+                                                    <a href="#" class="mega-menu-link" onclick="navigateTo('listing', 'Clothing')">Lehengas</a>
+                                                </div>
+                                            </div>
+                                        </div>
                                     </div>
                                     <!-- Col 2 -->
-                                    <div class="col-lg-2 mb-4 border-end border-light">
-                                        <h6 class="mega-menu-header">Footwear</h6>
-                                        <a href="#" class="mega-menu-link">All Footwear</a>
-                                        <a href="#" class="mega-menu-link">Juttis</a>
-                                        <a href="#" class="mega-menu-link">Mojaris</a>
-                                        <a href="#" class="mega-menu-link">Wedges</a>
-                                        <a href="#" class="mega-menu-link">Heels</a>
+                                    <div class="col-lg-2 mega-menu-column">
+                                        <div class="mega-menu-card">
+                                            <div class="mega-menu-image-wrapper">
+                                                <img src="https://res.cloudinary.com/dwv2wwdki/image/upload/v1763701879/Lucid_Origin_Embroidered_Mojaris_womens_footwear_product_with__2_m5de7h.jpg" alt="Embroidered Mojaris" class="mega-menu-image">
+                                                <div class="mega-menu-overlay"></div>
+                                            </div>
+                                            <div class="mega-menu-content">
+                                                <h6 class="mega-menu-header">Footwear</h6>
+                                                <div class="mega-menu-links">
+                                                    <a href="#" class="mega-menu-link" onclick="navigateTo('listing', 'Footwear')">All Footwear</a>
+                                                    <a href="#" class="mega-menu-link" onclick="navigateTo('listing', 'Footwear')">Juttis</a>
+                                                    <a href="#" class="mega-menu-link" onclick="navigateTo('listing', 'Footwear')">Mojaris</a>
+                                                    <a href="#" class="mega-menu-link" onclick="navigateTo('listing', 'Footwear')">Wedges</a>
+                                                    <a href="#" class="mega-menu-link" onclick="navigateTo('listing', 'Footwear')">Heels</a>
+                                                </div>
+                                            </div>
+                                        </div>
                                     </div>
                                     <!-- Col 3 -->
-                                    <div class="col-lg-2 mb-4 border-end border-light">
-                                        <h6 class="mega-menu-header">Jewelry</h6>
-                                        <a href="#" class="mega-menu-link">All Jewelry</a>
-                                        <a href="#" class="mega-menu-link">Necklaces</a>
-                                        <a href="#" class="mega-menu-link">Earrings</a>
-                                        <a href="#" class="mega-menu-link">Rings</a>
-                                        <a href="#" class="mega-menu-link">Bangles</a>
+                                    <div class="col-lg-2 mega-menu-column">
+                                        <div class="mega-menu-card">
+                                            <div class="mega-menu-image-wrapper">
+                                                <img src="https://res.cloudinary.com/dwv2wwdki/image/upload/v1763701430/Lucid_Origin_Kundan_Pearl_Earrings_adorn_a_beautiful_womens_fa_3_xxkfow.jpg" alt="Kundan Pearl Earrings" class="mega-menu-image">
+                                                <div class="mega-menu-overlay"></div>
+                                            </div>
+                                            <div class="mega-menu-content">
+                                                <h6 class="mega-menu-header">Jewelry</h6>
+                                                <div class="mega-menu-links">
+                                                    <a href="#" class="mega-menu-link" onclick="navigateTo('listing', 'Jewelry')">All Jewelry</a>
+                                                    <a href="#" class="mega-menu-link" onclick="navigateTo('listing', 'Jewelry')">Necklaces</a>
+                                                    <a href="#" class="mega-menu-link" onclick="navigateTo('listing', 'Jewelry')">Earrings</a>
+                                                    <a href="#" class="mega-menu-link" onclick="navigateTo('listing', 'Jewelry')">Rings</a>
+                                                    <a href="#" class="mega-menu-link" onclick="navigateTo('listing', 'Jewelry')">Bangles</a>
+                                                </div>
+                                            </div>
+                                        </div>
                                     </div>
                                     <!-- Col 4 -->
-                                    <div class="col-lg-2 mb-4 border-end border-light">
-                                        <h6 class="mega-menu-header">Crafts</h6>
-                                        <a href="#" class="mega-menu-link">Hand Block Print</a>
-                                        <a href="#" class="mega-menu-link">Zardosi Work</a>
-                                        <a href="#" class="mega-menu-link">Chikankari</a>
-                                        <a href="#" class="mega-menu-link">Gotapatti</a>
-                                        <a href="#" class="mega-menu-link">Hand Painted</a>
+                                    <div class="col-lg-2 mega-menu-column">
+                                        <div class="mega-menu-card">
+                                            <div class="mega-menu-image-wrapper">
+                                                <img src="https://images.unsplash.com/photo-1606293926075-69a00febf280?q=80&w=400" alt="Hand Painted Craft" class="mega-menu-image">
+                                                <div class="mega-menu-overlay"></div>
+                                            </div>
+                                            <div class="mega-menu-content">
+                                                <h6 class="mega-menu-header">Crafts</h6>
+                                                <div class="mega-menu-links">
+                                                    <a href="#" class="mega-menu-link" onclick="navigateTo('listing', 'All')">Hand Block Print</a>
+                                                    <a href="#" class="mega-menu-link" onclick="navigateTo('listing', 'All')">Zardosi Work</a>
+                                                    <a href="#" class="mega-menu-link" onclick="navigateTo('listing', 'All')">Chikankari</a>
+                                                    <a href="#" class="mega-menu-link" onclick="navigateTo('listing', 'All')">Gotapatti</a>
+                                                    <a href="#" class="mega-menu-link" onclick="navigateTo('listing', 'All')">Hand Painted</a>
+                                                </div>
+                                            </div>
+                                        </div>
                                     </div>
-                                    <!-- Col 5: Featured Image (Width 4) -->
-                                    <div class="col-lg-4 d-none d-lg-block">
-                                        <div class="position-relative h-100 w-100 overflow-hidden cursor-pointer">
-                                            <img src="https://images.unsplash.com/photo-1610030469983-98e550d6193c?q=80&w=400&auto=format&fit=crop"
-                                                 class="w-100 h-100 object-fit-cover transition-transform duration-700 hover-scale"
-                                                 alt="Featured Collection"
-                                                 style="min-height: 250px;"
-                                                 onerror="this.src='https://via.placeholder.com/400x250?text=Featured+Collection'">
-                                            <div class="position-absolute bottom-0 start-0 w-100 p-3 text-white" style="background: linear-gradient(to top, rgba(0,0,0,0.7), transparent);">
-                                                <span class="small text-uppercase tracking-widest">Featured</span>
-                                                <h5 class="font-serif mb-0 text-white">The Wedding Edit</h5>
+                                    <!-- Col 5: Featured Image -->
+                                    <div class="col-lg-4 mega-menu-featured">
+                                        <div class="featured-card" onclick="navigateTo('listing', 'Clothing')">
+                                            <div class="featured-image-wrapper">
+                                                <img src="https://images.unsplash.com/photo-1610030469983-98e550d6193c?q=80&w=400&auto=format&fit=crop"
+                                                     class="featured-image"
+                                                     alt="Featured Collection"
+                                                     onerror="this.src='https://via.placeholder.com/400x250?text=Featured+Collection'">
+                                                <div class="featured-overlay">
+                                                    <div class="featured-badge">Featured</div>
+                                                    <h5 class="featured-title">The Wedding Edit</h5>
+                                                    <p class="featured-subtitle">Timeless elegance for your special day</p>
+                                                </div>
                                             </div>
                                         </div>
                                     </div>
@@ -392,36 +430,55 @@
                             </div>
                         </div>
                     </li>
-                    <li class="nav-item"><a class="nav-link" href="products.html">Products</a></li>
-                    <li class="nav-item"><a class="nav-link text-gold" href="#">Sale</a></li>
+
+                    <!-- Simple Dropdown -->
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="#" data-bs-toggle="dropdown">Shop</a>
+                        <ul class="dropdown-menu">
+                            <li><a class="dropdown-item" href="#" onclick="navigateTo('listing', 'All')">New Arrivals</a></li>
+                            <li><a class="dropdown-item" href="#" onclick="navigateTo('listing', 'All')">Sale</a></li>
+                            <li><a class="dropdown-item" href="products.html">All Products</a></li>
+                        </ul>
+                    </li>
                 </ul>
                 
                 <!-- Center Brand Desktop (Absolute Positioning) -->
-                <a class="navbar-brand mx-auto d-none d-lg-block position-absolute start-50 translate-middle-x" href="index.html">
+                <a class="navbar-brand mx-auto d-none d-lg-block position-absolute start-50 translate-middle-x" href="#" onclick="navigateTo('home')">
                     Rivayat<span class="text-gold">.</span>
                 </a>
 
                 <!-- Right Side: Search & Icons -->
                 <ul class="navbar-nav ms-auto mb-2 mb-lg-0 align-items-center gap-4">
+                    <!-- Account Dropdown -->
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle text-dark" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                            <i data-lucide="user" style="width: 20px;"></i>
+                        </a>
+                        <ul class="dropdown-menu dropdown-menu-end border-0 shadow-sm">
+                            <li><a class="dropdown-item" href="login.html">Login</a></li>
+                            <li><a class="dropdown-item" href="signup.html">Sign Up</a></li>
+                        </ul>
+                    </li>
+
                     <!-- Search Bar -->
                     <li class="nav-item d-none d-md-block">
                         <div class="position-relative">
-                            <input type="text" 
-                                   class="form-control rounded-0 border-0 border-bottom border-dark bg-transparent ps-0 py-1 shadow-none" 
-                                   placeholder="Search..." 
+                            <input type="text"
+                                   class="form-control rounded-0 border-0 border-bottom border-dark bg-transparent ps-0 py-1 shadow-none"
+                                   placeholder="Search..."
                                    style="font-size: 0.8rem; width: 140px; padding-right: 25px;">
                             <i data-lucide="search" class="position-absolute text-dark" style="right: 0; top: 50%; transform: translateY(-50%); width: 16px; cursor: pointer;"></i>
                         </div>
                     </li>
-                    
+
                     <li class="nav-item d-flex gap-3">
-                        <a href="#" class="text-dark position-relative">
+                        <a href="#" class="text-dark position-relative" onclick="incrementWishlist(event)">
                             <i data-lucide="heart" style="width: 20px;"></i>
-                            <span class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-gold text-white d-none" style="font-size: 0.5rem; background: var(--gold-accent);">0</span>
+                            <span id="wishlist-badge" class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-gold text-white d-none" style="font-size: 0.5rem; background: var(--gold-accent);">0</span>
                         </a>
-                        <a href="cart.html" class="text-dark position-relative">
+                        <a href="cart.html" class="text-dark position-relative" onclick="incrementCart(event)">
                             <i data-lucide="shopping-bag" style="width: 20px;"></i>
-                            <span class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-dark text-white d-none" style="font-size: 0.5rem;">0</span>
+                            <span id="cart-badge" class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-dark text-white d-none" style="font-size: 0.5rem;">0</span>
                         </a>
                     </li>
                 </ul>

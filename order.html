@@ -250,19 +250,707 @@
         }
         #back-to-top.visible { opacity: 1; }
 
-        /* --- Order Specific --- */
-        .order-status {
-            background: var(--gold-accent);
-            color: white;
-            padding: 1rem;
+        /* --- Premium Order Tracking Styling --- */
+
+        /* Order Header */
+        .order-header {
+            background: linear-gradient(135deg, rgba(253,251,247,0.98), rgba(250,248,245,0.95));
+            padding: 4rem 0;
+            border-bottom: 1px solid rgba(197,160,89,0.2);
+        }
+        .order-header-content {
+            max-width: 1000px;
+            margin: 0 auto;
+            padding: 0 2rem;
+        }
+        .order-title-section {
             text-align: center;
             margin-bottom: 2rem;
         }
+        .order-label {
+            display: inline-block;
+            background: linear-gradient(135deg, var(--gold-accent), var(--gold-hover));
+            color: white;
+            padding: 0.5rem 1.5rem;
+            border-radius: 25px;
+            font-size: 0.8rem;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+            margin-bottom: 1rem;
+        }
+        .order-number {
+            font-size: 2.5rem;
+            font-weight: 600;
+            color: var(--text-main);
+            margin-bottom: 1rem;
+        }
+        .order-status-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.75rem;
+            background: rgba(76, 175, 80, 0.1);
+            border: 1px solid rgba(76, 175, 80, 0.2);
+            padding: 0.75rem 1.5rem;
+            border-radius: 12px;
+        }
+        .status-icon {
+            width: 32px;
+            height: 32px;
+            background: #4CAF50;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+        }
+        .status-text {
+            font-weight: 600;
+            color: #4CAF50;
+        }
+        .order-meta {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+            gap: 1.5rem;
+            max-width: 600px;
+            margin: 0 auto;
+        }
+        .meta-item {
+            text-align: center;
+            padding: 1rem;
+            background: rgba(255,255,255,0.8);
+            border-radius: 12px;
+            border: 1px solid rgba(197,160,89,0.1);
+        }
+        .meta-label {
+            display: block;
+            font-size: 0.8rem;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+            color: var(--text-muted);
+            margin-bottom: 0.5rem;
+        }
+        .meta-value {
+            font-size: 1.1rem;
+            font-weight: 600;
+            color: var(--text-main);
+        }
 
-        /* --- Form Control Focus --- */
-        .form-control:focus {
-            border-color: #007bff;
-            box-shadow: none;
+        /* Tracking Section */
+        .tracking-section {
+            padding: 4rem 0;
+            background: rgba(253,251,247,0.5);
+        }
+        .tracking-card {
+            background: rgba(255,255,255,0.95);
+            border-radius: 20px;
+            padding: 3rem;
+            box-shadow: 0 15px 45px rgba(0,0,0,0.08);
+            border: 1px solid rgba(197,160,89,0.1);
+        }
+        .tracking-title {
+            font-size: 1.8rem;
+            font-weight: 600;
+            text-align: center;
+            margin-bottom: 3rem;
+            color: var(--text-main);
+        }
+
+        /* Tracking Timeline */
+        .tracking-timeline {
+            position: relative;
+            max-width: 600px;
+            margin: 0 auto;
+        }
+        .tracking-timeline::before {
+            content: '';
+            position: absolute;
+            left: 30px;
+            top: 0;
+            bottom: 0;
+            width: 3px;
+            background: linear-gradient(to bottom, var(--gold-accent), rgba(197,160,89,0.3));
+            border-radius: 2px;
+            z-index: 1;
+        }
+        .timeline-item {
+            display: flex;
+            gap: 1.5rem;
+            margin-bottom: 2.5rem;
+            position: relative;
+            opacity: 0.6;
+            transform: translateX(-20px);
+            transition: all 0.5s ease;
+        }
+        .timeline-item.completed {
+            opacity: 1;
+            transform: translateX(0);
+        }
+        .timeline-item.active {
+            opacity: 1;
+            transform: translateX(0);
+        }
+        .timeline-item.active::before {
+            content: '';
+            position: absolute;
+            left: 26px;
+            top: 30px;
+            width: 12px;
+            height: 12px;
+            background: var(--gold-accent);
+            border-radius: 50%;
+            z-index: 2;
+            animation: timelinePulse 2s infinite;
+        }
+        @keyframes timelinePulse {
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.5); }
+        }
+        .timeline-icon {
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            background: rgba(255,255,255,0.9);
+            border: 3px solid rgba(197,160,89,0.3);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--text-muted);
+            flex-shrink: 0;
+            position: relative;
+            z-index: 2;
+            transition: all 0.3s ease;
+        }
+        .timeline-item.completed .timeline-icon {
+            background: var(--gold-accent);
+            border-color: var(--gold-accent);
+            color: white;
+            box-shadow: 0 0 20px rgba(197,160,89,0.4);
+        }
+        .timeline-item.active .timeline-icon {
+            background: var(--gold-accent);
+            border-color: var(--gold-accent);
+            color: white;
+            box-shadow: 0 0 20px rgba(197,160,89,0.4);
+        }
+        .timeline-content {
+            flex: 1;
+            padding-top: 0.5rem;
+        }
+        .timeline-content h5 {
+            font-size: 1.1rem;
+            font-weight: 600;
+            margin-bottom: 0.5rem;
+            color: var(--text-main);
+        }
+        .timeline-content p {
+            color: var(--text-muted);
+            margin-bottom: 0.5rem;
+            font-size: 0.9rem;
+        }
+        .timeline-date {
+            font-size: 0.8rem;
+            color: var(--gold-accent);
+            font-weight: 500;
+        }
+
+        /* Order Cards */
+        .order-card {
+            background: rgba(255,255,255,0.95);
+            border-radius: 16px;
+            box-shadow: 0 8px 32px rgba(0,0,0,0.06);
+            border: 1px solid rgba(197,160,89,0.1);
+            margin-bottom: 2rem;
+            overflow: hidden;
+            transition: all 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+        }
+        .order-card:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 15px 45px rgba(0,0,0,0.1);
+        }
+
+        /* Card Headers */
+        .card-header-premium {
+            background: linear-gradient(135deg, rgba(253,251,247,0.98), rgba(250,248,245,0.95));
+            border-bottom: 1px solid rgba(197,160,89,0.1);
+            padding: 1.5rem 2rem;
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+        }
+        .card-icon {
+            width: 40px;
+            height: 40px;
+            border-radius: 12px;
+            background: linear-gradient(135deg, var(--gold-accent), var(--gold-hover));
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            box-shadow: 0 4px 12px rgba(197,160,89,0.3);
+        }
+        .card-title {
+            font-size: 1.4rem;
+            font-weight: 600;
+            color: var(--text-main);
+            margin: 0;
+        }
+
+        /* Card Body */
+        .card-body-premium {
+            padding: 2rem;
+        }
+
+        /* Order Item Detailed */
+        .order-item-detailed {
+            display: flex;
+            gap: 2rem;
+            align-items: flex-start;
+        }
+        .item-image-large {
+            width: 150px;
+            height: 200px;
+            border-radius: 12px;
+            overflow: hidden;
+            flex-shrink: 0;
+        }
+        .item-image-large img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+        .item-details-full {
+            flex: 1;
+        }
+        .item-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            margin-bottom: 1rem;
+        }
+        .item-name {
+            font-size: 1.4rem;
+            font-weight: 600;
+            color: var(--text-main);
+            margin: 0;
+        }
+        .item-price {
+            font-size: 1.4rem;
+            font-weight: 600;
+            color: var(--gold-accent);
+        }
+        .item-meta-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
+            gap: 1rem;
+            margin-bottom: 1.5rem;
+        }
+        .meta-item {
+            background: rgba(253,251,247,0.8);
+            padding: 0.75rem;
+            border-radius: 8px;
+            border: 1px solid rgba(197,160,89,0.1);
+        }
+        .meta-item .meta-label {
+            display: block;
+            font-size: 0.75rem;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+            color: var(--text-muted);
+            margin-bottom: 0.25rem;
+        }
+        .meta-item .meta-value {
+            font-weight: 500;
+            color: var(--text-main);
+        }
+        .item-description {
+            color: var(--text-muted);
+            line-height: 1.6;
+            margin-bottom: 1.5rem;
+        }
+        .item-actions {
+            display: flex;
+            gap: 1rem;
+            flex-wrap: wrap;
+        }
+        .btn-action-small {
+            background: rgba(197,160,89,0.1);
+            color: var(--gold-accent);
+            border: 1px solid rgba(197,160,89,0.2);
+            padding: 0.5rem 1rem;
+            border-radius: 25px;
+            font-size: 0.85rem;
+            font-weight: 500;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            transition: all 0.3s ease;
+        }
+        .btn-action-small:hover {
+            background: var(--gold-accent);
+            color: white;
+            transform: translateY(-1px);
+        }
+
+        /* Shipping Grid */
+        .shipping-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 2rem;
+        }
+        .shipping-info h5, .delivery-info h5 {
+            font-size: 1.1rem;
+            font-weight: 600;
+            margin-bottom: 1rem;
+            color: var(--text-main);
+        }
+        .address-display {
+            background: rgba(253,251,247,0.8);
+            padding: 1.5rem;
+            border-radius: 8px;
+            border: 1px solid rgba(197,160,89,0.1);
+        }
+        .btn-link-small {
+            background: none;
+            border: none;
+            color: var(--gold-accent);
+            font-size: 0.85rem;
+            font-weight: 500;
+            text-decoration: underline;
+            cursor: pointer;
+            margin-top: 1rem;
+            padding: 0;
+        }
+        .btn-link-small:hover {
+            color: var(--gold-hover);
+        }
+        .delivery-details {
+            display: flex;
+            flex-direction: column;
+            gap: 1rem;
+        }
+        .delivery-item {
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+            padding: 0.75rem;
+            background: rgba(253,251,247,0.8);
+            border-radius: 8px;
+            border: 1px solid rgba(197,160,89,0.1);
+        }
+        .delivery-item i {
+            color: var(--gold-accent);
+            flex-shrink: 0;
+        }
+        .delivery-label {
+            display: block;
+            font-size: 0.8rem;
+            font-weight: 600;
+            color: var(--text-muted);
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+        }
+        .delivery-value {
+            font-weight: 500;
+            color: var(--text-main);
+        }
+
+        /* Order Actions Grid */
+        .order-actions-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 1.5rem;
+            margin-top: 2rem;
+        }
+        .action-card {
+            background: rgba(255,255,255,0.95);
+            border-radius: 16px;
+            padding: 2rem;
+            text-align: center;
+            border: 1px solid rgba(197,160,89,0.1);
+            box-shadow: 0 8px 32px rgba(0,0,0,0.06);
+            transition: all 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+        }
+        .action-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 45px rgba(0,0,0,0.1);
+        }
+        .action-icon {
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, var(--gold-accent), var(--gold-hover));
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            margin: 0 auto 1rem;
+            box-shadow: 0 8px 25px rgba(197,160,89,0.3);
+        }
+        .action-card h5 {
+            font-size: 1.1rem;
+            font-weight: 600;
+            margin-bottom: 0.5rem;
+            color: var(--text-main);
+        }
+        .action-card p {
+            color: var(--text-muted);
+            margin-bottom: 1.5rem;
+            font-size: 0.9rem;
+        }
+        .btn-action-outline {
+            background: transparent;
+            color: var(--gold-accent);
+            border: 1px solid var(--gold-accent);
+            padding: 0.75rem 1.5rem;
+            border-radius: 25px;
+            font-weight: 500;
+            transition: all 0.3s ease;
+        }
+        .btn-action-outline:hover {
+            background: var(--gold-accent);
+            color: white;
+            transform: translateY(-1px);
+        }
+
+        /* Summary Card */
+        .summary-card {
+            background: rgba(255,255,255,0.95);
+            border-radius: 16px;
+            padding: 2rem;
+            box-shadow: 0 8px 32px rgba(0,0,0,0.06);
+            border: 1px solid rgba(197,160,89,0.1);
+            margin-bottom: 2rem;
+        }
+        .summary-title {
+            font-size: 1.4rem;
+            font-weight: 600;
+            margin-bottom: 1.5rem;
+            color: var(--text-main);
+        }
+        .summary-breakdown {
+            background: rgba(253,251,247,0.8);
+            border-radius: 12px;
+            padding: 1.5rem;
+            border: 1px solid rgba(197,160,89,0.1);
+        }
+        .summary-row {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 1rem;
+            font-size: 0.95rem;
+        }
+        .summary-row:last-child {
+            margin-bottom: 0;
+        }
+        .summary-row.total {
+            border-top: 1px solid rgba(197,160,89,0.2);
+            padding-top: 1rem;
+            font-size: 1.1rem;
+            font-weight: 600;
+            color: var(--text-main);
+        }
+
+        /* Payment Info Card */
+        .payment-info-card {
+            background: rgba(255,255,255,0.95);
+            border-radius: 16px;
+            padding: 2rem;
+            box-shadow: 0 8px 32px rgba(0,0,0,0.06);
+            border: 1px solid rgba(197,160,89,0.1);
+            margin-bottom: 2rem;
+        }
+        .payment-info-card h5 {
+            font-size: 1.2rem;
+            font-weight: 600;
+            margin-bottom: 1.5rem;
+            color: var(--text-main);
+        }
+        .payment-method {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            padding: 1rem;
+            background: rgba(253,251,247,0.8);
+            border-radius: 8px;
+            border: 1px solid rgba(197,160,89,0.1);
+            margin-bottom: 1rem;
+        }
+        .payment-icon {
+            width: 40px;
+            height: 40px;
+            background: var(--gold-accent);
+            border-radius: 8px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+        }
+        .payment-details {
+            flex: 1;
+        }
+        .payment-type {
+            display: block;
+            font-weight: 600;
+            color: var(--text-main);
+        }
+        .payment-last4 {
+            font-size: 0.9rem;
+            color: var(--text-muted);
+        }
+        .payment-status {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            color: #4CAF50;
+            font-size: 0.9rem;
+        }
+
+        /* Support Card */
+        .support-card {
+            background: rgba(255,255,255,0.95);
+            border-radius: 16px;
+            padding: 2rem;
+            box-shadow: 0 8px 32px rgba(0,0,0,0.06);
+            border: 1px solid rgba(197,160,89,0.1);
+            margin-bottom: 2rem;
+        }
+        .support-card h5 {
+            font-size: 1.2rem;
+            font-weight: 600;
+            margin-bottom: 1.5rem;
+            color: var(--text-main);
+        }
+        .support-options {
+            display: flex;
+            flex-direction: column;
+            gap: 1rem;
+            margin-bottom: 1.5rem;
+        }
+        .support-option {
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+            color: var(--text-muted);
+            font-size: 0.9rem;
+        }
+        .support-option i {
+            color: var(--gold-accent);
+        }
+        .btn-support {
+            width: 100%;
+            background: linear-gradient(135deg, var(--gold-accent), var(--gold-hover));
+            color: white;
+            border: none;
+            padding: 1rem;
+            border-radius: 12px;
+            font-weight: 600;
+            transition: all 0.3s ease;
+        }
+        .btn-support:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 25px rgba(197,160,89,0.3);
+        }
+
+        /* History Card */
+        .history-card {
+            background: rgba(255,255,255,0.95);
+            border-radius: 16px;
+            padding: 2rem;
+            box-shadow: 0 8px 32px rgba(0,0,0,0.06);
+            border: 1px solid rgba(197,160,89,0.1);
+        }
+        .history-card h5 {
+            font-size: 1.2rem;
+            font-weight: 600;
+            margin-bottom: 1.5rem;
+            color: var(--text-main);
+        }
+        .history-stats {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 1rem;
+            margin-bottom: 1.5rem;
+        }
+        .stat-item {
+            text-align: center;
+            padding: 1rem;
+            background: rgba(253,251,247,0.8);
+            border-radius: 8px;
+            border: 1px solid rgba(197,160,89,0.1);
+        }
+        .stat-number {
+            display: block;
+            font-size: 1.2rem;
+            font-weight: 600;
+            color: var(--gold-accent);
+        }
+        .stat-label {
+            font-size: 0.8rem;
+            color: var(--text-muted);
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+        }
+        .btn-history {
+            width: 100%;
+            background: rgba(197,160,89,0.1);
+            color: var(--gold-accent);
+            border: 1px solid rgba(197,160,89,0.2);
+            padding: 0.75rem;
+            border-radius: 8px;
+            font-weight: 500;
+            transition: all 0.3s ease;
+        }
+        .btn-history:hover {
+            background: var(--gold-accent);
+            color: white;
+        }
+
+        /* Animations */
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .order-header-content {
+                padding: 0 1rem;
+            }
+            .order-number {
+                font-size: 2rem;
+            }
+            .order-meta {
+                grid-template-columns: 1fr;
+            }
+            .shipping-grid {
+                grid-template-columns: 1fr;
+            }
+            .order-actions-grid {
+                grid-template-columns: 1fr;
+            }
+            .history-stats {
+                grid-template-columns: 1fr;
+            }
+            .order-item-detailed {
+                flex-direction: column;
+                align-items: center;
+                text-align: center;
+            }
+            .item-image-large {
+                width: 100%;
+                max-width: 250px;
+                height: 300px;
+            }
         }
 
         /* --- Custom Scrollbar --- */
@@ -380,24 +1068,10 @@
                     Rivayat<span class="text-gold">.</span>
                 </a>
 
-                <!-- Right Side: Search & Icons -->
+                <!-- Right Side: Icons -->
                 <ul class="navbar-nav ms-auto mb-2 mb-lg-0 align-items-center gap-4">
-                    <!-- Search Bar -->
-                    <li class="nav-item d-none d-md-block">
-                        <div class="position-relative">
-                            <input type="text" 
-                                   class="form-control rounded-0 border-0 border-bottom border-dark bg-transparent ps-0 py-1 shadow-none" 
-                                   placeholder="Search..." 
-                                   style="font-size: 0.8rem; width: 140px; padding-right: 25px;">
-                            <i data-lucide="search" class="position-absolute text-dark" style="right: 0; top: 50%; transform: translateY(-50%); width: 16px; cursor: pointer;"></i>
-                        </div>
-                    </li>
-                    
-                    <li class="nav-item d-flex gap-3">
-                        <a href="#" class="text-dark position-relative">
-                            <i data-lucide="heart" style="width: 20px;"></i>
-                            <span class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-gold text-white d-none" style="font-size: 0.5rem; background: var(--gold-accent);">0</span>
-                        </a>
+                    <li class="nav-item"><a class="nav-link" href="login.html"><i data-lucide="user" style="width: 20px;"></i></a></li>
+                    <li class="nav-item">
                         <a href="cart.html" class="text-dark position-relative">
                             <i data-lucide="shopping-bag" style="width: 20px;"></i>
                             <span class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-dark text-white d-none" style="font-size: 0.5rem;">0</span>
@@ -408,66 +1082,333 @@
         </div>
     </nav>
 
-    <!-- Main Content -->
-    <main class="container py-5 mt-5">
-        <div class="text-center mb-5">
-            <span class="text-muted text-uppercase tracking-widest small">Order Tracking</span>
-            <h1 class="font-serif display-4 mt-2">Order #RV-2025-001</h1>
-        </div>
-
-        <div class="order-status">
-            <h5 class="font-serif mb-0">Order Confirmed - Processing</h5>
-        </div>
-
-        <div class="row">
-            <div class="col-lg-8">
-                <div class="bg-light p-4 mb-4">
-                    <h5 class="font-serif mb-4">Order Items</h5>
-                    <div class="d-flex align-items-center mb-3">
-                        <img src="https://images.unsplash.com/photo-1617639490635-44a5d6559b93?q=80&w=800&fit=crop" alt="Product" class="me-3" style="width: 80px; height: 80px; object-fit: cover;">
-                        <div class="flex-grow-1">
-                            <h6 class="font-serif mb-1">Banarasi Silk Lehenga</h6>
-                            <p class="text-muted small mb-0">Size: M | Color: Red | Quantity: 1</p>
+    <!-- Premium Order Header -->
+    <section class="order-header">
+        <div class="container">
+            <div class="order-header-content">
+                <div class="order-title-section">
+                    <span class="order-label">Order Tracking</span>
+                    <h1 class="order-number">Order #RV-2025-001</h1>
+                    <div class="order-status-badge">
+                        <div class="status-icon">
+                            <i data-lucide="package" style="width: 20px; height: 20px;"></i>
                         </div>
-                        <span class="font-serif">$499.00</span>
+                        <span class="status-text">Order Confirmed - Processing</span>
                     </div>
                 </div>
+                <div class="order-meta">
+                    <div class="meta-item">
+                        <span class="meta-label">Order Date</span>
+                        <span class="meta-value">November 23, 2025</span>
+                    </div>
+                    <div class="meta-item">
+                        <span class="meta-label">Total Amount</span>
+                        <span class="meta-value">$536.43</span>
+                    </div>
+                    <div class="meta-item">
+                        <span class="meta-label">Items</span>
+                        <span class="meta-value">1 Item</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
 
-                <div class="bg-light p-4">
-                    <h5 class="font-serif mb-4">Shipping Information</h5>
-                    <div class="row">
-                        <div class="col-md-6">
-                            <p><strong>Shipping Address:</strong><br>
-                            John Doe<br>
-                            123 Main Street<br>
-                            New York, NY 10001<br>
-                            United States</p>
+    <!-- Order Tracking Timeline -->
+    <section class="tracking-section">
+        <div class="container">
+            <div class="tracking-card">
+                <h3 class="tracking-title">Order Progress</h3>
+                <div class="tracking-timeline">
+                    <div class="timeline-item completed">
+                        <div class="timeline-icon">
+                            <i data-lucide="check-circle" style="width: 24px; height: 24px;"></i>
                         </div>
-                        <div class="col-md-6">
-                            <p><strong>Estimated Delivery:</strong><br>
-                            March 15, 2025<br>
-                            <small class="text-muted">Standard Shipping (5-7 business days)</small></p>
+                        <div class="timeline-content">
+                            <h5>Order Placed</h5>
+                            <p>We have received your order</p>
+                            <span class="timeline-date">November 23, 2025 • 2:30 PM</span>
+                        </div>
+                    </div>
+                    <div class="timeline-item completed">
+                        <div class="timeline-icon">
+                            <i data-lucide="credit-card" style="width: 24px; height: 24px;"></i>
+                        </div>
+                        <div class="timeline-content">
+                            <h5>Payment Confirmed</h5>
+                            <p>Payment has been successfully processed</p>
+                            <span class="timeline-date">November 23, 2025 • 2:31 PM</span>
+                        </div>
+                    </div>
+                    <div class="timeline-item active">
+                        <div class="timeline-icon">
+                            <i data-lucide="settings" style="width: 24px; height: 24px;"></i>
+                        </div>
+                        <div class="timeline-content">
+                            <h5>Processing Order</h5>
+                            <p>Our artisans are preparing your item with care</p>
+                            <span class="timeline-date">Expected: November 25-26, 2025</span>
+                        </div>
+                    </div>
+                    <div class="timeline-item">
+                        <div class="timeline-icon">
+                            <i data-lucide="truck" style="width: 24px; height: 24px;"></i>
+                        </div>
+                        <div class="timeline-content">
+                            <h5>Shipped</h5>
+                            <p>Your order is on its way</p>
+                            <span class="timeline-date">Expected: November 27, 2025</span>
+                        </div>
+                    </div>
+                    <div class="timeline-item">
+                        <div class="timeline-icon">
+                            <i data-lucide="home" style="width: 24px; height: 24px;"></i>
+                        </div>
+                        <div class="timeline-content">
+                            <h5>Delivered</h5>
+                            <p>Package delivered to your address</p>
+                            <span class="timeline-date">Expected: December 2-4, 2025</span>
                         </div>
                     </div>
                 </div>
             </div>
+        </div>
+    </section>
 
+    <!-- Order Details & Actions -->
+    <main class="container pb-5">
+        <div class="row g-5">
+            <!-- Main Content -->
+            <div class="col-lg-8">
+                <!-- Order Items -->
+                <div class="order-card">
+                    <div class="card-header-premium">
+                        <div class="card-icon">
+                            <i data-lucide="shopping-bag" style="width: 20px; height: 20px;"></i>
+                        </div>
+                        <h4 class="card-title">Order Items</h4>
+                    </div>
+                    <div class="card-body-premium">
+                        <div class="order-item-detailed">
+                            <div class="item-image-large">
+                                <img src="https://res.cloudinary.com/dwv2wwdki/image/upload/v1763654574/Lucid_Origin_Banarasi_Silk_Lehenga_women_fashion_model_in_a_fu_1_n0yylp.jpg" alt="Banarasi Silk Lehenga">
+                            </div>
+                            <div class="item-details-full">
+                                <div class="item-header">
+                                    <h5 class="item-name">Banarasi Silk Lehenga</h5>
+                                    <div class="item-price">$499.00</div>
+                                </div>
+                                <div class="item-meta-grid">
+                                    <div class="meta-item">
+                                        <span class="meta-label">Size</span>
+                                        <span class="meta-value">M</span>
+                                    </div>
+                                    <div class="meta-item">
+                                        <span class="meta-label">Color</span>
+                                        <span class="meta-value">Red</span>
+                                    </div>
+                                    <div class="meta-item">
+                                        <span class="meta-label">Quantity</span>
+                                        <span class="meta-value">1</span>
+                                    </div>
+                                    <div class="meta-item">
+                                        <span class="meta-label">SKU</span>
+                                        <span class="meta-value">RV-BSL-001</span>
+                                    </div>
+                                </div>
+                                <div class="item-description">
+                                    <p>Handcrafted Banarasi silk lehenga featuring traditional gold zari work and intricate hand-painted motifs. Made by master artisans using age-old techniques passed down through generations.</p>
+                                </div>
+                                <div class="item-actions">
+                                    <button class="btn-action-small" onclick="window.location.href='product-detail.html'">
+                                        <i data-lucide="eye" style="width: 14px; height: 14px;"></i>
+                                        View Product
+                                    </button>
+                                    <button class="btn-action-small" onclick="window.location.href='products.html'">
+                                        <i data-lucide="refresh-cw" style="width: 14px; height: 14px;"></i>
+                                        Buy Again
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Shipping & Delivery -->
+                <div class="order-card">
+                    <div class="card-header-premium">
+                        <div class="card-icon">
+                            <i data-lucide="map-pin" style="width: 20px; height: 20px;"></i>
+                        </div>
+                        <h4 class="card-title">Shipping & Delivery</h4>
+                    </div>
+                    <div class="card-body-premium">
+                        <div class="shipping-grid">
+                            <div class="shipping-info">
+                                <h5>Shipping Address</h5>
+                                <div class="address-display">
+                                    <p><strong>John Doe</strong></p>
+                                    <p>123 Main Street<br>Brooklyn, NY 11201<br>United States</p>
+                                    <p><strong>Phone:</strong> +1 (555) 123-4567</p>
+                                </div>
+                                <button class="btn-link-small" onclick="alert('Address change feature coming soon')">Change Address</button>
+                            </div>
+                            <div class="delivery-info">
+                                <h5>Delivery Information</h5>
+                                <div class="delivery-details">
+                                    <div class="delivery-item">
+                                        <i data-lucide="truck" style="width: 16px; height: 16px;"></i>
+                                        <div>
+                                            <span class="delivery-label">Shipping Method</span>
+                                            <span class="delivery-value">Standard Shipping</span>
+                                        </div>
+                                    </div>
+                                    <div class="delivery-item">
+                                        <i data-lucide="calendar" style="width: 16px; height: 16px;"></i>
+                                        <div>
+                                            <span class="delivery-label">Estimated Delivery</span>
+                                            <span class="delivery-value">December 2-4, 2025</span>
+                                        </div>
+                                    </div>
+                                    <div class="delivery-item">
+                                        <i data-lucide="package" style="width: 16px; height: 16px;"></i>
+                                        <div>
+                                            <span class="delivery-label">Tracking Number</span>
+                                            <span class="delivery-value">Will be available soon</span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Order Actions -->
+                <div class="order-actions-grid">
+                    <div class="action-card">
+                        <div class="action-icon">
+                            <i data-lucide="refresh-cw" style="width: 24px; height: 24px;"></i>
+                        </div>
+                        <h5>Reorder</h5>
+                        <p>Order this item again</p>
+                        <button class="btn-action-outline" onclick="window.location.href='products.html'">Reorder Now</button>
+                    </div>
+                    <div class="action-card">
+                        <div class="action-icon">
+                            <i data-lucide="message-circle" style="width: 24px; height: 24px;"></i>
+                        </div>
+                        <h5>Need Help?</h5>
+                        <p>Contact our support team</p>
+                        <button class="btn-action-outline" onclick="window.location.href='mailto:care@rivayat.com'">Get Support</button>
+                    </div>
+                    <div class="action-card">
+                        <div class="action-icon">
+                            <i data-lucide="file-text" style="width: 24px; height: 24px;"></i>
+                        </div>
+                        <h5>Invoice</h5>
+                        <p>Download your invoice</p>
+                        <button class="btn-action-outline" onclick="alert('Invoice download coming soon')">Download PDF</button>
+                    </div>
+                    <div class="action-card">
+                        <div class="action-icon">
+                            <i data-lucide="heart" style="width: 24px; height: 24px;"></i>
+                        </div>
+                        <h5>Write Review</h5>
+                        <p>Share your experience</p>
+                        <button class="btn-action-outline" onclick="alert('Review feature coming soon')">Write Review</button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Sidebar -->
             <div class="col-lg-4">
-                <div class="bg-light p-4 sticky-top" style="top: 100px;">
-                    <h5 class="font-serif mb-4">Order Summary</h5>
-                    <div class="d-flex justify-content-between mb-2">
-                        <span>Subtotal</span>
-                        <span>$499.00</span>
+                <!-- Order Summary -->
+                <div class="summary-card">
+                    <h4 class="summary-title">Order Summary</h4>
+                    <div class="summary-breakdown">
+                        <div class="summary-row">
+                            <span>Subtotal</span>
+                            <span>$499.00</span>
+                        </div>
+                        <div class="summary-row">
+                            <span>Discount (RIVAYAT15)</span>
+                            <span class="text-success">-$74.85</span>
+                        </div>
+                        <div class="summary-row">
+                            <span>Shipping</span>
+                            <span class="text-success">Free</span>
+                        </div>
+                        <div class="summary-row">
+                            <span>Tax</span>
+                            <span>$37.43</span>
+                        </div>
+                        <div class="summary-row total">
+                            <span>Total</span>
+                            <span>$461.58</span>
+                        </div>
                     </div>
-                    <div class="d-flex justify-content-between mb-2">
-                        <span>Shipping</span>
-                        <span>Free</span>
+                </div>
+
+                <!-- Payment Information -->
+                <div class="payment-info-card">
+                    <h5>Payment Information</h5>
+                    <div class="payment-method">
+                        <div class="payment-icon">
+                            <i data-lucide="credit-card" style="width: 20px; height: 20px;"></i>
+                        </div>
+                        <div class="payment-details">
+                            <span class="payment-type">Credit Card</span>
+                            <span class="payment-last4">**** 4532</span>
+                        </div>
                     </div>
-                    <div class="d-flex justify-content-between mb-4">
-                        <span>Total</span>
-                        <span class="font-serif">$499.00</span>
+                    <div class="payment-status">
+                        <i data-lucide="check-circle" style="width: 16px; height: 16px; color: #4CAF50;"></i>
+                        <span>Payment completed successfully</span>
                     </div>
-                    <button class="btn btn-custom-outline w-100" onclick="alert('Tracking feature coming soon!')">Track Shipment</button>
+                </div>
+
+                <!-- Customer Support -->
+                <div class="support-card">
+                    <h5>Need Assistance?</h5>
+                    <div class="support-options">
+                        <div class="support-option">
+                            <i data-lucide="phone" style="width: 16px; height: 16px;"></i>
+                            <span>Call us: +1 (555) RIVAYAT</span>
+                        </div>
+                        <div class="support-option">
+                            <i data-lucide="mail" style="width: 16px; height: 16px;"></i>
+                            <span>Email: care@rivayat.com</span>
+                        </div>
+                        <div class="support-option">
+                            <i data-lucide="message-circle" style="width: 16px; height: 16px;"></i>
+                            <span>Live Chat (9 AM - 6 PM EST)</span>
+                        </div>
+                    </div>
+                    <button class="btn-support" onclick="window.location.href='mailto:care@rivayat.com?subject=Order Support - #RV-2025-001'">
+                        Contact Support
+                    </button>
+                </div>
+
+                <!-- Order History -->
+                <div class="history-card">
+                    <h5>Order History</h5>
+                    <div class="history-stats">
+                        <div class="stat-item">
+                            <span class="stat-number">1</span>
+                            <span class="stat-label">Total Orders</span>
+                        </div>
+                        <div class="stat-item">
+                            <span class="stat-number">$461.58</span>
+                            <span class="stat-label">Total Spent</span>
+                        </div>
+                        <div class="stat-item">
+                            <span class="stat-number">4.9</span>
+                            <span class="stat-label">Avg Rating</span>
+                        </div>
+                    </div>
+                    <button class="btn-history" onclick="window.location.href='orders-history.html'">
+                        View All Orders
+                    </button>
                 </div>
             </div>
         </div>
@@ -532,7 +1473,7 @@
     <script>
         $(document).ready(function() {
             lucide.createIcons();
-            
+
             // Scroll Effect Navbar
             $(window).scroll(function() {
                 if ($(this).scrollTop() > 50) {
@@ -543,6 +1484,134 @@
                     $('#back-to-top').removeClass('visible');
                 }
             });
+
+            // Animate timeline items on scroll
+            function animateTimeline() {
+                $('.timeline-item').each(function(index) {
+                    const element = $(this);
+                    setTimeout(function() {
+                        element.addClass('completed');
+                    }, index * 400);
+                });
+            }
+
+            // Trigger animations when page loads
+            setTimeout(function() {
+                animateTimeline();
+            }, 500);
+
+            // Action button interactions
+            $('.btn-action-small').click(function(e) {
+                e.preventDefault();
+                const action = $(this).text().trim();
+                if (action === 'View Product') {
+                    window.location.href = 'product-detail.html';
+                } else if (action === 'Buy Again') {
+                    window.location.href = 'products.html';
+                }
+            });
+
+            $('.btn-action-outline').click(function(e) {
+                e.preventDefault();
+                const cardTitle = $(this).closest('.action-card').find('h5').text();
+                if (cardTitle === 'Reorder') {
+                    window.location.href = 'products.html';
+                } else if (cardTitle === 'Need Help?') {
+                    window.location.href = 'mailto:care@rivayat.com';
+                } else if (cardTitle === 'Invoice') {
+                    alert('Invoice download feature coming soon!');
+                } else if (cardTitle === 'Write Review') {
+                    alert('Review feature coming soon!');
+                }
+            });
+
+            $('.btn-link-small').click(function(e) {
+                e.preventDefault();
+                alert('Address change feature coming soon!');
+            });
+
+            $('.btn-support').click(function(e) {
+                e.preventDefault();
+                window.location.href = 'mailto:care@rivayat.com?subject=Order Support - #RV-2025-001';
+            });
+
+            $('.btn-history').click(function(e) {
+                e.preventDefault();
+                window.location.href = 'orders-history.html';
+            });
+
+            // Add hover effects for cards
+            $('.order-card, .action-card, .summary-card, .payment-info-card, .support-card, .history-card').hover(
+                function() {
+                    $(this).find('.card-icon, .action-icon').css('transform', 'scale(1.1)');
+                },
+                function() {
+                    $(this).find('.card-icon, .action-icon').css('transform', 'scale(1)');
+                }
+            );
+
+            // Add click effects for interactive elements
+            $('.timeline-item').click(function() {
+                // Could expand to show more details
+                $(this).toggleClass('expanded');
+            });
+
+            // Smooth scroll for anchor links
+            $('a[href^="#"]').on('click', function(event) {
+                var target = $(this.getAttribute('href'));
+                if (target.length) {
+                    event.preventDefault();
+                    $('html, body').stop().animate({
+                        scrollTop: target.offset().top - 100
+                    }, 1000);
+                }
+            });
+
+            // Add loading states for buttons
+            $('.btn-action-outline, .btn-support, .btn-history').click(function() {
+                const btn = $(this);
+                const originalText = btn.html();
+                btn.html('<i data-lucide="loader" style="width: 16px; height: 16px;"></i> Loading...');
+                btn.prop('disabled', true);
+
+                // Simulate loading
+                setTimeout(function() {
+                    btn.html(originalText);
+                    btn.prop('disabled', false);
+                    lucide.createIcons();
+                }, 1500);
+            });
+
+            // Progress bar animation for active timeline items
+            function updateProgress() {
+                $('.timeline-item.active').each(function() {
+                    const progress = $(this).find('.progress-fill');
+                    if (!progress.length) {
+                        $(this).append('<div class="progress-fill"></div>');
+                    }
+                });
+            }
+
+            setTimeout(updateProgress, 1000);
+
+            // Add CSS for progress fill
+            const progressCSS = `
+                .progress-fill {
+                    position: absolute;
+                    left: 26px;
+                    top: 30px;
+                    width: 12px;
+                    height: 12px;
+                    background: var(--gold-accent);
+                    border-radius: 50%;
+                    animation: progressPulse 2s infinite;
+                }
+                @keyframes progressPulse {
+                    0%, 100% { transform: scale(1); opacity: 1; }
+                    50% { transform: scale(1.3); opacity: 0.7; }
+                }
+            `;
+            $('head').append('<style>' + progressCSS + '</style>');
         });
     </script>
 </body>

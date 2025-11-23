@@ -250,19 +250,810 @@
         }
         #back-to-top.visible { opacity: 1; }
 
-        /* --- Success Specific --- */
-        .success-icon {
-            width: 80px; height: 80px;
-            background: var(--gold-accent);
-            border-radius: 50%;
-            display: flex; align-items: center; justify-content: center;
-            margin: 0 auto 2rem;
+        /* --- Premium Order Success Styling --- */
+
+        /* Success Hero Section */
+        .success-hero {
+            background: linear-gradient(135deg, rgba(253,251,247,0.98), rgba(250,248,245,0.95));
+            padding: 6rem 0;
+            position: relative;
+            overflow: hidden;
+        }
+        .success-hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><defs><pattern id="successPattern" x="0" y="0" width="20" height="20" patternUnits="userSpaceOnUse"><circle cx="10" cy="10" r="0.8" fill="rgba(197,160,89,0.03)"/></pattern></defs><rect width="100" height="100" fill="url(%23successPattern)"/></svg>');
+            pointer-events: none;
+            z-index: 1;
         }
 
-        /* --- Form Control Focus --- */
-        .form-control:focus {
-            border-color: #007bff;
-            box-shadow: none;
+        /* Success Celebration */
+        .success-celebration {
+            position: relative;
+            z-index: 2;
+            text-align: center;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        /* Premium Success Icon */
+        .success-icon-premium {
+            position: relative;
+            margin-bottom: 3rem;
+            display: inline-block;
+        }
+        .success-checkmark {
+            width: 120px;
+            height: 120px;
+            background: linear-gradient(135deg, var(--gold-accent), var(--gold-hover));
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            box-shadow: 0 20px 60px rgba(197,160,89,0.4);
+            position: relative;
+            z-index: 3;
+            animation: successBounce 0.8s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+        }
+        @keyframes successBounce {
+            0% { transform: scale(0); }
+            50% { transform: scale(1.2); }
+            100% { transform: scale(1); }
+        }
+        .success-pulse {
+            position: absolute;
+            top: -10px;
+            left: -10px;
+            right: -10px;
+            bottom: -10px;
+            border: 2px solid var(--gold-accent);
+            border-radius: 50%;
+            animation: successPulse 2s infinite;
+            opacity: 0.6;
+        }
+        @keyframes successPulse {
+            0% { transform: scale(1); opacity: 0.6; }
+            100% { transform: scale(1.5); opacity: 0; }
+        }
+        .success-sparkles {
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            pointer-events: none;
+        }
+        .sparkle {
+            position: absolute;
+            font-size: 24px;
+            animation: sparkleFloat 3s ease-in-out infinite;
+        }
+        .sparkle-1 {
+            top: -20px;
+            left: 20px;
+            animation-delay: 0s;
+        }
+        .sparkle-2 {
+            top: 20px;
+            right: -20px;
+            animation-delay: 0.5s;
+        }
+        .sparkle-3 {
+            bottom: -20px;
+            left: 40px;
+            animation-delay: 1s;
+        }
+        .sparkle-4 {
+            bottom: 10px;
+            right: 10px;
+            animation-delay: 1.5s;
+        }
+        @keyframes sparkleFloat {
+            0%, 100% { transform: translateY(0) rotate(0deg); opacity: 1; }
+            50% { transform: translateY(-20px) rotate(180deg); opacity: 0.7; }
+        }
+
+        /* Success Content */
+        .success-content {
+            animation: fadeInUp 1s ease-out 0.3s both;
+        }
+        .success-badge {
+            display: inline-block;
+            background: linear-gradient(135deg, var(--gold-accent), var(--gold-hover));
+            color: white;
+            padding: 0.5rem 1.5rem;
+            border-radius: 25px;
+            font-size: 0.8rem;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+            margin-bottom: 1.5rem;
+            box-shadow: 0 4px 15px rgba(197,160,89,0.3);
+        }
+        .success-title {
+            font-size: 3rem;
+            font-weight: 600;
+            color: var(--text-main);
+            margin-bottom: 1rem;
+            line-height: 1.1;
+        }
+        .success-subtitle {
+            font-size: 1.2rem;
+            color: var(--text-muted);
+            margin-bottom: 2rem;
+            font-weight: 400;
+        }
+        .success-details {
+            display: flex;
+            justify-content: center;
+            gap: 2rem;
+            flex-wrap: wrap;
+        }
+        .detail-item {
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+            color: var(--text-muted);
+            font-size: 0.95rem;
+        }
+        .detail-item i {
+            color: var(--gold-accent);
+        }
+
+        /* Tracking Section */
+        .tracking-section {
+            padding: 4rem 0;
+            background: rgba(253,251,247,0.5);
+        }
+        .tracking-card {
+            background: rgba(255,255,255,0.95);
+            border-radius: 20px;
+            padding: 3rem;
+            box-shadow: 0 15px 45px rgba(0,0,0,0.08);
+            border: 1px solid rgba(197,160,89,0.1);
+        }
+        .tracking-title {
+            font-size: 1.8rem;
+            font-weight: 600;
+            text-align: center;
+            margin-bottom: 3rem;
+            color: var(--text-main);
+        }
+
+        /* Tracking Timeline */
+        .tracking-timeline {
+            position: relative;
+            max-width: 600px;
+            margin: 0 auto;
+        }
+        .tracking-timeline::before {
+            content: '';
+            position: absolute;
+            left: 30px;
+            top: 0;
+            bottom: 0;
+            width: 2px;
+            background: linear-gradient(to bottom, var(--gold-accent), rgba(197,160,89,0.3));
+            z-index: 1;
+        }
+        .timeline-item {
+            display: flex;
+            gap: 1.5rem;
+            margin-bottom: 2rem;
+            position: relative;
+            opacity: 0.6;
+            transform: translateX(-20px);
+            transition: all 0.5s ease;
+        }
+        .timeline-item.completed {
+            opacity: 1;
+            transform: translateX(0);
+        }
+        .timeline-item.active {
+            opacity: 1;
+            transform: translateX(0);
+        }
+        .timeline-item.active::before {
+            content: '';
+            position: absolute;
+            left: 26px;
+            top: 30px;
+            width: 10px;
+            height: 10px;
+            background: var(--gold-accent);
+            border-radius: 50%;
+            z-index: 2;
+            animation: timelinePulse 2s infinite;
+        }
+        @keyframes timelinePulse {
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.5); }
+        }
+        .timeline-icon {
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            background: rgba(255,255,255,0.9);
+            border: 2px solid rgba(197,160,89,0.3);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--text-muted);
+            flex-shrink: 0;
+            position: relative;
+            z-index: 2;
+            transition: all 0.3s ease;
+        }
+        .timeline-item.completed .timeline-icon {
+            background: var(--gold-accent);
+            border-color: var(--gold-accent);
+            color: white;
+        }
+        .timeline-item.active .timeline-icon {
+            background: var(--gold-accent);
+            border-color: var(--gold-accent);
+            color: white;
+            box-shadow: 0 0 20px rgba(197,160,89,0.4);
+        }
+        .timeline-content {
+            flex: 1;
+            padding-top: 0.5rem;
+        }
+        .timeline-content h5 {
+            font-size: 1.1rem;
+            font-weight: 600;
+            margin-bottom: 0.5rem;
+            color: var(--text-main);
+        }
+        .timeline-content p {
+            color: var(--text-muted);
+            margin-bottom: 0.5rem;
+            font-size: 0.9rem;
+        }
+        .timeline-date {
+            font-size: 0.8rem;
+            color: var(--gold-accent);
+            font-weight: 500;
+        }
+
+        /* Order Cards */
+        .order-card {
+            background: rgba(255,255,255,0.95);
+            border-radius: 16px;
+            box-shadow: 0 8px 32px rgba(0,0,0,0.06);
+            border: 1px solid rgba(197,160,89,0.1);
+            margin-bottom: 2rem;
+            overflow: hidden;
+            transition: all 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+        }
+        .order-card:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 15px 45px rgba(0,0,0,0.1);
+        }
+
+        /* Card Headers */
+        .card-header-premium {
+            background: linear-gradient(135deg, rgba(253,251,247,0.98), rgba(250,248,245,0.95));
+            border-bottom: 1px solid rgba(197,160,89,0.1);
+            padding: 1.5rem 2rem;
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+        }
+        .card-icon {
+            width: 40px;
+            height: 40px;
+            border-radius: 12px;
+            background: linear-gradient(135deg, var(--gold-accent), var(--gold-hover));
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            box-shadow: 0 4px 12px rgba(197,160,89,0.3);
+        }
+        .card-title {
+            font-size: 1.4rem;
+            font-weight: 600;
+            color: var(--text-main);
+            margin: 0;
+        }
+
+        /* Card Body */
+        .card-body-premium {
+            padding: 2rem;
+        }
+
+        /* Order Info Grid */
+        .order-info-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 1.5rem;
+            margin-bottom: 2rem;
+        }
+        .info-item {
+            background: rgba(253,251,247,0.8);
+            padding: 1rem;
+            border-radius: 8px;
+            border: 1px solid rgba(197,160,89,0.1);
+        }
+        .info-item label {
+            display: block;
+            font-size: 0.8rem;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+            color: var(--text-muted);
+            margin-bottom: 0.5rem;
+        }
+        .info-value {
+            font-weight: 500;
+            color: var(--text-main);
+        }
+
+        /* Shipping Address */
+        .shipping-address h5 {
+            font-size: 1.1rem;
+            font-weight: 600;
+            margin-bottom: 1rem;
+            color: var(--text-main);
+        }
+        .address-display {
+            background: rgba(253,251,247,0.8);
+            padding: 1.5rem;
+            border-radius: 8px;
+            border: 1px solid rgba(197,160,89,0.1);
+        }
+
+        /* Ordered Items */
+        .ordered-item {
+            display: flex;
+            gap: 1.5rem;
+            padding: 1.5rem;
+            background: rgba(253,251,247,0.8);
+            border-radius: 12px;
+            border: 1px solid rgba(197,160,89,0.1);
+            transition: all 0.3s ease;
+        }
+        .ordered-item:hover {
+            background: rgba(197,160,89,0.02);
+        }
+        .item-image {
+            width: 100px;
+            height: 120px;
+            border-radius: 8px;
+            overflow: hidden;
+            flex-shrink: 0;
+        }
+        .item-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+        .item-details {
+            flex: 1;
+        }
+        .item-name {
+            font-size: 1.2rem;
+            font-weight: 600;
+            margin-bottom: 0.5rem;
+            color: var(--text-main);
+        }
+        .item-meta {
+            display: flex;
+            gap: 1rem;
+            margin-bottom: 1rem;
+            flex-wrap: wrap;
+        }
+        .meta-item {
+            font-size: 0.85rem;
+            color: var(--text-muted);
+            background: rgba(197,160,89,0.1);
+            padding: 0.25rem 0.75rem;
+            border-radius: 15px;
+        }
+        .item-description {
+            font-size: 0.9rem;
+            color: var(--text-muted);
+            line-height: 1.5;
+        }
+        .item-price {
+            text-align: right;
+        }
+        .price-amount {
+            font-size: 1.3rem;
+            font-weight: 600;
+            color: var(--gold-accent);
+        }
+
+        /* Help Options */
+        .help-options {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 1.5rem;
+        }
+        .help-option {
+            display: flex;
+            gap: 1rem;
+            padding: 1.5rem;
+            background: rgba(253,251,247,0.8);
+            border-radius: 12px;
+            border: 1px solid rgba(197,160,89,0.1);
+            transition: all 0.3s ease;
+        }
+        .help-option:hover {
+            background: rgba(197,160,89,0.02);
+            transform: translateY(-2px);
+            box-shadow: 0 8px 25px rgba(0,0,0,0.08);
+        }
+        .help-icon {
+            width: 50px;
+            height: 50px;
+            border-radius: 12px;
+            background: linear-gradient(135deg, var(--gold-accent), var(--gold-hover));
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            flex-shrink: 0;
+        }
+        .help-content h6 {
+            font-size: 1rem;
+            font-weight: 600;
+            margin-bottom: 0.5rem;
+            color: var(--text-main);
+        }
+        .help-content p {
+            font-size: 0.85rem;
+            color: var(--text-muted);
+            margin-bottom: 1rem;
+        }
+        .btn-help {
+            background: var(--gold-accent);
+            color: white;
+            border: none;
+            padding: 0.5rem 1.5rem;
+            border-radius: 25px;
+            font-weight: 500;
+            font-size: 0.85rem;
+            transition: all 0.3s ease;
+        }
+        .btn-help:hover {
+            background: var(--gold-hover);
+            transform: translateY(-1px);
+        }
+        .btn-help-outline {
+            background: transparent;
+            color: var(--gold-accent);
+            border: 1px solid var(--gold-accent);
+            padding: 0.5rem 1.5rem;
+            border-radius: 25px;
+            font-weight: 500;
+            font-size: 0.85rem;
+            transition: all 0.3s ease;
+        }
+        .btn-help-outline:hover {
+            background: var(--gold-accent);
+            color: white;
+        }
+
+        /* Summary Card */
+        .summary-card {
+            background: rgba(255,255,255,0.95);
+            border-radius: 16px;
+            padding: 2rem;
+            box-shadow: 0 8px 32px rgba(0,0,0,0.06);
+            border: 1px solid rgba(197,160,89,0.1);
+            margin-bottom: 2rem;
+        }
+        .summary-title {
+            font-size: 1.4rem;
+            font-weight: 600;
+            margin-bottom: 1.5rem;
+            color: var(--text-main);
+        }
+        .summary-breakdown {
+            background: rgba(253,251,247,0.8);
+            border-radius: 12px;
+            padding: 1.5rem;
+            border: 1px solid rgba(197,160,89,0.1);
+        }
+        .summary-row {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 1rem;
+            font-size: 0.95rem;
+        }
+        .summary-row:last-child {
+            margin-bottom: 0;
+        }
+        .summary-row.total {
+            border-top: 1px solid rgba(197,160,89,0.2);
+            padding-top: 1rem;
+            font-size: 1.1rem;
+            font-weight: 600;
+            color: var(--text-main);
+        }
+
+        /* Action Buttons */
+        .action-buttons {
+            display: flex;
+            flex-direction: column;
+            gap: 1rem;
+            margin-bottom: 2rem;
+        }
+        .btn-action-primary {
+            background: linear-gradient(135deg, var(--gold-accent), var(--gold-hover));
+            color: white;
+            border: none;
+            padding: 1rem 2rem;
+            border-radius: 12px;
+            font-weight: 600;
+            font-size: 1rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 0.75rem;
+            transition: all 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+            box-shadow: 0 8px 25px rgba(197,160,89,0.3);
+        }
+        .btn-action-primary:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 15px 35px rgba(197,160,89,0.4);
+        }
+        .btn-action-secondary {
+            background: rgba(255,255,255,0.9);
+            color: var(--text-main);
+            border: 1px solid rgba(197,160,89,0.2);
+            padding: 1rem 2rem;
+            border-radius: 12px;
+            font-weight: 600;
+            font-size: 1rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 0.75rem;
+            transition: all 0.3s ease;
+        }
+        .btn-action-secondary:hover {
+            background: var(--text-main);
+            color: white;
+            transform: translateY(-1px);
+        }
+
+        /* Social Share */
+        .social-share-card {
+            background: rgba(255,255,255,0.95);
+            border-radius: 16px;
+            padding: 2rem;
+            box-shadow: 0 8px 32px rgba(0,0,0,0.06);
+            border: 1px solid rgba(197,160,89,0.1);
+            margin-bottom: 2rem;
+            text-align: center;
+        }
+        .social-share-card h5 {
+            font-size: 1.2rem;
+            font-weight: 600;
+            margin-bottom: 0.5rem;
+            color: var(--text-main);
+        }
+        .social-buttons {
+            display: flex;
+            gap: 0.75rem;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+        .social-btn {
+            background: rgba(255,255,255,0.9);
+            border: 1px solid rgba(197,160,89,0.2);
+            color: var(--text-main);
+            padding: 0.75rem 1.5rem;
+            border-radius: 25px;
+            font-weight: 500;
+            font-size: 0.85rem;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            transition: all 0.3s ease;
+        }
+        .social-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+        }
+        .social-btn.instagram:hover {
+            background: linear-gradient(45deg, #f09433, #e6683c, #dc2743, #cc2366, #bc1888);
+            color: white;
+            border-color: transparent;
+        }
+        .social-btn.pinterest:hover {
+            background: #e60023;
+            color: white;
+            border-color: transparent;
+        }
+        .social-btn.twitter:hover {
+            background: #1da1f2;
+            color: white;
+            border-color: transparent;
+        }
+
+        /* Next Steps */
+        .next-steps-card {
+            background: rgba(255,255,255,0.95);
+            border-radius: 16px;
+            padding: 2rem;
+            box-shadow: 0 8px 32px rgba(0,0,0,0.06);
+            border: 1px solid rgba(197,160,89,0.1);
+        }
+        .next-steps-card h5 {
+            font-size: 1.2rem;
+            font-weight: 600;
+            margin-bottom: 1.5rem;
+            color: var(--text-main);
+        }
+        .next-step {
+            display: flex;
+            gap: 1rem;
+            margin-bottom: 1.5rem;
+        }
+        .next-step:last-child {
+            margin-bottom: 0;
+        }
+        .step-icon {
+            width: 40px;
+            height: 40px;
+            border-radius: 10px;
+            background: linear-gradient(135deg, var(--gold-accent), var(--gold-hover));
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            flex-shrink: 0;
+        }
+        .step-content h6 {
+            font-size: 1rem;
+            font-weight: 600;
+            margin-bottom: 0.25rem;
+            color: var(--text-main);
+        }
+
+        /* Recommended Section */
+        .recommended-section {
+            margin-top: 4rem;
+            padding: 4rem 0;
+            background: rgba(253,251,247,0.5);
+        }
+        .section-header {
+            text-align: center;
+            margin-bottom: 3rem;
+        }
+        .section-header h3 {
+            font-size: 2rem;
+            font-weight: 600;
+            margin-bottom: 0.5rem;
+            color: var(--text-main);
+        }
+        .section-header p {
+            font-size: 1.1rem;
+            color: var(--text-muted);
+        }
+        .recommended-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 2rem;
+            max-width: 1000px;
+            margin: 0 auto;
+        }
+        .recommended-item {
+            background: rgba(255,255,255,0.95);
+            border-radius: 16px;
+            overflow: hidden;
+            box-shadow: 0 8px 32px rgba(0,0,0,0.06);
+            border: 1px solid rgba(197,160,89,0.1);
+            transition: all 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+        }
+        .recommended-item:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 20px 50px rgba(0,0,0,0.12);
+        }
+        .rec-image {
+            position: relative;
+            height: 250px;
+            overflow: hidden;
+        }
+        .rec-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: all 0.5s ease;
+        }
+        .recommended-item:hover .rec-image img {
+            transform: scale(1.1);
+        }
+        .rec-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: rgba(0,0,0,0.4);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+        .recommended-item:hover .rec-overlay {
+            opacity: 1;
+        }
+        .btn-quick-view {
+            background: rgba(255,255,255,0.9);
+            color: var(--text-main);
+            border: none;
+            padding: 0.75rem 1.5rem;
+            border-radius: 25px;
+            font-weight: 500;
+            transition: all 0.3s ease;
+        }
+        .btn-quick-view:hover {
+            background: white;
+            transform: scale(1.05);
+        }
+        .rec-content {
+            padding: 1.5rem;
+            text-align: center;
+        }
+        .rec-content h5 {
+            font-size: 1.1rem;
+            font-weight: 600;
+            margin-bottom: 0.5rem;
+            color: var(--text-main);
+        }
+        .rec-price {
+            font-size: 1.1rem;
+            font-weight: 600;
+            color: var(--gold-accent);
+        }
+
+        /* Animations */
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .success-title {
+                font-size: 2rem;
+            }
+            .success-details {
+                flex-direction: column;
+                gap: 1rem;
+            }
+            .tracking-card {
+                padding: 2rem 1.5rem;
+            }
+            .order-info-grid {
+                grid-template-columns: 1fr;
+            }
+            .help-options {
+                grid-template-columns: 1fr;
+            }
+            .social-buttons {
+                flex-direction: column;
+            }
+            .recommended-grid {
+                grid-template-columns: 1fr;
+            }
         }
 
         /* --- Custom Scrollbar --- */
@@ -380,38 +1171,13 @@
                     Rivayat<span class="text-gold">.</span>
                 </a>
 
-                <!-- Right Side: Search & Icons -->
+                <!-- Right Side: Icons -->
                 <ul class="navbar-nav ms-auto mb-2 mb-lg-0 align-items-center gap-4">
-                    <!-- Account Dropdown -->
-                    <li class="nav-item dropdown">
-                        <a class="nav-link dropdown-toggle text-dark" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                            <i data-lucide="user" style="width: 20px;"></i>
-                        </a>
-                        <ul class="dropdown-menu dropdown-menu-end border-0 shadow-sm">
-                            <li><a class="dropdown-item" href="login.html">Login</a></li>
-                            <li><a class="dropdown-item" href="signup.html">Sign Up</a></li>
-                        </ul>
-                    </li>
-
-                    <!-- Search Bar -->
-                    <li class="nav-item d-none d-md-block">
-                        <div class="position-relative">
-                            <input type="text"
-                                   class="form-control rounded-0 border-0 border-bottom border-dark bg-transparent ps-0 py-1 shadow-none"
-                                   placeholder="Search..."
-                                   style="font-size: 0.8rem; width: 140px; padding-right: 25px;">
-                            <i data-lucide="search" class="position-absolute text-dark" style="right: 0; top: 50%; transform: translateY(-50%); width: 16px; cursor: pointer;"></i>
-                        </div>
-                    </li>
-
-                    <li class="nav-item d-flex gap-3">
-                        <a href="#" class="text-dark position-relative">
-                            <i data-lucide="heart" style="width: 20px;"></i>
-                            <span class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-gold text-white d-none" style="font-size: 0.5rem; background: var(--gold-accent);">0</span>
-                        </a>
+                    <li class="nav-item"><a class="nav-link" href="login.html"><i data-lucide="user" style="width: 20px;"></i></a></li>
+                    <li class="nav-item">
                         <a href="cart.html" class="text-dark position-relative">
                             <i data-lucide="shopping-bag" style="width: 20px;"></i>
-                            <span class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-dark text-white d-none" style="font-size: 0.5rem;">0</span>
+                            <span id="cart-badge" class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-dark text-white d-none" style="font-size: 0.5rem;">0</span>
                         </a>
                     </li>
                 </ul>
@@ -419,74 +1185,350 @@
         </div>
     </nav>
 
-    <!-- Main Content -->
-    <main class="container py-5 mt-5">
-        <div class="text-center mb-5">
-            <div class="success-icon">
-                <i data-lucide="check" style="width: 40px; height: 40px; color: white;"></i>
-            </div>
-            <span class="text-muted text-uppercase tracking-widest small">Order Confirmed</span>
-            <h1 class="font-serif display-4 mt-2">Thank You for Your Order!</h1>
-            <p class="text-muted mt-3">Your order has been successfully placed. We'll send you shipping updates at <strong>john@example.com</strong>.</p>
-        </div>
+    <!-- Premium Success Hero -->
+    <section class="success-hero">
+        <div class="container">
+            <div class="success-celebration">
+                <div class="success-icon-premium">
+                    <div class="success-checkmark">
+                        <i data-lucide="check" style="width: 60px; height: 60px; color: white;"></i>
+                    </div>
+                    <div class="success-pulse"></div>
+                    <div class="success-sparkles">
+                        <div class="sparkle sparkle-1">✨</div>
+                        <div class="sparkle sparkle-2">✨</div>
+                        <div class="sparkle sparkle-3">✨</div>
+                        <div class="sparkle sparkle-4">✨</div>
+                    </div>
+                </div>
 
-        <div class="row justify-content-center">
+                <div class="success-content">
+                    <span class="success-badge">Order Confirmed</span>
+                    <h1 class="success-title">Thank You for Choosing Rivayat</h1>
+                    <p class="success-subtitle">Your exquisite piece of Indian craftsmanship is on its way to you</p>
+
+                    <div class="success-details">
+                        <div class="detail-item">
+                            <i data-lucide="mail" style="width: 20px; height: 20px;"></i>
+                            <span>Confirmation sent to <strong>john@example.com</strong></span>
+                        </div>
+                        <div class="detail-item">
+                            <i data-lucide="clock" style="width: 20px; height: 20px;"></i>
+                            <span>Estimated delivery: <strong>December 2-4, 2025</strong></span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Order Tracking Timeline -->
+    <section class="tracking-section">
+        <div class="container">
+            <div class="tracking-card">
+                <h3 class="tracking-title">Order Tracking</h3>
+                <div class="tracking-timeline">
+                    <div class="timeline-item completed">
+                        <div class="timeline-icon">
+                            <i data-lucide="check-circle" style="width: 24px; height: 24px;"></i>
+                        </div>
+                        <div class="timeline-content">
+                            <h5>Order Confirmed</h5>
+                            <p>Your order has been received and confirmed</p>
+                            <span class="timeline-date">Just now</span>
+                        </div>
+                    </div>
+                    <div class="timeline-item active">
+                        <div class="timeline-icon">
+                            <i data-lucide="package" style="width: 24px; height: 24px;"></i>
+                        </div>
+                        <div class="timeline-content">
+                            <h5>Processing Order</h5>
+                            <p>Our artisans are preparing your item with care</p>
+                            <span class="timeline-date">1-2 business days</span>
+                        </div>
+                    </div>
+                    <div class="timeline-item">
+                        <div class="timeline-icon">
+                            <i data-lucide="truck" style="width: 24px; height: 24px;"></i>
+                        </div>
+                        <div class="timeline-content">
+                            <h5>Shipped</h5>
+                            <p>Your order is on its way to you</p>
+                            <span class="timeline-date">2-3 business days</span>
+                        </div>
+                    </div>
+                    <div class="timeline-item">
+                        <div class="timeline-icon">
+                            <i data-lucide="home" style="width: 24px; height: 24px;"></i>
+                        </div>
+                        <div class="timeline-content">
+                            <h5>Delivered</h5>
+                            <p>Package delivered to your address</p>
+                            <span class="timeline-date">December 2-4, 2025</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Order Details & Actions -->
+    <main class="container pb-5">
+        <div class="row g-5">
+            <!-- Order Information -->
             <div class="col-lg-8">
-                <div class="bg-light p-4 mb-4">
-                    <h5 class="font-serif mb-4">Order Details</h5>
-                    <div class="row">
-                        <div class="col-md-6">
-                            <p><strong>Order Number:</strong><br>RV-2025-001</p>
-                            <p><strong>Order Date:</strong><br>March 10, 2025</p>
+                <!-- Order Details Card -->
+                <div class="order-card">
+                    <div class="card-header-premium">
+                        <div class="card-icon">
+                            <i data-lucide="file-text" style="width: 20px; height: 20px;"></i>
                         </div>
-                        <div class="col-md-6">
-                            <p><strong>Shipping Address:</strong><br>
-                            John Doe<br>
-                            123 Main Street<br>
-                            New York, NY 10001<br>
-                            United States</p>
+                        <h4 class="card-title">Order Details</h4>
+                    </div>
+                    <div class="card-body-premium">
+                        <div class="order-info-grid">
+                            <div class="info-item">
+                                <label>Order Number</label>
+                                <span class="info-value">#RV-2025-001</span>
+                            </div>
+                            <div class="info-item">
+                                <label>Order Date</label>
+                                <span class="info-value">November 23, 2025</span>
+                            </div>
+                            <div class="info-item">
+                                <label>Payment Method</label>
+                                <span class="info-value">Credit Card **** 4532</span>
+                            </div>
+                            <div class="info-item">
+                                <label>Shipping Method</label>
+                                <span class="info-value">Standard Shipping (Free)</span>
+                            </div>
+                        </div>
+
+                        <div class="shipping-address">
+                            <h5>Shipping Address</h5>
+                            <div class="address-display">
+                                <p><strong>John Doe</strong></p>
+                                <p>123 Main Street<br>Brooklyn, NY 11201<br>United States</p>
+                                <p><strong>Phone:</strong> +1 (555) 123-4567</p>
+                            </div>
                         </div>
                     </div>
                 </div>
 
-                <div class="bg-light p-4 mb-4">
-                    <h5 class="font-serif mb-4">Items Ordered</h5>
-                    <div class="d-flex align-items-center mb-3">
-                        <img src="https://images.unsplash.com/photo-1617639490635-44a5d6559b93?q=80&w=800&fit=crop" alt="Product" class="me-3" style="width: 80px; height: 80px; object-fit: cover;">
-                        <div class="flex-grow-1">
-                            <h6 class="font-serif mb-1">Banarasi Silk Lehenga</h6>
-                            <p class="text-muted small mb-0">Size: M | Color: Red | Quantity: 1</p>
+                <!-- Ordered Items -->
+                <div class="order-card">
+                    <div class="card-header-premium">
+                        <div class="card-icon">
+                            <i data-lucide="shopping-bag" style="width: 20px; height: 20px;"></i>
                         </div>
-                        <span class="font-serif">$499.00</span>
+                        <h4 class="card-title">Items Ordered</h4>
+                    </div>
+                    <div class="card-body-premium">
+                        <div class="ordered-item">
+                            <div class="item-image">
+                                <img src="https://res.cloudinary.com/dwv2wwdki/image/upload/v1763654574/Lucid_Origin_Banarasi_Silk_Lehenga_women_fashion_model_in_a_fu_1_n0yylp.jpg" alt="Banarasi Silk Lehenga">
+                            </div>
+                            <div class="item-details">
+                                <h5 class="item-name">Banarasi Silk Lehenga</h5>
+                                <div class="item-meta">
+                                    <span class="meta-item">Size: M</span>
+                                    <span class="meta-item">Color: Red</span>
+                                    <span class="meta-item">Qty: 1</span>
+                                </div>
+                                <div class="item-description">
+                                    Handcrafted Banarasi silk lehenga with intricate gold zari work and traditional motifs.
+                                </div>
+                            </div>
+                            <div class="item-price">
+                                <span class="price-amount">$499.00</span>
+                            </div>
+                        </div>
                     </div>
                 </div>
 
-                <div class="bg-light p-4 mb-4">
-                    <h5 class="font-serif mb-4">Order Summary</h5>
-                    <div class="d-flex justify-content-between mb-2">
-                        <span>Subtotal</span>
-                        <span>$499.00</span>
+                <!-- Customer Care -->
+                <div class="order-card">
+                    <div class="card-header-premium">
+                        <div class="card-icon">
+                            <i data-lucide="headphones" style="width: 20px; height: 20px;"></i>
+                        </div>
+                        <h4 class="card-title">Need Help?</h4>
                     </div>
-                    <div class="d-flex justify-content-between mb-2">
-                        <span>Shipping</span>
-                        <span>Free</span>
+                    <div class="card-body-premium">
+                        <div class="help-options">
+                            <div class="help-option">
+                                <div class="help-icon">
+                                    <i data-lucide="message-circle" style="width: 24px; height: 24px;"></i>
+                                </div>
+                                <div class="help-content">
+                                    <h6>Live Chat Support</h6>
+                                    <p>Get instant help from our customer care team</p>
+                                    <button class="btn-help">Start Chat</button>
+                                </div>
+                            </div>
+                            <div class="help-option">
+                                <div class="help-icon">
+                                    <i data-lucide="phone" style="width: 24px; height: 24px;"></i>
+                                </div>
+                                <div class="help-content">
+                                    <h6>Call Us</h6>
+                                    <p>Speak with our experts: +1 (555) RIVAYAT</p>
+                                    <button class="btn-help-outline">Call Now</button>
+                                </div>
+                            </div>
+                            <div class="help-option">
+                                <div class="help-icon">
+                                    <i data-lucide="mail" style="width: 24px; height: 24px;"></i>
+                                </div>
+                                <div class="help-content">
+                                    <h6>Email Support</h6>
+                                    <p>Send us an email: care@rivayat.com</p>
+                                    <button class="btn-help-outline">Send Email</button>
+                                </div>
+                            </div>
+                        </div>
                     </div>
-                    <div class="d-flex justify-content-between mb-2">
-                        <span>Tax</span>
-                        <span>$24.95</span>
-                    </div>
-                    <div class="d-flex justify-content-between mb-4">
-                        <span>Total</span>
-                        <span class="font-serif">$523.95</span>
+                </div>
+            </div>
+
+            <!-- Sidebar -->
+            <div class="col-lg-4">
+                <!-- Order Summary -->
+                <div class="summary-card">
+                    <h4 class="summary-title">Order Summary</h4>
+                    <div class="summary-breakdown">
+                        <div class="summary-row">
+                            <span>Subtotal</span>
+                            <span>$499.00</span>
+                        </div>
+                        <div class="summary-row">
+                            <span>Shipping</span>
+                            <span class="text-success">Free</span>
+                        </div>
+                        <div class="summary-row">
+                            <span>Tax</span>
+                            <span>$37.43</span>
+                        </div>
+                        <div class="summary-row total">
+                            <span>Total</span>
+                            <span>$536.43</span>
+                        </div>
                     </div>
                 </div>
 
-                <div class="text-center">
-                    <button class="btn btn-custom-primary me-3" onclick="window.location.href='order.html'">Track Your Order</button>
-                    <button class="btn btn-custom-outline" onclick="window.location.href='products.html'">Continue Shopping</button>
+                <!-- Action Buttons -->
+                <div class="action-buttons">
+                    <button class="btn-action-primary" onclick="window.location.href='order.html'">
+                        <i data-lucide="eye" style="width: 18px; height: 18px;"></i>
+                        Track Your Order
+                    </button>
+                    <button class="btn-action-secondary" onclick="window.location.href='products.html'">
+                        <i data-lucide="shopping-bag" style="width: 18px; height: 18px;"></i>
+                        Continue Shopping
+                    </button>
+                </div>
+
+                <!-- Social Share -->
+                <div class="social-share-card">
+                    <h5>Share Your Purchase</h5>
+                    <p class="text-muted small">Show off your new Rivayat piece!</p>
+                    <div class="social-buttons">
+                        <button class="social-btn instagram">
+                            <i data-lucide="instagram" style="width: 16px; height: 16px;"></i>
+                            Instagram
+                        </button>
+                        <button class="social-btn pinterest">
+                            <i data-lucide="image" style="width: 16px; height: 16px;"></i>
+                            Pinterest
+                        </button>
+                        <button class="social-btn twitter">
+                            <i data-lucide="twitter" style="width: 16px; height: 16px;"></i>
+                            Twitter
+                        </button>
+                    </div>
+                </div>
+
+                <!-- What's Next -->
+                <div class="next-steps-card">
+                    <h5>What's Next?</h5>
+                    <div class="next-step">
+                        <div class="step-icon">
+                            <i data-lucide="mail" style="width: 20px; height: 20px;"></i>
+                        </div>
+                        <div class="step-content">
+                            <h6>Email Confirmation</h6>
+                            <p class="small text-muted">Check your inbox for order details</p>
+                        </div>
+                    </div>
+                    <div class="next-step">
+                        <div class="step-icon">
+                            <i data-lucide="package" style="width: 20px; height: 20px;"></i>
+                        </div>
+                        <div class="step-content">
+                            <h6>Processing</h6>
+                            <p class="small text-muted">We'll prepare your order with care</p>
+                        </div>
+                    </div>
+                    <div class="next-step">
+                        <div class="step-icon">
+                            <i data-lucide="truck" style="width: 20px; height: 20px;"></i>
+                        </div>
+                        <div class="step-content">
+                            <h6>Shipping Updates</h6>
+                            <p class="small text-muted">Track your package every step</p>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
+
+        <!-- Recommended Products -->
+        <section class="recommended-section">
+            <div class="section-header">
+                <h3>You Might Also Like</h3>
+                <p>Complete your look with these handcrafted pieces</p>
+            </div>
+            <div class="recommended-grid">
+                <div class="recommended-item">
+                    <div class="rec-image">
+                        <img src="https://res.cloudinary.com/dwv2wwdki/image/upload/v1763701430/Lucid_Origin_Kundan_Pearl_Earrings_adorn_a_beautiful_womens_fa_3_xxkfow.jpg" alt="Kundan Pearl Earrings">
+                        <div class="rec-overlay">
+                            <button class="btn-quick-view">Quick View</button>
+                        </div>
+                    </div>
+                    <div class="rec-content">
+                        <h5>Kundan Pearl Earrings</h5>
+                        <div class="rec-price">$85.00</div>
+                    </div>
+                </div>
+                <div class="recommended-item">
+                    <div class="rec-image">
+                        <img src="https://res.cloudinary.com/dwv2wwdki/image/upload/v1763701879/Lucid_Origin_Embroidered_Mojaris_womens_footwear_product_with__2_m5de7h.jpg" alt="Embroidered Mojaris">
+                        <div class="rec-overlay">
+                            <button class="btn-quick-view">Quick View</button>
+                        </div>
+                    </div>
+                    <div class="rec-content">
+                        <h5>Embroidered Mojaris</h5>
+                        <div class="rec-price">$65.00</div>
+                    </div>
+                </div>
+                <div class="recommended-item">
+                    <div class="rec-image">
+                        <img src="https://res.cloudinary.com/dwv2wwdki/image/upload/v1763702652/Lucid_Origin_professional_photo_of_a_woman_fashion_model_weari_0_x7wrqt.jpg" alt="Kanjivaram Silk Saree">
+                        <div class="rec-overlay">
+                            <button class="btn-quick-view">Quick View</button>
+                        </div>
+                    </div>
+                    <div class="rec-content">
+                        <h5>Kanjivaram Silk Saree</h5>
+                        <div class="rec-price">$299.00</div>
+                    </div>
+                </div>
+            </div>
+        </section>
     </main>
 
     <!-- Footer -->
@@ -548,7 +1590,7 @@
     <script>
         $(document).ready(function() {
             lucide.createIcons();
-            
+
             // Scroll Effect Navbar
             $(window).scroll(function() {
                 if ($(this).scrollTop() > 50) {
@@ -559,6 +1601,157 @@
                     $('#back-to-top').removeClass('visible');
                 }
             });
+
+            // Animate timeline items on scroll
+            function animateTimeline() {
+                $('.timeline-item').each(function(index) {
+                    const element = $(this);
+                    setTimeout(function() {
+                        element.addClass('completed');
+                    }, index * 300);
+                });
+            }
+
+            // Trigger animations when page loads
+            setTimeout(function() {
+                animateTimeline();
+            }, 1000);
+
+            // Social sharing functionality
+            $('.social-btn.instagram').click(function(e) {
+                e.preventDefault();
+                const text = encodeURIComponent("Just purchased an exquisite piece from Rivayat! The craftsmanship is absolutely stunning. #Rivayat #IndianFashion #Handcrafted");
+                const url = encodeURIComponent(window.location.href);
+                window.open(`https://www.instagram.com/?url=${url}`, '_blank');
+            });
+
+            $('.social-btn.pinterest').click(function(e) {
+                e.preventDefault();
+                const text = encodeURIComponent("Beautiful handcrafted fashion from Rivayat");
+                const url = encodeURIComponent(window.location.href);
+                const image = encodeURIComponent("https://res.cloudinary.com/dwv2wwdki/image/upload/v1763654574/Lucid_Origin_Banarasi_Silk_Lehenga_women_fashion_model_in_a_fu_1_n0yylp.jpg");
+                window.open(`https://pinterest.com/pin/create/button/?url=${url}&media=${image}&description=${text}`, '_blank');
+            });
+
+            $('.social-btn.twitter').click(function(e) {
+                e.preventDefault();
+                const text = encodeURIComponent("Just purchased an exquisite handcrafted piece from Rivayat! The quality and craftsmanship are outstanding. #Rivayat #LuxuryFashion");
+                const url = encodeURIComponent(window.location.href);
+                window.open(`https://twitter.com/intent/tweet?text=${text}&url=${url}`, '_blank');
+            });
+
+            // Help option interactions
+            $('.btn-help').click(function(e) {
+                e.preventDefault();
+                // Simulate opening chat
+                alert('Opening live chat support...');
+            });
+
+            $('.btn-help-outline').first().click(function(e) {
+                e.preventDefault();
+                // Simulate phone call
+                if (confirm('Call +1 (555) RIVAYAT?')) {
+                    window.location.href = 'tel:+1555724828';
+                }
+            });
+
+            $('.btn-help-outline').last().click(function(e) {
+                e.preventDefault();
+                // Simulate email
+                window.location.href = 'mailto:care@rivayat.com?subject=Order Support - #RV-2025-001';
+            });
+
+            // Quick view functionality for recommended products
+            $('.btn-quick-view').click(function(e) {
+                e.preventDefault();
+                const productCard = $(this).closest('.recommended-item');
+                const productName = productCard.find('h5').text();
+                const productPrice = productCard.find('.rec-price').text();
+
+                // Simple modal simulation
+                alert(`${productName}\n${productPrice}\n\nThis exquisite piece features authentic Indian craftsmanship with intricate detailing.`);
+            });
+
+            // Add sparkle animation to success icon
+            function addSparkles() {
+                const sparkles = $('.sparkle');
+                sparkles.each(function(index) {
+                    const sparkle = $(this);
+                    setTimeout(function() {
+                        sparkle.addClass('animate');
+                    }, index * 200);
+                });
+            }
+
+            setTimeout(addSparkles, 1500);
+
+            // Smooth scroll for action buttons
+            $('.btn-action-primary, .btn-action-secondary').click(function(e) {
+                // Add loading state
+                const btn = $(this);
+                const originalText = btn.html();
+                btn.html('<i data-lucide="loader" style="width: 18px; height: 18px;"></i> Loading...');
+                btn.prop('disabled', true);
+
+                // Simulate loading
+                setTimeout(function() {
+                    btn.html(originalText);
+                    btn.prop('disabled', false);
+                    lucide.createIcons();
+                }, 1500);
+            });
+
+            // Add hover effects for cards
+            $('.order-card, .summary-card, .social-share-card, .next-steps-card').hover(
+                function() {
+                    $(this).find('.card-icon, .step-icon').css('transform', 'scale(1.1)');
+                },
+                function() {
+                    $(this).find('.card-icon, .step-icon').css('transform', 'scale(1)');
+                }
+            );
+
+            // Add confetti effect on page load
+            function createConfetti() {
+                const colors = ['#c5a059', '#b08d4b', '#d4af37', '#f4e87c'];
+
+                for (let i = 0; i < 50; i++) {
+                    const confetti = document.createElement('div');
+                    confetti.className = 'confetti';
+                    confetti.style.left = Math.random() * 100 + 'vw';
+                    confetti.style.animationDelay = Math.random() * 3 + 's';
+                    confetti.style.backgroundColor = colors[Math.floor(Math.random() * colors.length)];
+
+                    document.body.appendChild(confetti);
+
+                    // Remove confetti after animation
+                    setTimeout(() => {
+                        if (confetti.parentNode) {
+                            confetti.parentNode.removeChild(confetti);
+                        }
+                    }, 4000);
+                }
+            }
+
+            // Add confetti CSS
+            const confettiCSS = `
+                .confetti {
+                    position: fixed;
+                    top: -10px;
+                    width: 10px;
+                    height: 10px;
+                    z-index: 9999;
+                    animation: confettiFall 4s linear forwards;
+                }
+                @keyframes confettiFall {
+                    0% { transform: translateY(-10px) rotate(0deg); }
+                    100% { transform: translateY(100vh) rotate(720deg); }
+                }
+            `;
+            $('head').append('<style>' + confettiCSS + '</style>');
+
+            // Trigger confetti after success animation
+            setTimeout(createConfetti, 2000);
         });
     </script>
 </body>

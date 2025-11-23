@@ -158,6 +158,14 @@
             color: var(--text-main);
             letter-spacing: -0.03em;
         }
+        .navbar-logo {
+            font-family: var(--font-serif);
+            font-size: 3rem;
+            font-weight: 600;
+            color: var(--text-main);
+            letter-spacing: -0.03em;
+            text-decoration: none;
+        }
         .nav-link {
             font-size: 0.75rem;
             text-transform: uppercase;
@@ -253,25 +261,212 @@
         }
         #back-to-top.visible { opacity: 1; }
 
-        /* --- Signup Form --- */
+        /* --- Premium Signup Page --- */
+        body {
+            background: linear-gradient(135deg, rgba(253,251,247,0.95), rgba(250,248,245,0.9));
+            position: relative;
+        }
+        body::before {
+            content: '';
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><defs><pattern id="signupPattern" x="0" y="0" width="20" height="20" patternUnits="userSpaceOnUse"><circle cx="10" cy="10" r="0.3" fill="rgba(197,160,89,0.05)"/></pattern></defs><rect width="100" height="100" fill="url(%23signupPattern)"/></svg>');
+            pointer-events: none;
+            z-index: -1;
+        }
+
+        /* --- Premium Signup Form --- */
         .signup-container {
             flex: 1;
             display: flex;
             align-items: center;
             justify-content: center;
             padding: 2rem 0;
+            min-height: calc(100vh - 200px);
+        }
+        .signup-wrapper {
+            display: flex;
+            max-width: 1200px;
+            width: 100%;
+            background: var(--bg-pure);
+            border-radius: 20px;
+            box-shadow: 0 25px 60px rgba(0,0,0,0.1);
+            overflow: hidden;
+            border: 1px solid rgba(197,160,89,0.2);
+        }
+        .signup-image {
+            flex: 1;
+            background: linear-gradient(135deg, rgba(197,160,89,0.1), rgba(197,160,89,0.05)),
+                        url('https://images.unsplash.com/photo-1610030469983-98e550d6193c?q=80&w=600&auto=format&fit=crop') center/cover;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+        }
+        .signup-image::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: linear-gradient(135deg, rgba(197,160,89,0.2), rgba(0,0,0,0.3));
+        }
+        .signup-content {
+            flex: 1;
+            padding: 4rem 3rem;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
         }
         .signup-form {
-            background: var(--bg-pure);
-            padding: 3rem;
-            border-radius: 8px;
-            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
-            max-width: 450px;
+            background: transparent;
+            padding: 0;
+            border-radius: 0;
+            box-shadow: none;
+            max-width: none;
             width: 100%;
+        }
+        .signup-header {
+            text-align: center;
+            margin-bottom: 2rem;
+        }
+        .signup-title {
+            font-size: 2.5rem;
+            font-weight: 600;
+            margin-bottom: 0.5rem;
+            color: var(--text-main);
+        }
+        .signup-subtitle {
+            color: var(--text-muted);
+            font-size: 1rem;
+            margin-bottom: 2rem;
+        }
+        .signup-benefits {
+            background: rgba(197,160,89,0.05);
+            border: 1px solid rgba(197,160,89,0.1);
+            border-radius: 12px;
+            padding: 1.5rem;
+            margin-bottom: 2rem;
+        }
+        .benefits-title {
+            font-size: 0.9rem;
+            font-weight: 600;
+            color: var(--text-main);
+            margin-bottom: 1rem;
+            text-align: center;
+        }
+        .benefit-item {
+            display: flex;
+            align-items: center;
+            margin-bottom: 0.75rem;
+        }
+        .benefit-item:last-child {
+            margin-bottom: 0;
+        }
+        .benefit-icon {
+            width: 20px;
+            height: 20px;
+            color: var(--gold-accent);
+            margin-right: 0.75rem;
+            flex-shrink: 0;
+        }
+        .benefit-text {
+            font-size: 0.85rem;
+            color: var(--text-muted);
+        }
+        .form-control {
+            border: 1px solid rgba(0,0,0,0.1);
+            border-radius: 8px;
+            padding: 0.75rem 1rem;
+            font-size: 0.9rem;
+            transition: all 0.3s ease;
         }
         .form-control:focus {
             border-color: var(--gold-accent);
-            box-shadow: 0 0 0 0.2rem rgba(197, 160, 89, 0.25);
+            box-shadow: 0 0 0 3px rgba(197, 160, 89, 0.1);
+            background-color: var(--bg-pure);
+        }
+        .form-label {
+            font-weight: 600;
+            color: var(--text-main);
+            margin-bottom: 0.5rem;
+        }
+        .btn-custom-primary {
+            background: linear-gradient(135deg, var(--gold-accent), var(--gold-hover));
+            border: none;
+            border-radius: 8px;
+            padding: 0.875rem 2rem;
+            font-weight: 600;
+            text-transform: none;
+            letter-spacing: 0.05em;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 15px rgba(197,160,89,0.3);
+        }
+        .btn-custom-primary:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 25px rgba(197,160,89,0.4);
+            background: linear-gradient(135deg, var(--gold-hover), var(--gold-accent));
+        }
+        .social-btn {
+            border: 1px solid rgba(0,0,0,0.1);
+            border-radius: 8px;
+            padding: 0.75rem 1rem;
+            background: var(--bg-pure);
+            color: var(--text-main);
+            text-decoration: none;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.3s ease;
+            margin-bottom: 0.5rem;
+        }
+        .social-btn:hover {
+            background: rgba(0,0,0,0.05);
+            transform: translateY(-1px);
+            box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+        }
+        .social-icon {
+            width: 18px;
+            height: 18px;
+            margin-right: 0.5rem;
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .signup-wrapper {
+                flex-direction: column;
+                margin: 1rem;
+            }
+            .signup-image {
+                min-height: 200px;
+                order: -1;
+            }
+            .signup-content {
+                padding: 2rem 1.5rem;
+            }
+            .signup-title {
+                font-size: 2rem;
+            }
+        }
+
+        /* --- Premium Newsletter Form --- */
+        .premium-newsletter-form {
+            border: 1px solid rgba(197,160,89,0.3);
+            box-shadow: 0 10px 30px rgba(0,0,0,0.05);
+            transition: all 0.4s ease;
+        }
+        .premium-newsletter-form:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 20px 50px rgba(0,0,0,0.1);
+        }
+        .gold-accent-line {
+            height: 2px;
+            background: linear-gradient(90deg, transparent, var(--gold-accent), transparent);
+            width: 60px;
         }
 
         /* --- Custom Scrollbar --- */
@@ -310,7 +505,7 @@
 
             <!-- Center Brand on Mobile -->
             <a class="navbar-brand mx-auto d-lg-none" href="index.html">
-                Rivayat<span class="text-gold">.</span>
+                <span class="navbar-logo">Rivayat</span>
             </a>
 
             <!-- Desktop Nav Structure -->
@@ -386,27 +581,13 @@
                 
                 <!-- Center Brand Desktop (Absolute Positioning) -->
                 <a class="navbar-brand mx-auto d-none d-lg-block position-absolute start-50 translate-middle-x" href="index.html">
-                    Rivayat<span class="text-gold">.</span>
+                    <span class="navbar-logo">Rivayat</span>
                 </a>
 
-                <!-- Right Side: Search & Icons -->
+                <!-- Right Side: Icons -->
                 <ul class="navbar-nav ms-auto mb-2 mb-lg-0 align-items-center gap-4">
-                    <!-- Search Bar -->
-                    <li class="nav-item d-none d-md-block">
-                        <div class="position-relative">
-                            <input type="text" 
-                                   class="form-control rounded-0 border-0 border-bottom border-dark bg-transparent ps-0 py-1 shadow-none" 
-                                   placeholder="Search..." 
-                                   style="font-size: 0.8rem; width: 140px; padding-right: 25px;">
-                            <i data-lucide="search" class="position-absolute text-dark" style="right: 0; top: 50%; transform: translateY(-50%); width: 16px; cursor: pointer;"></i>
-                        </div>
-                    </li>
-                    
-                    <li class="nav-item d-flex gap-3">
-                        <a href="#" class="text-dark position-relative">
-                            <i data-lucide="heart" style="width: 20px;"></i>
-                            <span class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-gold text-white d-none" style="font-size: 0.5rem; background: var(--gold-accent);">0</span>
-                        </a>
+                    <li class="nav-item"><a class="nav-link" href="login.html"><i data-lucide="user" style="width: 20px;"></i></a></li>
+                    <li class="nav-item">
                         <a href="cart.html" class="text-dark position-relative">
                             <i data-lucide="shopping-bag" style="width: 20px;"></i>
                             <span class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-dark text-white d-none" style="font-size: 0.5rem;">0</span>
@@ -419,82 +600,127 @@
 
     <!-- Main Content -->
     <main class="signup-container">
-        <div class="signup-form">
-            <div class="text-center mb-4">
-                <h2 class="font-serif mb-2">Join Rivayat</h2>
-                <p class="text-muted small">Create your account to start shopping</p>
-            </div>
+        <div class="container">
+            <div class="signup-wrapper">
+                <!-- Left Side: Image -->
+                <div class="signup-image">
+                    <div class="text-center text-white position-relative z-1">
+                        <h3 class="font-serif mb-3">Welcome to Rivayat</h3>
+                        <p class="mb-0 opacity-90">Discover timeless elegance</p>
+                    </div>
+                </div>
+
+                <!-- Right Side: Form -->
+                <div class="signup-content">
+                    <div class="signup-form">
+                        <div class="signup-header">
+                            <h1 class="signup-title font-serif">Join Rivayat</h1>
+                            <p class="signup-subtitle">Create your account to unlock exclusive access</p>
+                        </div>
+
+                        <!-- Benefits Section -->
+                        <div class="signup-benefits">
+                            <div class="benefits-title">Why Join Us?</div>
+                            <div class="benefit-item">
+                                <i data-lucide="star" class="benefit-icon"></i>
+                                <span class="benefit-text">Early access to new collections</span>
+                            </div>
+                            <div class="benefit-item">
+                                <i data-lucide="gift" class="benefit-icon"></i>
+                                <span class="benefit-text">Exclusive member discounts</span>
+                            </div>
+                            <div class="benefit-item">
+                                <i data-lucide="bell" class="benefit-icon"></i>
+                                <span class="benefit-text">Personalized style recommendations</span>
+                            </div>
+                            <div class="benefit-item">
+                                <i data-lucide="crown" class="benefit-icon"></i>
+                                <span class="benefit-text">VIP invitations to events</span>
+                            </div>
+                        </div>
             
-            <form>
-                <div class="row">
-                    <div class="col-md-6 mb-3">
-                        <label for="firstName" class="form-label small text-uppercase tracking-widest">First Name</label>
-                        <input type="text" class="form-control" id="firstName" placeholder="Enter first name" required>
+                        <form>
+                            <div class="row">
+                                <div class="col-md-6 mb-3">
+                                    <label for="firstName" class="form-label">First Name</label>
+                                    <input type="text" class="form-control" id="firstName" placeholder="Enter first name" required>
+                                </div>
+                                <div class="col-md-6 mb-3">
+                                    <label for="lastName" class="form-label">Last Name</label>
+                                    <input type="text" class="form-control" id="lastName" placeholder="Enter last name" required>
+                                </div>
+                            </div>
+
+                            <div class="mb-3">
+                                <label for="email" class="form-label">Email Address</label>
+                                <input type="email" class="form-control" id="email" placeholder="Enter your email" required>
+                            </div>
+
+                            <div class="mb-3">
+                                <label for="password" class="form-label">Password</label>
+                                <input type="password" class="form-control" id="password" placeholder="Create a password" required>
+                                <div class="form-text small text-muted mt-1">Password must be at least 8 characters long</div>
+                            </div>
+
+                            <div class="mb-3">
+                                <label for="confirmPassword" class="form-label">Confirm Password</label>
+                                <input type="password" class="form-control" id="confirmPassword" placeholder="Confirm your password" required>
+                            </div>
+
+                            <div class="mb-3">
+                                <div class="form-check">
+                                    <input class="form-check-input" type="checkbox" id="terms" required>
+                                    <label class="form-check-label small" for="terms">
+                                        I agree to the <a href="#" class="text-decoration-none text-gold">Terms of Service</a> and <a href="#" class="text-decoration-none text-gold">Privacy Policy</a>
+                                    </label>
+                                </div>
+                            </div>
+
+                            <div class="mb-4">
+                                <div class="form-check">
+                                    <input class="form-check-input" type="checkbox" id="newsletter" checked>
+                                    <label class="form-check-label small" for="newsletter">
+                                        Subscribe to our newsletter for exclusive offers and updates
+                                    </label>
+                                </div>
+                            </div>
+
+                            <button type="submit" class="btn btn-custom-primary w-100 mb-3">Create Your Account</button>
+
+                            <div class="text-center mb-4">
+                                <span class="small text-muted">Already have an account? </span>
+                                <a href="login.html" class="text-decoration-none text-gold fw-bold">Sign in</a>
+                            </div>
+                        </form>
+
+                        <div class="text-center">
+                            <div class="position-relative mb-4">
+                                <hr class="my-3 opacity-50">
+                                <span class="position-absolute top-50 start-50 translate-middle bg-white px-3 small text-muted fw-bold">or continue with</span>
+                            </div>
+
+                            <a href="#" class="social-btn w-100 mb-2">
+                                <svg class="social-icon" viewBox="0 0 24 24">
+                                    <path fill="currentColor" d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92c-.26 1.37-1.04 2.53-2.21 3.31v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.09z"/>
+                                    <path fill="currentColor" d="M12 23c2.97 0 5.46-.98 7.28-2.66l-3.57-2.77c-.98.66-2.23 1.06-3.71 1.06-2.86 0-5.29-1.93-6.16-4.53H2.18v2.84C3.99 20.53 7.7 23 12 23z"/>
+                                    <path fill="currentColor" d="M5.84 14.09c-.22-.66-.35-1.36-.35-2.09s.13-1.43.35-2.09V7.07H2.18C1.43 8.55 1 10.22 1 12s.43 3.45 1.18 4.93l2.85-2.22.81-.62z"/>
+                                    <path fill="currentColor" d="M12 5.38c1.62 0 3.06.56 4.21 1.64l3.15-3.15C17.45 2.09 14.97 1 12 1 7.7 1 3.99 3.47 2.18 7.07l3.66 2.84c.87-2.6 3.3-4.53 6.16-4.53z"/>
+                                </svg>
+                                Continue with Google
+                            </a>
+
+                            <a href="#" class="social-btn w-100">
+                                <svg class="social-icon" viewBox="0 0 24 24">
+                                    <path fill="currentColor" d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/>
+                                </svg>
+                                Continue with Facebook
+                            </a>
+                        </div>
                     </div>
-                    <div class="col-md-6 mb-3">
-                        <label for="lastName" class="form-label small text-uppercase tracking-widest">Last Name</label>
-                        <input type="text" class="form-control" id="lastName" placeholder="Enter last name" required>
-                    </div>
                 </div>
-                
-                <div class="mb-3">
-                    <label for="email" class="form-label small text-uppercase tracking-widest">Email Address</label>
-                    <input type="email" class="form-control" id="email" placeholder="Enter your email" required>
-                </div>
-                
-                <div class="mb-3">
-                    <label for="password" class="form-label small text-uppercase tracking-widest">Password</label>
-                    <input type="password" class="form-control" id="password" placeholder="Create a password" required>
-                    <div class="form-text small text-muted">Password must be at least 8 characters long</div>
-                </div>
-                
-                <div class="mb-3">
-                    <label for="confirmPassword" class="form-label small text-uppercase tracking-widest">Confirm Password</label>
-                    <input type="password" class="form-control" id="confirmPassword" placeholder="Confirm your password" required>
-                </div>
-                
-                <div class="mb-3">
-                    <div class="form-check">
-                        <input class="form-check-input" type="checkbox" id="terms" required>
-                        <label class="form-check-label small" for="terms">
-                            I agree to the <a href="#" class="text-decoration-none">Terms of Service</a> and <a href="#" class="text-decoration-none">Privacy Policy</a>
-                        </label>
-                    </div>
-                </div>
-                
-                <div class="mb-3">
-                    <div class="form-check">
-                        <input class="form-check-input" type="checkbox" id="newsletter">
-                        <label class="form-check-label small" for="newsletter">
-                            Subscribe to our newsletter for exclusive offers and updates
-                        </label>
-                    </div>
-                </div>
-                
-                <button type="submit" class="btn btn-custom-primary w-100 mb-3">Create Account</button>
-                
-                <div class="text-center">
-                    <span class="small text-muted">Already have an account? </span>
-                    <a href="login.html" class="text-decoration-none">Sign in</a>
-                </div>
-            </form>
-            
-            <div class="text-center mt-4">
-                <div class="position-relative">
-                    <hr class="my-3">
-                    <span class="position-absolute top-50 start-50 translate-middle bg-white px-2 small text-muted">or</span>
-                </div>
-                
-                <button class="btn btn-outline-secondary w-100 mb-2" style="border-radius: 0;">
-                    <i data-lucide="mail" class="me-2" style="width: 16px;"></i>
-                    Sign up with Google
-                </button>
-                
-                <button class="btn btn-outline-secondary w-100" style="border-radius: 0;">
-                    <i data-lucide="facebook" class="me-2" style="width: 16px;"></i>
-                    Sign up with Facebook
-                </button>
             </div>
+        </div>
+    </main>
         </div>
     </main>
 
@@ -503,7 +729,7 @@
         <div class="container">
             <div class="row g-5">
                 <div class="col-lg-4">
-                    <h4 class="font-serif fw-bold mb-4">Rivayat<span class="text-gold">.</span></h4>
+                    <span class="navbar-logo" style="margin-bottom: 1.5rem;">Rivayat</span>
                     <p class="text-muted small mb-4 font-sans leading-relaxed">
                         A celebration of Indian heritage. We bridge the gap between ancient artistry and modern luxury, delivering handcrafted perfection to your doorstep.
                     </p>
@@ -532,10 +758,17 @@
                 </div>
                 <div class="col-lg-4">
                     <h6 class="font-serif text-uppercase small tracking-widest mb-3">Newsletter</h6>
-                    <p class="small text-muted mb-3">Subscribe to receive updates, access to exclusive deals, and more.</p>
-                    <div class="input-group mb-3">
-                        <input type="text" class="form-control rounded-0 border-secondary" placeholder="Email" aria-label="Email">
-                        <button class="btn btn-custom-primary" type="button">Join</button>
+                    <p class="small text-muted mb-4">Subscribe to receive updates, access to exclusive deals, and more.</p>
+                    <div class="premium-newsletter-form p-4 bg-stone-light rounded position-relative overflow-hidden">
+                        <div class="text-center mb-4">
+                            <div class="gold-accent-line mx-auto mb-3"></div>
+                            <h6 class="font-serif mb-3">Stay Connected</h6>
+                        </div>
+                        <div class="mb-3">
+                            <input type="email" class="form-control rounded-0 border-0 bg-white shadow-sm" placeholder="Enter your email address" style="padding: 0.75rem 1rem;">
+                        </div>
+                        <button class="btn btn-custom-primary w-100 py-2 mb-3">Subscribe Now</button>
+                        <p class="small text-muted text-center mb-0">Join 10,000+ fashion enthusiasts</p>
                     </div>
                 </div>
             </div>

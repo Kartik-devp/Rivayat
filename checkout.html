@@ -250,23 +250,507 @@
         }
         #back-to-top.visible { opacity: 1; }
 
-        /* --- Checkout Specific --- */
-        .checkout-step {
-            border-bottom: 1px solid #eee;
-            padding: 2rem 0;
-        }
-        .checkout-step.active {
-            border-bottom: 2px solid var(--gold-accent);
-        }
-        .form-check-input:checked {
-            background-color: var(--gold-accent);
-            border-color: var(--gold-accent);
+        /* --- Premium Checkout Styling --- */
+
+        /* Checkout Header */
+        .checkout-header {
+            background: linear-gradient(135deg, rgba(253,251,247,0.98), rgba(250,248,245,0.95));
+            border-bottom: 1px solid rgba(197,160,89,0.2);
         }
 
-        /* --- Form Control Focus --- */
-        .form-control:focus {
-            border-color: #007bff;
-            box-shadow: none;
+        /* Progress Indicator */
+        .checkout-progress {
+            max-width: 800px;
+            margin: 0 auto;
+        }
+        .progress-container {
+            position: relative;
+        }
+        .progress-line {
+            position: absolute;
+            top: 24px;
+            left: 0;
+            right: 0;
+            height: 2px;
+            background: linear-gradient(90deg, var(--gold-accent), rgba(197,160,89,0.3));
+            z-index: 1;
+        }
+        .progress-steps {
+            display: flex;
+            justify-content: space-between;
+            position: relative;
+            z-index: 2;
+        }
+        .step {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 0.5rem;
+        }
+        .step-circle {
+            width: 48px;
+            height: 48px;
+            border-radius: 50%;
+            background: rgba(255,255,255,0.9);
+            border: 2px solid rgba(197,160,89,0.3);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--text-muted);
+            transition: all 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+            box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+        }
+        .step.active .step-circle {
+            background: var(--gold-accent);
+            border-color: var(--gold-accent);
+            color: white;
+            transform: scale(1.1);
+            box-shadow: 0 8px 25px rgba(197,160,89,0.3);
+        }
+        .step-label {
+            font-size: 0.75rem;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+            color: var(--text-muted);
+            transition: color 0.3s ease;
+        }
+        .step.active .step-label {
+            color: var(--gold-accent);
+        }
+
+        /* Checkout Cards */
+        .checkout-card {
+            background: rgba(255,255,255,0.95);
+            border: 1px solid rgba(197,160,89,0.15);
+            border-radius: 16px;
+            box-shadow: 0 8px 32px rgba(0,0,0,0.06);
+            overflow: hidden;
+            transition: all 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+            opacity: 0.7;
+            transform: translateY(10px);
+        }
+        .checkout-card.active {
+            opacity: 1;
+            transform: translateY(0);
+            box-shadow: 0 15px 45px rgba(0,0,0,0.1);
+            border-color: rgba(197,160,89,0.3);
+        }
+        .checkout-card:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 20px 50px rgba(0,0,0,0.12);
+        }
+
+        /* Card Headers */
+        .card-header-premium {
+            background: linear-gradient(135deg, rgba(253,251,247,0.98), rgba(250,248,245,0.95));
+            border-bottom: 1px solid rgba(197,160,89,0.1);
+            padding: 1.5rem 2rem;
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+        }
+        .card-icon {
+            width: 40px;
+            height: 40px;
+            border-radius: 12px;
+            background: linear-gradient(135deg, var(--gold-accent), var(--gold-hover));
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            box-shadow: 0 4px 12px rgba(197,160,89,0.3);
+        }
+        .card-status {
+            margin-left: auto;
+            color: #4CAF50;
+        }
+
+        /* Card Body */
+        .card-body-premium {
+            padding: 2rem;
+        }
+
+        /* Premium Form Inputs */
+        .premium-input {
+            border: 1px solid rgba(197,160,89,0.2);
+            border-radius: 8px;
+            padding: 1rem 1.25rem;
+            font-size: 0.95rem;
+            transition: all 0.3s ease;
+            background: rgba(255,255,255,0.8);
+        }
+        .premium-input:focus {
+            border-color: var(--gold-accent);
+            box-shadow: 0 0 0 3px rgba(197,160,89,0.1);
+            background: white;
+        }
+        .form-floating > .premium-input {
+            padding-top: 2rem;
+            padding-bottom: 0.5rem;
+        }
+        .form-floating > label {
+            color: var(--text-muted);
+            font-weight: 500;
+            padding-left: 1.25rem;
+        }
+
+        /* Shipping Options */
+        .shipping-options {
+            display: flex;
+            flex-direction: column;
+            gap: 1rem;
+        }
+        .shipping-option {
+            border: 2px solid rgba(197,160,89,0.15);
+            border-radius: 12px;
+            padding: 1.25rem;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            background: rgba(255,255,255,0.5);
+        }
+        .shipping-option:hover {
+            border-color: var(--gold-accent);
+            background: rgba(197,160,89,0.05);
+        }
+        .shipping-option.selected {
+            border-color: var(--gold-accent);
+            background: linear-gradient(135deg, rgba(197,160,89,0.05), rgba(197,160,89,0.02));
+            box-shadow: 0 4px 16px rgba(197,160,89,0.15);
+        }
+        .option-radio {
+            display: flex;
+            align-items: center;
+            margin-bottom: 0.5rem;
+        }
+        .option-radio input[type="radio"] {
+            display: none;
+        }
+        .option-radio label {
+            width: 20px;
+            height: 20px;
+            border: 2px solid rgba(197,160,89,0.3);
+            border-radius: 50%;
+            cursor: pointer;
+            position: relative;
+            transition: all 0.3s ease;
+        }
+        .option-radio input[type="radio"]:checked + label {
+            background: var(--gold-accent);
+            border-color: var(--gold-accent);
+        }
+        .option-radio input[type="radio"]:checked + label::after {
+            content: '';
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 6px;
+            height: 6px;
+            background: white;
+            border-radius: 50%;
+        }
+        .option-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 0.25rem;
+        }
+        .option-name {
+            font-weight: 600;
+            color: var(--text-main);
+        }
+        .option-price {
+            font-weight: 600;
+            color: var(--gold-accent);
+        }
+        .option-description {
+            font-size: 0.85rem;
+            color: var(--text-muted);
+        }
+
+        /* Payment Methods */
+        .payment-methods {
+            margin-bottom: 2rem;
+        }
+        .method-tabs {
+            display: flex;
+            gap: 0.5rem;
+            margin-bottom: 1.5rem;
+        }
+        .method-tab {
+            flex: 1;
+            padding: 0.75rem 1rem;
+            border: 2px solid rgba(197,160,89,0.2);
+            border-radius: 8px;
+            background: rgba(255,255,255,0.8);
+            color: var(--text-muted);
+            font-size: 0.85rem;
+            font-weight: 500;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 0.5rem;
+        }
+        .method-tab:hover {
+            border-color: var(--gold-accent);
+            background: rgba(197,160,89,0.05);
+        }
+        .method-tab.active {
+            border-color: var(--gold-accent);
+            background: var(--gold-accent);
+            color: white;
+            box-shadow: 0 4px 12px rgba(197,160,89,0.3);
+        }
+        .payment-form {
+            animation: fadeIn 0.4s ease;
+        }
+        .paypal-placeholder, .apple-placeholder {
+            text-align: center;
+            padding: 2rem;
+            background: rgba(255,255,255,0.8);
+            border-radius: 12px;
+            border: 1px solid rgba(197,160,89,0.1);
+        }
+        .btn-paypal {
+            background: #0070ba;
+            color: white;
+            border: none;
+            padding: 0.75rem 2rem;
+            border-radius: 25px;
+            font-weight: 600;
+        }
+        .btn-apple {
+            background: #000000;
+            color: white;
+            border: none;
+            padding: 0.75rem 2rem;
+            border-radius: 25px;
+            font-weight: 600;
+        }
+
+        /* Order Summary */
+        .order-summary-premium {
+            background: rgba(255,255,255,0.95);
+            border: 1px solid rgba(197,160,89,0.2);
+            border-radius: 16px;
+            padding: 2rem;
+            box-shadow: 0 15px 45px rgba(0,0,0,0.08);
+        }
+        .summary-header {
+            border-bottom: 1px solid rgba(197,160,89,0.1);
+            padding-bottom: 1rem;
+        }
+
+        /* Order Items */
+        .order-items {
+            max-height: 300px;
+            overflow-y: auto;
+        }
+        .order-item {
+            display: flex;
+            gap: 1rem;
+            padding: 1rem 0;
+            border-bottom: 1px solid rgba(197,160,89,0.1);
+        }
+        .order-item:last-child {
+            border-bottom: none;
+        }
+        .item-image {
+            width: 60px;
+            height: 80px;
+            border-radius: 8px;
+            overflow: hidden;
+            flex-shrink: 0;
+        }
+        .item-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+        .item-details {
+            flex: 1;
+        }
+        .item-name {
+            font-size: 0.9rem;
+            font-weight: 600;
+            margin-bottom: 0.25rem;
+            color: var(--text-main);
+        }
+        .item-meta {
+            font-size: 0.8rem;
+            color: var(--text-muted);
+            margin-bottom: 0.5rem;
+        }
+        .item-price {
+            font-weight: 600;
+            color: var(--text-main);
+        }
+
+        /* Promo Section */
+        .promo-section {
+            border: 1px solid rgba(197,160,89,0.2);
+            border-radius: 8px;
+            padding: 1rem;
+            background: rgba(255,255,255,0.5);
+        }
+        .promo-input-group {
+            display: flex;
+            gap: 0.5rem;
+        }
+        .promo-input {
+            border: 1px solid rgba(197,160,89,0.2);
+            border-radius: 6px;
+            padding: 0.5rem 1rem;
+            font-size: 0.9rem;
+            flex: 1;
+        }
+        .promo-input:focus {
+            border-color: var(--gold-accent);
+            box-shadow: 0 0 0 2px rgba(197,160,89,0.1);
+        }
+        .btn-promo {
+            background: var(--gold-accent);
+            color: white;
+            border: none;
+            padding: 0.5rem 1rem;
+            border-radius: 6px;
+            font-weight: 500;
+            transition: all 0.3s ease;
+        }
+        .btn-promo:hover {
+            background: var(--gold-hover);
+            transform: translateY(-1px);
+        }
+
+        /* Order Totals */
+        .order-totals {
+            background: rgba(253,251,247,0.8);
+            border-radius: 12px;
+            padding: 1.5rem;
+            border: 1px solid rgba(197,160,89,0.1);
+        }
+        .total-row {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 0.75rem;
+            font-size: 0.9rem;
+        }
+        .total-row:last-child {
+            margin-bottom: 0;
+        }
+        .total-row.discount {
+            color: #4CAF50;
+        }
+        .total-divider {
+            height: 1px;
+            background: linear-gradient(90deg, transparent, rgba(197,160,89,0.3), transparent);
+            margin: 1rem 0;
+        }
+        .total-final {
+            font-size: 1.1rem;
+            font-weight: 600;
+            color: var(--text-main);
+        }
+
+        /* Place Order Button */
+        .btn-place-order {
+            background: linear-gradient(135deg, var(--gold-accent), var(--gold-hover));
+            color: white;
+            border: none;
+            padding: 1rem 2rem;
+            border-radius: 12px;
+            font-size: 1rem;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+            position: relative;
+            overflow: hidden;
+            transition: all 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+            box-shadow: 0 8px 25px rgba(197,160,89,0.3);
+        }
+        .btn-place-order:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 15px 35px rgba(197,160,89,0.4);
+        }
+        .btn-shine {
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: linear-gradient(45deg, transparent, rgba(255,255,255,0.3), transparent);
+            transform: rotate(45deg);
+            transition: left 0.6s ease;
+        }
+        .btn-place-order:hover .btn-shine {
+            left: 150%;
+        }
+
+        /* Trust Badges */
+        .trust-badges {
+            text-align: center;
+        }
+        .badge-row {
+            display: flex;
+            justify-content: space-between;
+            gap: 1rem;
+        }
+        .trust-badge {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 0.5rem;
+            color: var(--text-muted);
+            font-size: 0.75rem;
+        }
+
+        /* Delivery Estimate */
+        .delivery-estimate {
+            border: 1px solid rgba(197,160,89,0.2) !important;
+        }
+
+        /* Animations */
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .checkout-progress {
+                padding: 0 1rem;
+            }
+            .progress-steps {
+                gap: 0.5rem;
+            }
+            .step-circle {
+                width: 40px;
+                height: 40px;
+            }
+            .step-circle i {
+                width: 14px !important;
+                height: 14px !important;
+            }
+            .step-label {
+                font-size: 0.7rem;
+            }
+            .card-header-premium {
+                padding: 1rem 1.5rem;
+            }
+            .card-body-premium {
+                padding: 1.5rem;
+            }
+            .order-item {
+                gap: 0.75rem;
+            }
+            .item-image {
+                width: 50px;
+                height: 65px;
+            }
         }
 
         /* --- Custom Scrollbar --- */
@@ -291,10 +775,6 @@
         <i data-lucide="arrow-up"></i>
     </div>
 
-    <!-- WhatsApp Float -->
-    <a href="https://wa.me/" target="_blank" class="whatsapp-float">
-        <i data-lucide="message-circle" style="width: 28px; height: 28px;"></i>
-    </a>
 
     <!-- Navigation -->
     <nav class="navbar navbar-expand-lg">
@@ -304,7 +784,7 @@
             </button>
 
             <!-- Center Brand on Mobile -->
-            <a class="navbar-brand mx-auto d-lg-none" href="index.html">
+            <a class="navbar-brand mx-auto d-lg-none" href="#" onclick="navigateTo('home')">
                 Rivayat<span class="text-gold">.</span>
             </a>
 
@@ -313,61 +793,103 @@
                 
                 <!-- Left Side: Main Links -->
                 <ul class="navbar-nav me-auto mb-2 mb-lg-0 align-items-center">
-                    <li class="nav-item"><a class="nav-link" href="index.html">Home</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#" onclick="navigateTo('home')">Home</a></li>
                     
                     <!-- Mega Dropdown: 4 cols links + 1 col feature -->
                     <li class="nav-item dropdown has-mega-menu">
-                        <a class="nav-link dropdown-toggle" href="#" data-bs-toggle="dropdown">Collection</a>
+                        <a class="nav-link dropdown-toggle" href="#" data-bs-toggle="dropdown" onclick="navigateTo('listing', 'All')">Collection</a>
                         <div class="dropdown-menu mega-menu">
-                            <div class="container">
-                                <div class="row">
+                            <div class="container-fluid">
+                                <div class="row g-0">
                                     <!-- Col 1 -->
-                                    <div class="col-lg-2 mb-4 border-end border-light">
-                                        <h6 class="mega-menu-header">Clothing</h6>
-                                        <a href="#" class="mega-menu-link">All Clothing</a>
-                                        <a href="#" class="mega-menu-link">Hand Painted Suits</a>
-                                        <a href="#" class="mega-menu-link">Sharara Sets</a>
-                                        <a href="#" class="mega-menu-link">Sarees</a>
-                                        <a href="#" class="mega-menu-link">Lehengas</a>
+                                    <div class="col-lg-2 mega-menu-column">
+                                        <div class="mega-menu-card">
+                                            <div class="mega-menu-image-wrapper">
+                                                <img src="https://res.cloudinary.com/dwv2wwdki/image/upload/v1763654574/Lucid_Origin_Banarasi_Silk_Lehenga_women_fashion_model_in_a_fu_1_n0yylp.jpg" alt="Banarasi Silk Lehenga" class="mega-menu-image">
+                                                <div class="mega-menu-overlay"></div>
+                                            </div>
+                                            <div class="mega-menu-content">
+                                                <h6 class="mega-menu-header">Clothing</h6>
+                                                <div class="mega-menu-links">
+                                                    <a href="#" class="mega-menu-link" onclick="navigateTo('listing', 'Clothing')">All Clothing</a>
+                                                    <a href="#" class="mega-menu-link" onclick="navigateTo('listing', 'Clothing')">Hand Painted Suits</a>
+                                                    <a href="#" class="mega-menu-link" onclick="navigateTo('listing', 'Clothing')">Sharara Sets</a>
+                                                    <a href="#" class="mega-menu-link" onclick="navigateTo('listing', 'Clothing')">Sarees</a>
+                                                    <a href="#" class="mega-menu-link" onclick="navigateTo('listing', 'Clothing')">Lehengas</a>
+                                                </div>
+                                            </div>
+                                        </div>
                                     </div>
                                     <!-- Col 2 -->
-                                    <div class="col-lg-2 mb-4 border-end border-light">
-                                        <h6 class="mega-menu-header">Footwear</h6>
-                                        <a href="#" class="mega-menu-link">All Footwear</a>
-                                        <a href="#" class="mega-menu-link">Juttis</a>
-                                        <a href="#" class="mega-menu-link">Mojaris</a>
-                                        <a href="#" class="mega-menu-link">Wedges</a>
-                                        <a href="#" class="mega-menu-link">Heels</a>
+                                    <div class="col-lg-2 mega-menu-column">
+                                        <div class="mega-menu-card">
+                                            <div class="mega-menu-image-wrapper">
+                                                <img src="https://res.cloudinary.com/dwv2wwdki/image/upload/v1763701879/Lucid_Origin_Embroidered_Mojaris_womens_footwear_product_with__2_m5de7h.jpg" alt="Embroidered Mojaris" class="mega-menu-image">
+                                                <div class="mega-menu-overlay"></div>
+                                            </div>
+                                            <div class="mega-menu-content">
+                                                <h6 class="mega-menu-header">Footwear</h6>
+                                                <div class="mega-menu-links">
+                                                    <a href="#" class="mega-menu-link" onclick="navigateTo('listing', 'Footwear')">All Footwear</a>
+                                                    <a href="#" class="mega-menu-link" onclick="navigateTo('listing', 'Footwear')">Juttis</a>
+                                                    <a href="#" class="mega-menu-link" onclick="navigateTo('listing', 'Footwear')">Mojaris</a>
+                                                    <a href="#" class="mega-menu-link" onclick="navigateTo('listing', 'Footwear')">Wedges</a>
+                                                    <a href="#" class="mega-menu-link" onclick="navigateTo('listing', 'Footwear')">Heels</a>
+                                                </div>
+                                            </div>
+                                        </div>
                                     </div>
                                     <!-- Col 3 -->
-                                    <div class="col-lg-2 mb-4 border-end border-light">
-                                        <h6 class="mega-menu-header">Jewelry</h6>
-                                        <a href="#" class="mega-menu-link">All Jewelry</a>
-                                        <a href="#" class="mega-menu-link">Necklaces</a>
-                                        <a href="#" class="mega-menu-link">Earrings</a>
-                                        <a href="#" class="mega-menu-link">Rings</a>
-                                        <a href="#" class="mega-menu-link">Bangles</a>
+                                    <div class="col-lg-2 mega-menu-column">
+                                        <div class="mega-menu-card">
+                                            <div class="mega-menu-image-wrapper">
+                                                <img src="https://res.cloudinary.com/dwv2wwdki/image/upload/v1763701430/Lucid_Origin_Kundan_Pearl_Earrings_adorn_a_beautiful_womens_fa_3_xxkfow.jpg" alt="Kundan Pearl Earrings" class="mega-menu-image">
+                                                <div class="mega-menu-overlay"></div>
+                                            </div>
+                                            <div class="mega-menu-content">
+                                                <h6 class="mega-menu-header">Jewelry</h6>
+                                                <div class="mega-menu-links">
+                                                    <a href="#" class="mega-menu-link" onclick="navigateTo('listing', 'Jewelry')">All Jewelry</a>
+                                                    <a href="#" class="mega-menu-link" onclick="navigateTo('listing', 'Jewelry')">Necklaces</a>
+                                                    <a href="#" class="mega-menu-link" onclick="navigateTo('listing', 'Jewelry')">Earrings</a>
+                                                    <a href="#" class="mega-menu-link" onclick="navigateTo('listing', 'Jewelry')">Rings</a>
+                                                    <a href="#" class="mega-menu-link" onclick="navigateTo('listing', 'Jewelry')">Bangles</a>
+                                                </div>
+                                            </div>
+                                        </div>
                                     </div>
                                     <!-- Col 4 -->
-                                    <div class="col-lg-2 mb-4 border-end border-light">
-                                        <h6 class="mega-menu-header">Crafts</h6>
-                                        <a href="#" class="mega-menu-link">Hand Block Print</a>
-                                        <a href="#" class="mega-menu-link">Zardosi Work</a>
-                                        <a href="#" class="mega-menu-link">Chikankari</a>
-                                        <a href="#" class="mega-menu-link">Gotapatti</a>
-                                        <a href="#" class="mega-menu-link">Hand Painted</a>
+                                    <div class="col-lg-2 mega-menu-column">
+                                        <div class="mega-menu-card">
+                                            <div class="mega-menu-image-wrapper">
+                                                <img src="https://images.unsplash.com/photo-1606293926075-69a00febf280?q=80&w=400" alt="Hand Painted Craft" class="mega-menu-image">
+                                                <div class="mega-menu-overlay"></div>
+                                            </div>
+                                            <div class="mega-menu-content">
+                                                <h6 class="mega-menu-header">Crafts</h6>
+                                                <div class="mega-menu-links">
+                                                    <a href="#" class="mega-menu-link" onclick="navigateTo('listing', 'All')">Hand Block Print</a>
+                                                    <a href="#" class="mega-menu-link" onclick="navigateTo('listing', 'All')">Zardosi Work</a>
+                                                    <a href="#" class="mega-menu-link" onclick="navigateTo('listing', 'All')">Chikankari</a>
+                                                    <a href="#" class="mega-menu-link" onclick="navigateTo('listing', 'All')">Gotapatti</a>
+                                                    <a href="#" class="mega-menu-link" onclick="navigateTo('listing', 'All')">Hand Painted</a>
+                                                </div>
+                                            </div>
+                                        </div>
                                     </div>
-                                    <!-- Col 5: Featured Image (Width 4) -->
-                                    <div class="col-lg-4 d-none d-lg-block">
-                                        <div class="position-relative h-100 w-100 overflow-hidden cursor-pointer">
-                                            <img src="https://images.unsplash.com/photo-1610030469983-98e550d6193c?q=80&w=400&auto=format&fit=crop"
-                                                 class="w-100 h-100 object-fit-cover transition-transform duration-700 hover-scale"
-                                                 alt="Featured Collection"
-                                                 style="min-height: 250px;"
-                                                 onerror="this.src='https://via.placeholder.com/400x250?text=Featured+Collection'">
-                                            <div class="position-absolute bottom-0 start-0 w-100 p-3 text-white" style="background: linear-gradient(to top, rgba(0,0,0,0.7), transparent);">
-                                                <span class="small text-uppercase tracking-widest">Featured</span>
-                                                <h5 class="font-serif mb-0 text-white">The Wedding Edit</h5>
+                                    <!-- Col 5: Featured Image -->
+                                    <div class="col-lg-4 mega-menu-featured">
+                                        <div class="featured-card" onclick="navigateTo('listing', 'Clothing')">
+                                            <div class="featured-image-wrapper">
+                                                <img src="https://images.unsplash.com/photo-1610030469983-98e550d6193c?q=80&w=400&auto=format&fit=crop"
+                                                     class="featured-image"
+                                                     alt="Featured Collection"
+                                                     onerror="this.src='https://via.placeholder.com/400x250?text=Featured+Collection'">
+                                                <div class="featured-overlay">
+                                                    <div class="featured-badge">Featured</div>
+                                                    <h5 class="featured-title">The Wedding Edit</h5>
+                                                    <p class="featured-subtitle">Timeless elegance for your special day</p>
+                                                </div>
                                             </div>
                                         </div>
                                     </div>
@@ -375,12 +897,20 @@
                             </div>
                         </div>
                     </li>
-                    <li class="nav-item"><a class="nav-link" href="products.html">Products</a></li>
-                    <li class="nav-item"><a class="nav-link text-gold" href="#">Sale</a></li>
+
+                    <!-- Simple Dropdown -->
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="#" data-bs-toggle="dropdown">Shop</a>
+                        <ul class="dropdown-menu">
+                            <li><a class="dropdown-item" href="#" onclick="navigateTo('listing', 'All')">New Arrivals</a></li>
+                            <li><a class="dropdown-item" href="#" onclick="navigateTo('listing', 'All')">Sale</a></li>
+                            <li><a class="dropdown-item" href="products.html">All Products</a></li>
+                        </ul>
+                    </li>
                 </ul>
                 
                 <!-- Center Brand Desktop (Absolute Positioning) -->
-                <a class="navbar-brand mx-auto d-none d-lg-block position-absolute start-50 translate-middle-x" href="index.html">
+                <a class="navbar-brand mx-auto d-none d-lg-block position-absolute start-50 translate-middle-x" href="#" onclick="navigateTo('home')">
                     Rivayat<span class="text-gold">.</span>
                 </a>
 
@@ -409,13 +939,13 @@
                     </li>
 
                     <li class="nav-item d-flex gap-3">
-                        <a href="#" class="text-dark position-relative">
+                        <a href="#" class="text-dark position-relative" onclick="incrementWishlist(event)">
                             <i data-lucide="heart" style="width: 20px;"></i>
-                            <span class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-gold text-white d-none" style="font-size: 0.5rem; background: var(--gold-accent);">0</span>
+                            <span id="wishlist-badge" class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-gold text-white d-none" style="font-size: 0.5rem; background: var(--gold-accent);">0</span>
                         </a>
-                        <a href="cart.html" class="text-dark position-relative">
+                        <a href="cart.html" class="text-dark position-relative" onclick="incrementCart(event)">
                             <i data-lucide="shopping-bag" style="width: 20px;"></i>
-                            <span class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-dark text-white d-none" style="font-size: 0.5rem;">0</span>
+                            <span id="cart-badge" class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-dark text-white d-none" style="font-size: 0.5rem;">0</span>
                         </a>
                     </li>
                 </ul>
@@ -423,88 +953,375 @@
         </div>
     </nav>
 
-    <!-- Main Content -->
-    <main class="container py-5 mt-5">
-        <div class="text-center mb-5">
-            <span class="text-muted text-uppercase tracking-widest small">Checkout</span>
-            <h1 class="font-serif display-4 mt-2">Complete Your Order</h1>
-        </div>
+    <!-- Premium Checkout Header -->
+    <section class="checkout-header py-5">
+        <div class="container">
+            <div class="text-center mb-5">
+                <span class="text-gold text-uppercase tracking-widest small d-block mb-2">Secure Checkout</span>
+                <h1 class="font-serif display-4 mt-0 mb-3">Complete Your Order</h1>
+                <p class="text-muted font-sans" style="max-width: 600px; margin: 0 auto;">Experience luxury shopping with our secure and elegant checkout process</p>
+            </div>
 
-        <div class="row">
+            <!-- Premium Progress Indicator -->
+            <div class="checkout-progress mb-5">
+                <div class="progress-container">
+                    <div class="progress-line"></div>
+                    <div class="progress-steps">
+                        <div class="step active" data-step="1">
+                            <div class="step-circle">
+                                <i data-lucide="shopping-bag" style="width: 16px; height: 16px;"></i>
+                            </div>
+                            <span class="step-label">Cart</span>
+                        </div>
+                        <div class="step active" data-step="2">
+                            <div class="step-circle">
+                                <i data-lucide="user" style="width: 16px; height: 16px;"></i>
+                            </div>
+                            <span class="step-label">Details</span>
+                        </div>
+                        <div class="step active" data-step="3">
+                            <div class="step-circle">
+                                <i data-lucide="truck" style="width: 16px; height: 16px;"></i>
+                            </div>
+                            <span class="step-label">Shipping</span>
+                        </div>
+                        <div class="step active" data-step="4">
+                            <div class="step-circle">
+                                <i data-lucide="credit-card" style="width: 16px; height: 16px;"></i>
+                            </div>
+                            <span class="step-label">Payment</span>
+                        </div>
+                        <div class="step" data-step="5">
+                            <div class="step-circle">
+                                <i data-lucide="check-circle" style="width: 16px; height: 16px;"></i>
+                            </div>
+                            <span class="step-label">Complete</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Main Checkout Content -->
+    <main class="container pb-5">
+        <div class="row g-5">
+            <!-- Left Column: Forms -->
             <div class="col-lg-8">
                 <!-- Shipping Information -->
-                <div class="checkout-step active mb-5">
-                    <h3 class="font-serif mb-4">Shipping Information</h3>
-                    <div class="row g-3">
-                        <div class="col-md-6">
-                            <input type="text" class="form-control" placeholder="First Name">
+                <div class="checkout-card active mb-4">
+                    <div class="card-header-premium">
+                        <div class="card-icon">
+                            <i data-lucide="map-pin" style="width: 20px; height: 20px;"></i>
                         </div>
-                        <div class="col-md-6">
-                            <input type="text" class="form-control" placeholder="Last Name">
+                        <h3 class="font-serif mb-0">Shipping Information</h3>
+                        <div class="card-status">
+                            <i data-lucide="check-circle" style="width: 16px; height: 16px;"></i>
                         </div>
-                        <div class="col-12">
-                            <input type="email" class="form-control" placeholder="Email Address">
+                    </div>
+                    <div class="card-body-premium">
+                        <div class="row g-3">
+                            <div class="col-md-6">
+                                <div class="form-floating">
+                                    <input type="text" class="form-control premium-input" id="firstName" placeholder="First Name">
+                                    <label for="firstName">First Name</label>
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="form-floating">
+                                    <input type="text" class="form-control premium-input" id="lastName" placeholder="Last Name">
+                                    <label for="lastName">Last Name</label>
+                                </div>
+                            </div>
+                            <div class="col-md-8">
+                                <div class="form-floating">
+                                    <input type="email" class="form-control premium-input" id="email" placeholder="Email Address">
+                                    <label for="email">Email Address</label>
+                                </div>
+                            </div>
+                            <div class="col-md-4">
+                                <div class="form-floating">
+                                    <input type="text" class="form-control premium-input" id="phone" placeholder="Phone Number">
+                                    <label for="phone">Phone Number</label>
+                                </div>
+                            </div>
+                            <div class="col-12">
+                                <div class="form-floating">
+                                    <input type="text" class="form-control premium-input" id="address" placeholder="Street Address">
+                                    <label for="address">Street Address</label>
+                                </div>
+                            </div>
+                            <div class="col-md-4">
+                                <div class="form-floating">
+                                    <input type="text" class="form-control premium-input" id="city" placeholder="City">
+                                    <label for="city">City</label>
+                                </div>
+                            </div>
+                            <div class="col-md-4">
+                                <div class="form-floating">
+                                    <input type="text" class="form-control premium-input" id="state" placeholder="State">
+                                    <label for="state">State</label>
+                                </div>
+                            </div>
+                            <div class="col-md-4">
+                                <div class="form-floating">
+                                    <input type="text" class="form-control premium-input" id="zipCode" placeholder="ZIP Code">
+                                    <label for="zipCode">ZIP Code</label>
+                                </div>
+                            </div>
                         </div>
-                        <div class="col-12">
-                            <input type="text" class="form-control" placeholder="Phone Number">
+                    </div>
+                </div>
+
+                <!-- Shipping Method -->
+                <div class="checkout-card active mb-4">
+                    <div class="card-header-premium">
+                        <div class="card-icon">
+                            <i data-lucide="truck" style="width: 20px; height: 20px;"></i>
                         </div>
-                        <div class="col-12">
-                            <input type="text" class="form-control" placeholder="Address">
+                        <h3 class="font-serif mb-0">Shipping Method</h3>
+                        <div class="card-status">
+                            <i data-lucide="check-circle" style="width: 16px; height: 16px;"></i>
                         </div>
-                        <div class="col-md-4">
-                            <input type="text" class="form-control" placeholder="City">
-                        </div>
-                        <div class="col-md-4">
-                            <input type="text" class="form-control" placeholder="State">
-                        </div>
-                        <div class="col-md-4">
-                            <input type="text" class="form-control" placeholder="ZIP Code">
+                    </div>
+                    <div class="card-body-premium">
+                        <div class="shipping-options">
+                            <div class="shipping-option selected">
+                                <div class="option-radio">
+                                    <input type="radio" name="shipping" id="standard" checked>
+                                    <label for="standard"></label>
+                                </div>
+                                <div class="option-content">
+                                    <div class="option-header">
+                                        <span class="option-name">Standard Shipping</span>
+                                        <span class="option-price">Free</span>
+                                    </div>
+                                    <div class="option-description">5-7 business days • Free on orders over $100</div>
+                                </div>
+                            </div>
+                            <div class="shipping-option">
+                                <div class="option-radio">
+                                    <input type="radio" name="shipping" id="express">
+                                    <label for="express"></label>
+                                </div>
+                                <div class="option-content">
+                                    <div class="option-header">
+                                        <span class="option-name">Express Shipping</span>
+                                        <span class="option-price">$15.00</span>
+                                    </div>
+                                    <div class="option-description">2-3 business days • Premium delivery</div>
+                                </div>
+                            </div>
+                            <div class="shipping-option">
+                                <div class="option-radio">
+                                    <input type="radio" name="shipping" id="overnight">
+                                    <label for="overnight"></label>
+                                </div>
+                                <div class="option-content">
+                                    <div class="option-header">
+                                        <span class="option-name">Overnight</span>
+                                        <span class="option-price">$25.00</span>
+                                    </div>
+                                    <div class="option-description">1 business day • Guaranteed delivery</div>
+                                </div>
+                            </div>
                         </div>
                     </div>
                 </div>
 
                 <!-- Payment Information -->
-                <div class="checkout-step mb-5">
-                    <h3 class="font-serif mb-4">Payment Information</h3>
-                    <div class="row g-3">
-                        <div class="col-12">
-                            <input type="text" class="form-control" placeholder="Card Number">
+                <div class="checkout-card active mb-4">
+                    <div class="card-header-premium">
+                        <div class="card-icon">
+                            <i data-lucide="credit-card" style="width: 20px; height: 20px;"></i>
                         </div>
-                        <div class="col-md-6">
-                            <input type="text" class="form-control" placeholder="MM/YY">
+                        <h3 class="font-serif mb-0">Payment Information</h3>
+                        <div class="card-status">
+                            <i data-lucide="check-circle" style="width: 16px; height: 16px;"></i>
                         </div>
-                        <div class="col-md-6">
-                            <input type="text" class="form-control" placeholder="CVV">
+                    </div>
+                    <div class="card-body-premium">
+                        <!-- Payment Methods -->
+                        <div class="payment-methods mb-4">
+                            <div class="method-tabs">
+                                <button class="method-tab active" data-method="card">
+                                    <i data-lucide="credit-card" style="width: 16px; height: 16px;"></i>
+                                    Credit Card
+                                </button>
+                                <button class="method-tab" data-method="paypal">
+                                    <i data-lucide="dollar-sign" style="width: 16px; height: 16px;"></i>
+                                    PayPal
+                                </button>
+                                <button class="method-tab" data-method="apple">
+                                    <i data-lucide="smartphone" style="width: 16px; height: 16px;"></i>
+                                    Apple Pay
+                                </button>
+                            </div>
                         </div>
-                        <div class="col-12">
-                            <input type="text" class="form-control" placeholder="Name on Card">
+
+                        <!-- Card Form -->
+                        <div class="payment-form" id="card-form">
+                            <div class="row g-3">
+                                <div class="col-12">
+                                    <div class="form-floating">
+                                        <input type="text" class="form-control premium-input" id="cardNumber" placeholder="Card Number">
+                                        <label for="cardNumber">Card Number</label>
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="form-floating">
+                                        <input type="text" class="form-control premium-input" id="expiry" placeholder="MM/YY">
+                                        <label for="expiry">Expiry Date</label>
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="form-floating">
+                                        <input type="text" class="form-control premium-input" id="cvv" placeholder="CVV">
+                                        <label for="cvv">CVV</label>
+                                    </div>
+                                </div>
+                                <div class="col-12">
+                                    <div class="form-floating">
+                                        <input type="text" class="form-control premium-input" id="cardName" placeholder="Name on Card">
+                                        <label for="cardName">Name on Card</label>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- PayPal Form -->
+                        <div class="payment-form d-none" id="paypal-form">
+                            <div class="paypal-placeholder">
+                                <i data-lucide="dollar-sign" style="width: 48px; height: 48px; color: #0070ba;"></i>
+                                <p class="mb-3">You will be redirected to PayPal to complete your payment securely.</p>
+                                <button class="btn btn-paypal">Continue with PayPal</button>
+                            </div>
+                        </div>
+
+                        <!-- Apple Pay Form -->
+                        <div class="payment-form d-none" id="apple-form">
+                            <div class="apple-placeholder">
+                                <i data-lucide="smartphone" style="width: 48px; height: 48px; color: #000000;"></i>
+                                <p class="mb-3">Complete your purchase with Apple Pay for instant checkout.</p>
+                                <button class="btn btn-apple">Pay with Apple Pay</button>
+                            </div>
                         </div>
                     </div>
                 </div>
 
                 <!-- Order Notes -->
-                <div class="checkout-step">
-                    <h3 class="font-serif mb-4">Order Notes (Optional)</h3>
-                    <textarea class="form-control" rows="3" placeholder="Any special instructions..."></textarea>
+                <div class="checkout-card">
+                    <div class="card-header-premium">
+                        <div class="card-icon">
+                            <i data-lucide="message-square" style="width: 20px; height: 20px;"></i>
+                        </div>
+                        <h3 class="font-serif mb-0">Order Notes (Optional)</h3>
+                    </div>
+                    <div class="card-body-premium">
+                        <div class="form-floating">
+                            <textarea class="form-control premium-input" id="orderNotes" style="height: 100px;" placeholder="Any special instructions or gift messages..."></textarea>
+                            <label for="orderNotes">Special Instructions</label>
+                        </div>
+                    </div>
                 </div>
             </div>
 
+            <!-- Right Column: Order Summary -->
             <div class="col-lg-4">
-                <div class="bg-light p-4 sticky-top" style="top: 100px;">
-                    <h5 class="font-serif mb-4">Order Summary</h5>
-                    <div class="d-flex justify-content-between mb-2">
-                        <span>Subtotal</span>
-                        <span>$499.00</span>
+                <div class="order-summary-premium sticky-top" style="top: 100px;">
+                    <div class="summary-header">
+                        <h4 class="font-serif mb-4">Order Summary</h4>
                     </div>
-                    <div class="d-flex justify-content-between mb-2">
-                        <span>Shipping</span>
-                        <span>Free</span>
+
+                    <!-- Order Items -->
+                    <div class="order-items mb-4">
+                        <div class="order-item">
+                            <div class="item-image">
+                                <img src="https://res.cloudinary.com/dwv2wwdki/image/upload/v1763654574/Lucid_Origin_Banarasi_Silk_Lehenga_women_fashion_model_in_a_fu_1_n0yylp.jpg" alt="Banarasi Silk Lehenga">
+                            </div>
+                            <div class="item-details">
+                                <h6 class="item-name">Banarasi Silk Lehenga</h6>
+                                <p class="item-meta">Size: M • Qty: 1</p>
+                                <div class="item-price">$499.00</div>
+                            </div>
+                        </div>
                     </div>
-                    <div class="d-flex justify-content-between mb-4">
-                        <span>Total</span>
-                        <span class="font-serif">$499.00</span>
+
+                    <!-- Promo Code -->
+                    <div class="promo-section mb-4">
+                        <div class="promo-input-group">
+                            <input type="text" class="form-control promo-input" placeholder="Promo code">
+                            <button class="btn btn-promo">Apply</button>
+                        </div>
+                        <div class="promo-message text-success small mt-2 d-none">
+                            <i data-lucide="check" style="width: 12px; height: 12px;"></i>
+                            RIVAYAT15 applied! 15% off
+                        </div>
                     </div>
-                    <button class="btn btn-custom-primary w-100" onclick="window.location.href='order-success.html'">Place Order</button>
+
+                    <!-- Order Totals -->
+                    <div class="order-totals">
+                        <div class="total-row">
+                            <span>Subtotal</span>
+                            <span>$499.00</span>
+                        </div>
+                        <div class="total-row">
+                            <span>Shipping</span>
+                            <span class="text-success">Free</span>
+                        </div>
+                        <div class="total-row">
+                            <span>Tax</span>
+                            <span>$37.43</span>
+                        </div>
+                        <div class="total-row discount d-none">
+                            <span>Discount (RIVAYAT15)</span>
+                            <span class="text-success">-$74.85</span>
+                        </div>
+                        <div class="total-divider"></div>
+                        <div class="total-row total-final">
+                            <span class="font-serif">Total</span>
+                            <span class="font-serif">$536.43</span>
+                        </div>
+                    </div>
+
+                    <!-- Place Order Button -->
+                    <button class="btn btn-place-order w-100 mt-4" onclick="window.location.href='order-success.html'">
+                        <span class="btn-text">Place Order</span>
+                        <div class="btn-shine"></div>
+                    </button>
+
+                    <!-- Trust Badges -->
+                    <div class="trust-badges mt-4 pt-4 border-top">
+                        <div class="badge-row">
+                            <div class="trust-badge">
+                                <i data-lucide="shield" style="width: 16px; height: 16px;"></i>
+                                <span class="small">SSL Secured</span>
+                            </div>
+                            <div class="trust-badge">
+                                <i data-lucide="lock" style="width: 16px; height: 16px;"></i>
+                                <span class="small">256-bit Encryption</span>
+                            </div>
+                        </div>
+                        <div class="badge-row mt-2">
+                            <div class="trust-badge">
+                                <i data-lucide="truck" style="width: 16px; height: 16px;"></i>
+                                <span class="small">Free Returns</span>
+                            </div>
+                            <div class="trust-badge">
+                                <i data-lucide="headphones" style="width: 16px; height: 16px;"></i>
+                                <span class="small">24/7 Support</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Delivery Estimate -->
+                    <div class="delivery-estimate mt-4 p-3 bg-light rounded">
+                        <div class="d-flex align-items-center mb-2">
+                            <i data-lucide="calendar" style="width: 16px; height: 16px;" class="text-gold me-2"></i>
+                            <span class="small fw-bold">Estimated Delivery</span>
+                        </div>
+                        <p class="small text-muted mb-0">December 2-4, 2025 • Free Standard Shipping</p>
+                    </div>
                 </div>
             </div>
         </div>
@@ -569,7 +1386,7 @@
     <script>
         $(document).ready(function() {
             lucide.createIcons();
-            
+
             // Scroll Effect Navbar
             $(window).scroll(function() {
                 if ($(this).scrollTop() > 50) {
@@ -580,6 +1397,99 @@
                     $('#back-to-top').removeClass('visible');
                 }
             });
+
+            // Shipping Option Selection
+            $('.shipping-option').click(function() {
+                $('.shipping-option').removeClass('selected');
+                $(this).addClass('selected');
+                $(this).find('input[type="radio"]').prop('checked', true);
+            });
+
+            // Payment Method Tabs
+            $('.method-tab').click(function() {
+                $('.method-tab').removeClass('active');
+                $(this).addClass('active');
+
+                const method = $(this).data('method');
+                $('.payment-form').addClass('d-none');
+                $(`#${method}-form`).removeClass('d-none');
+            });
+
+            // Promo Code Application
+            $('.btn-promo').click(function() {
+                const promoCode = $('.promo-input').val().toUpperCase();
+                if (promoCode === 'RIVAYAT15') {
+                    $('.promo-message').removeClass('d-none');
+                    $('.discount').removeClass('d-none');
+                    $('.total-final span:last-child').text('$461.58');
+                    $('.promo-input').prop('disabled', true);
+                    $(this).text('Applied').prop('disabled', true);
+                } else if (promoCode) {
+                    $('.promo-message').removeClass('d-none').addClass('text-danger').html('<i data-lucide="x" style="width: 12px; height: 12px;"></i> Invalid promo code');
+                    lucide.createIcons();
+                }
+            });
+
+            // Form Validation and Enhancement
+            $('.premium-input').on('focus', function() {
+                $(this).parent().addClass('focused');
+            }).on('blur', function() {
+                if (!$(this).val()) {
+                    $(this).parent().removeClass('focused');
+                }
+            });
+
+            // Card Number Formatting
+            $('#cardNumber').on('input', function() {
+                let value = $(this).val().replace(/\s+/g, '').replace(/[^0-9]/gi, '');
+                let formatted = value.match(/.{1,4}/g)?.join(' ') || value;
+                $(this).val(formatted);
+            });
+
+            // Expiry Date Formatting
+            $('#expiry').on('input', function() {
+                let value = $(this).val().replace(/\D/g, '');
+                if (value.length >= 2) {
+                    value = value.substring(0, 2) + '/' + value.substring(2, 4);
+                }
+                $(this).val(value);
+            });
+
+            // CVV Limiting
+            $('#cvv').on('input', function() {
+                let value = $(this).val().replace(/\D/g, '');
+                $(this).val(value.substring(0, 4));
+            });
+
+            // Progress Animation
+            function animateProgress() {
+                $('.step').each(function(index) {
+                    setTimeout(() => {
+                        $(this).addClass('active');
+                    }, index * 200);
+                });
+            }
+            animateProgress();
+
+            // Card Hover Effects
+            $('.checkout-card').hover(
+                function() {
+                    $(this).find('.card-icon').css('transform', 'scale(1.1)');
+                },
+                function() {
+                    $(this).find('.card-icon').css('transform', 'scale(1)');
+                }
+            );
+
+            // Trust Badge Animation
+            $('.trust-badge').hover(
+                function() {
+                    $(this).find('i').css('transform', 'scale(1.2)');
+                },
+                function() {
+                    $(this).find('i').css('transform', 'scale(1)');
+                }
+            );
         });
     </script>
 </body>
